@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lumora Pricing</title>
+  <link rel="stylesheet" href="./assets/style.css" />
+</head>
+<body>
+  <header>
+    <div class="logo">Lumora</div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+        <li><a href="signup.html">Sign Up</a></li>
+        <li><a href="login.html">Log In</a></li>
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="scheduler.html">Scheduler</a></li>
+        <li><a href="analytics.html">Analytics</a></li>
+        <li><a href="api.html">API</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="info.html">Info</a></li>
+      </ul>
+    </nav>
+    <!-- Top CTA now directs straight to the Starter PayPal checkout -->
+    <a href="https://www.paypal.com/ncp/payment/3UYP578XT4AE6" target="_blank" class="cta-button">Get Started</a>
+  </header>
+  <main>
+    <section class="hero">
+      <h1>Choose the plan that’s right for you</h1>
+      <p>
+        Start with a 14‑day free trial on the Starter plan. Upgrade anytime to
+        access more advanced features and support.
+      </p>
+    </section>
+    <section class="plans">
+      <!-- Starter Plan -->
+      <div class="plan-card" id="starter">
+        <h3>Starter</h3>
+        <div class="price">$29/mo</div>
+        <ul>
+          <li>Up to 2 social accounts</li>
+          <li>Basic scheduling</li>
+          <li>Email support</li>
+        </ul>
+        <!-- Starter plan button directs to PayPal hosted payment link -->
+        <a href="https://www.paypal.com/ncp/payment/3UYP578XT4AE6" data-plan="starter" class="cta-button" target="_blank">Start Free Trial</a>
+      </div>
+      <!-- Professional Plan -->
+      <div class="plan-card" id="professional">
+        <h3>Professional</h3>
+        <div class="price">$79/mo</div>
+        <ul>
+          <li>Up to 10 social accounts</li>
+          <li>Advanced scheduling & analytics</li>
+          <li>Priority email support</li>
+        </ul>
+        <!-- Professional plan button directs to PayPal hosted payment link -->
+        <a href="https://www.paypal.com/ncp/payment/5666PF74ADKB4" data-plan="professional" class="cta-button" target="_blank">Upgrade</a>
+      </div>
+      <!-- Enterprise Plan -->
+      <div class="plan-card" id="enterprise">
+        <h3>Enterprise</h3>
+        <div class="price">$199/mo</div>
+        <ul>
+          <li>Unlimited social accounts</li>
+          <li>Custom integrations</li>
+          <li>Dedicated account manager</li>
+        </ul>
+        <!-- Enterprise plan button directs to PayPal hosted payment link -->
+        <a href="https://www.paypal.com/ncp/payment/6V2NYJTE68VZ2" data-plan="enterprise" class="cta-button" target="_blank">Contact Sales</a>
+      </div>
+    </section>
+    <div style="text-align:center; margin-top:2rem;">
+      <button id="qr-trigger" class="cta-button" style="background:#4c566a;">Pay by QR</button>
+    </div>
+  </main>
+  <footer>
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="signup.html">Sign Up</a>
+      <a href="login.html">Log In</a>
+      <a href="contact.html">Contact</a>
+      <a href="info.html">Info</a>
+      <a href="policies/terms.html">Terms</a>
+      <a href="policies/privacy.html">Privacy</a>
+      <a href="policies/refund-policy.html">Refund Policy</a>
+      <a href="policies/api-policy.html">API Policy</a>
+      <a href="policies/affiliate.html">Affiliate</a>
+    </div>
+    <p>&copy; <span id="year"></span> Lumora. All rights reserved.</p>
+  </footer>
+  <div class="floating-cta">Start Free Trial</div>
+  <!-- QR Modal -->
+  <div class="modal" id="qr-modal">
+    <div class="modal-content">
+      <div class="modal-close">×</div>
+      <h2>Scan to Pay</h2>
+      <p>Use your mobile device to scan and pay via PayPal.</p>
+      <div style="display:flex; flex-wrap:wrap; justify-content:center;">
+        <div>
+          <img src="assets/img/starter-qr.png" alt="Starter QR" />
+          <p style="margin-top:0.25rem;">Starter</p>
+        </div>
+        <div>
+          <img src="assets/img/professional-qr.png" alt="Professional QR" />
+          <p style="margin-top:0.25rem;">Professional</p>
+        </div>
+        <div>
+          <img src="assets/img/enterprise-qr.png" alt="Enterprise QR" />
+          <p style="margin-top:0.25rem;">Enterprise</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="./assets/js/main.js"></script>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

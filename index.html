@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lumora – Social Media Automation</title>
+  <link rel="stylesheet" href="./assets/style.css" />
+</head>
+<body>
+  <header>
+    <div class="logo">Lumora</div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+        <li><a href="signup.html">Sign Up</a></li>
+        <li><a href="login.html">Log In</a></li>
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="scheduler.html">Scheduler</a></li>
+        <li><a href="analytics.html">Analytics</a></li>
+        <li><a href="api.html">API</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="info.html">Info</a></li>
+      </ul>
+    </nav>
+    <!-- Top CTA directs users straight to the Starter subscription link -->
+    <a href="https://www.paypal.com/ncp/payment/3UYP578XT4AE6" target="_blank" class="cta-button">Start Free Trial</a>
+  </header>
+  <main>
+    <section class="hero">
+      <h1>Grow your social presence effortlessly</h1>
+      <p>
+        Lumora automates your content scheduling, analytics, and insights so you
+        can focus on creating and connecting with your audience.
+      </p>
+      <!-- Hero CTA directs to the Starter subscription -->
+      <a href="https://www.paypal.com/ncp/payment/3UYP578XT4AE6" target="_blank" class="cta-button">Start Free Trial</a>
+    </section>
+  </main>
+  <footer>
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="signup.html">Sign Up</a>
+      <a href="login.html">Log In</a>
+      <a href="contact.html">Contact</a>
+      <a href="info.html">Info</a>
+      <a href="policies/terms.html">Terms</a>
+      <a href="policies/privacy.html">Privacy</a>
+      <a href="policies/refund-policy.html">Refund Policy</a>
+      <a href="policies/api-policy.html">API Policy</a>
+      <a href="policies/affiliate.html">Affiliate</a>
+    </div>
+    <p>&copy; <span id="year"></span> Lumora. All rights reserved.</p>
+  </footer>
+  <div class="floating-cta">Start Free Trial</div>
+  <script src="./assets/js/main.js"></script>
+  <script>
+    // update footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

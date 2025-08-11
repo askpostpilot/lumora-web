@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Scheduler – Lumora</title>
+  <link rel="stylesheet" href="./assets/style.css" />
+</head>
+<body>
+  <header>
+    <div class="logo">Lumora</div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+        <li><a href="signup.html">Sign Up</a></li>
+        <li><a href="login.html">Log In</a></li>
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="scheduler.html">Scheduler</a></li>
+        <li><a href="analytics.html">Analytics</a></li>
+        <li><a href="api.html">API</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="info.html">Info</a></li>
+      </ul>
+    </nav>
+    <a href="pricing.html" class="cta-button">Start Free Trial</a>
+  </header>
+  <main class="container">
+    <h1>Schedule a Post</h1>
+    <p>Create and schedule new content for your social channels. AI features help generate captions, hashtags, thumbnails and repurpose your content. (Toggle on/off as desired.)</p>
+    <form id="schedule-form" style="display:flex; flex-direction:column; gap:1rem; margin-top:2rem; max-width:600px;">
+      <input type="text" placeholder="Post title" required style="padding:0.75rem; border-radius:4px; border:none;" />
+      <textarea placeholder="Post content" rows="5" required style="padding:0.75rem; border-radius:4px; border:none;"></textarea>
+      <input type="datetime-local" required style="padding:0.75rem; border-radius:4px; border:none;" />
+      <div class="toggles">
+        <div class="toggle-item">
+          <label for="toggle-caption">Generate captions with AI</label>
+          <input type="checkbox" id="toggle-caption" />
+        </div>
+        <div class="toggle-item">
+          <label for="toggle-hashtags">Generate hashtags with AI</label>
+          <input type="checkbox" id="toggle-hashtags" />
+        </div>
+        <div class="toggle-item">
+          <label for="toggle-thumbnail">Generate thumbnail with AI</label>
+          <input type="checkbox" id="toggle-thumbnail" />
+        </div>
+        <div class="toggle-item">
+          <label for="toggle-repurpose">Repurpose content with AI</label>
+          <input type="checkbox" id="toggle-repurpose" />
+        </div>
+      </div>
+      <button type="submit" class="cta-button" style="margin-top:1rem;">Schedule</button>
+    </form>
+    <div id="schedule-result" style="margin-top:1rem;"></div>
+  </main>
+  <footer>
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="signup.html">Sign Up</a>
+      <a href="login.html">Log In</a>
+      <a href="contact.html">Contact</a>
+      <a href="info.html">Info</a>
+      <a href="policies/terms.html">Terms</a>
+      <a href="policies/privacy.html">Privacy</a>
+      <a href="policies/refund-policy.html">Refund Policy</a>
+      <a href="policies/api-policy.html">API Policy</a>
+      <a href="policies/affiliate.html">Affiliate</a>
+    </div>
+    <p>&copy; <span id="year"></span> Lumora. All rights reserved.</p>
+  </footer>
+  <div class="floating-cta">Start Free Trial</div>
+  <script src="./assets/js/main.js"></script>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const form = document.getElementById('schedule-form');
+    const resultDiv = document.getElementById('schedule-result');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      resultDiv.textContent = 'Your post has been scheduled (simulation).';
+      setTimeout(() => {
+        resultDiv.textContent = '';
+      }, 4000);
+    });
+  </script>
+</body>
+</html>
