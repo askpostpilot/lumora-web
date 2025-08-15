@@ -6,7 +6,8 @@
 set -euo pipefail
 
 # Configuration
-VPS_IP="147.79.68.121"
+# Detect VPS IP dynamically or use provided override
+VPS_IP="${VPS_IP:-$(hostname -I | awk '{print $1}')}"
 VPS_USER="root"
 PROJECT_DIR="/opt/solyntra"
 N8N_PORT="5678"
@@ -155,7 +156,9 @@ fi
 
 echo ""
 echo "=== Deployment Summary ==="
-echo "Access URL: http://147.79.68.121:5678"
+# Get actual server IP dynamically  
+SERVER_IP=$(hostname -I | awk '{print $1}')
+echo "Access URL: http://$SERVER_IP:5678"
 echo "Status: $(systemctl is-active n8n-compose.service)"
 echo "Enabled: $(systemctl is-enabled n8n-compose.service)"
 
@@ -173,7 +176,9 @@ fi
 
 echo ""
 echo "=== Deployment Complete ==="
-echo "n8n should be accessible at: http://147.79.68.121:5678"
+# Use dynamically detected server IP
+SERVER_IP=$(hostname -I | awk '{print $1}')
+echo "n8n should be accessible at: http://$SERVER_IP:5678"
 
 EOF
 

@@ -14,7 +14,7 @@ This repository contains a complete deployment package for running the Lumora we
 
 - Ubuntu 24.04 VPS with root access
 - Docker and Docker Compose installed
-- Domain name pointing to your VPS IP (147.79.68.121)
+- Domain name pointing to your VPS IP (YOUR_SERVER_IP)
 
 ## Quick Start
 

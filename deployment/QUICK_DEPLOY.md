@@ -58,17 +58,17 @@ HTTP Status: HTTP/1.1 200 OK
 n8n content found: ✓
 
 === Deployment Summary ===
-Access URL: http://147.79.68.121:5678
+Access URL: http://YOUR_SERVER_IP:5678
 Service Status: active
 Service Enabled: enabled
 
 === Deployment Complete ===
-n8n should now be accessible at: http://147.79.68.121:5678
+n8n should now be accessible at: http://YOUR_SERVER_IP:5678
 ```
 
 ## Access Your n8n Instance
 
-After deployment, open: **http://147.79.68.121:5678**
+After deployment, open: **http://YOUR_SERVER_IP:5678**
 
 ## Quick Checks
 
@@ -155,4 +155,4 @@ systemctl disable n8n-compose.service
 
 ---
 
-**That's it!** Your n8n instance should now be running and accessible at http://147.79.68.121:5678
+**That's it!** Your n8n instance should now be running and accessible at http://YOUR_SERVER_IP:5678

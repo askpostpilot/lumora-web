@@ -137,7 +137,7 @@ After successful deployment:
 - **Lumora Website**: `http://YOUR-VPS-IP`
 - **Traefik Dashboard**: `http://YOUR-VPS-IP` (if enabled)
 
-Replace `YOUR-VPS-IP` with your actual VPS IP address (likely 147.79.68.121).
+Replace `YOUR-VPS-IP` with your actual VPS IP address (YOUR_SERVER_IP).
 
 ## 🔍 Verification Commands
 

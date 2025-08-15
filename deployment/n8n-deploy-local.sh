@@ -150,7 +150,9 @@ fi
 
 echo ""
 echo "=== Deployment Summary ==="
-echo "Access URL: http://147.79.68.121:5678"
+# Get actual server IP dynamically
+SERVER_IP=$(hostname -I | awk '{print $1}')
+echo "Access URL: http://$SERVER_IP:5678"
 echo "Service Status: $(systemctl is-active n8n-compose.service 2>/dev/null || echo 'unknown')"
 echo "Service Enabled: $(systemctl is-enabled n8n-compose.service 2>/dev/null || echo 'unknown')"
 
@@ -169,9 +171,11 @@ fi
 
 echo ""
 echo "=== Deployment Complete ==="
-echo "n8n should now be accessible at: http://147.79.68.121:5678"
+# Use dynamically detected server IP
+SERVER_IP=$(hostname -I | awk '{print $1}')
+echo "n8n should now be accessible at: http://$SERVER_IP:5678"
 echo ""
 echo "Next steps:"
-echo "1. Open http://147.79.68.121:5678 in your browser"
+echo "1. Open http://$SERVER_IP:5678 in your browser"
 echo "2. Complete the initial setup if prompted"
 echo "3. If needed, check logs with: docker logs n8n"
