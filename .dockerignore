@@ -1,0 +1,12 @@
+.git
+.gitignore
+README.md
+DEPLOYMENT.md
+.env*
+docker-compose.yml
+Dockerfile
+scripts/
+systemd/
+backups/
+traefik/
+*.log

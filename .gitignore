@@ -1,0 +1,15 @@
+# Environment files
+.env
+
+# Backups
+backups/
+
+# Traefik data
+traefik/acme.json
+
+# Logs
+*.log
+
+# Temporary files
+.tmp-*
+*.tmp
