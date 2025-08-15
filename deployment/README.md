@@ -18,12 +18,12 @@ This directory contains deployment scripts and documentation for setting up n8n 
 cd /opt/solyntra && curl -sSL https://raw.githubusercontent.com/askpostpilot/lumora-web/copilot/fix-5230b8f1-5dfa-451c-9db1-78a7ffa5f88e/deployment/n8n-deploy-local.sh | bash
 ```
 
-**Then access:** http://147.79.68.121:5678
+**Then access:** http://YOUR_SERVER_IP:5678
 
 ## Environment
 
 - **VPS:** Ubuntu 24.04
-- **IP:** 147.79.68.121
+- **IP:** YOUR_SERVER_IP
 - **User:** root
 - **Docker:** 28.3.3
 - **Docker Compose:** v2.39.1
@@ -37,7 +37,7 @@ Before running the deployment script, ensure:
 1. Docker and Docker Compose are installed on the VPS
 2. `/opt/solyntra/docker-compose.yml` exists
 3. `/opt/solyntra/.env` exists
-4. SSH access to root@147.79.68.121 is configured
+4. SSH access to root@YOUR_SERVER_IP is configured
 5. Port 5678 is open on the VPS
 
 ## Deployment Options
@@ -53,7 +53,7 @@ cd /opt/solyntra && curl -sSL https://raw.githubusercontent.com/askpostpilot/lum
 ### Option 2: Download and Run Script
 
 ```bash
-ssh root@147.79.68.121
+ssh root@YOUR_SERVER_IP
 cd /opt/solyntra
 wget https://raw.githubusercontent.com/askpostpilot/lumora-web/copilot/fix-5230b8f1-5dfa-451c-9db1-78a7ffa5f88e/deployment/n8n-deploy-local.sh
 chmod +x n8n-deploy-local.sh
@@ -111,7 +111,7 @@ The script creates `/etc/systemd/system/n8n-compose.service` with:
 
 After successful deployment:
 
-- **URL:** http://147.79.68.121:5678
+- **URL:** http://YOUR_SERVER_IP:5678
 - **Status:** Check with `systemctl status n8n-compose.service`
 - **Logs:** View with `docker logs n8n`
 

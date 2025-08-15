@@ -6,7 +6,7 @@ Since SSH connectivity to your VPS isn't available from this environment, follow
 
 1. **SSH into your VPS:**
    ```bash
-   ssh root@147.79.68.121
+   ssh root@YOUR_SERVER_IP
    ```
 
 2. **Download the deployment script:**
@@ -27,7 +27,7 @@ If you prefer to run commands manually, execute these steps on your VPS:
 
 ### 1. SSH into VPS and verify Docker
 ```bash
-ssh root@147.79.68.121
+ssh root@YOUR_SERVER_IP
 docker --version
 docker compose version
 ```
@@ -146,7 +146,7 @@ After successful deployment, you should see:
         Active: active (exited) since...
    ```
 
-4. **Access URL:** http://147.79.68.121:5678
+4. **Access URL:** http://YOUR_SERVER_IP:5678
 
 ## Environment Variables
 
@@ -199,7 +199,7 @@ systemctl start n8n-compose.service
 
 Once deployed, you should be able to:
 
-1. **Access n8n:** Open http://147.79.68.121:5678 in your browser
+1. **Access n8n:** Open http://YOUR_SERVER_IP:5678 in your browser
 2. **See n8n interface:** Complete initial setup if prompted
 3. **Auto-start:** Service will automatically start on VPS reboot
 

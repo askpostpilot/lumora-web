@@ -52,7 +52,8 @@ log "Starting HTTPS deployment for domain: ${DOMAIN}"
 # Step 0: Prechecks
 log "Step 0: Performing prechecks..."
 RESOLVED_IP=$(dig +short A "$DOMAIN" | head -n1)
-EXPECTED_IP="147.79.68.121"
+# Detect current server IP dynamically
+EXPECTED_IP=$(hostname -I | awk '{print $1}')
 
 if [[ "$RESOLVED_IP" != "$EXPECTED_IP" ]]; then
     error "Fix DNS A record for $DOMAIN first. Expected: $EXPECTED_IP, Got: $RESOLVED_IP"
