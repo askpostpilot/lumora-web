@@ -6,7 +6,7 @@ set -euo pipefail
 
 BACKUP_DIR="/var/backups/n8n"
 TIMESTAMP=$(date +%Y%m%d_%H%M%S)
-PROJECT_DIR="/home/runner/work/lumora-web/lumora-web"
+PROJECT_DIR="/opt/solyntra"
 TEMP_DIR="/tmp/n8n_backup_$TIMESTAMP"
 
 # Create temporary directory
