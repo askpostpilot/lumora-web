@@ -1,6 +1,24 @@
 # n8n Deployment on Hostinger VPS
 
-This directory contains the deployment script for setting up n8n on a Hostinger VPS in IP mode (without domain).
+This directory contains deployment scripts and documentation for setting up n8n on a Hostinger VPS in IP mode (without domain).
+
+## 📋 Files in this Directory
+
+- **`QUICK_DEPLOY.md`** - One-line deployment command and quick reference
+- **`MANUAL_INSTRUCTIONS.md`** - Step-by-step manual deployment guide  
+- **`n8n-deploy-local.sh`** - Script to run directly on the VPS
+- **`n8n-deploy.sh`** - Remote SSH deployment script (requires SSH access)
+- **`README.md`** - This comprehensive guide
+
+## 🚀 Quick Start
+
+**One-line deployment command (run on your VPS):**
+
+```bash
+cd /opt/solyntra && curl -sSL https://raw.githubusercontent.com/askpostpilot/lumora-web/copilot/fix-5230b8f1-5dfa-451c-9db1-78a7ffa5f88e/deployment/n8n-deploy-local.sh | bash
+```
+
+**Then access:** http://147.79.68.121:5678
 
 ## Environment
 
@@ -22,9 +40,29 @@ Before running the deployment script, ensure:
 4. SSH access to root@147.79.68.121 is configured
 5. Port 5678 is open on the VPS
 
-## Deployment
+## Deployment Options
 
-Run the deployment script:
+### Option 1: Quick One-Line Deployment (Recommended)
+
+SSH into your VPS and run:
+
+```bash
+cd /opt/solyntra && curl -sSL https://raw.githubusercontent.com/askpostpilot/lumora-web/copilot/fix-5230b8f1-5dfa-451c-9db1-78a7ffa5f88e/deployment/n8n-deploy-local.sh | bash
+```
+
+### Option 2: Download and Run Script
+
+```bash
+ssh root@147.79.68.121
+cd /opt/solyntra
+wget https://raw.githubusercontent.com/askpostpilot/lumora-web/copilot/fix-5230b8f1-5dfa-451c-9db1-78a7ffa5f88e/deployment/n8n-deploy-local.sh
+chmod +x n8n-deploy-local.sh
+./n8n-deploy-local.sh
+```
+
+### Option 3: Remote SSH Deployment (if SSH access is available)
+
+From this repository:
 
 ```bash
 ./deployment/n8n-deploy.sh
