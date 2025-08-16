@@ -2,9 +2,12 @@
 
 This guide covers deploying n8n in IP mode on a Hostinger VPS to make it accessible at `http://147.79.68.121:5678`.
 
-## Overview
+## Deployment Scripts
 
-The deployment script (`deploy-n8n-ip-mode.sh`) performs these tasks:
+There are two deployment scripts available:
+
+### 1. Standard Deployment (`deploy-n8n-ip-mode.sh`)
+The main deployment script that uses docker-compose.override.yml for configuration:
 
 1. **SSH Connection**: Connects to `root@147.79.68.121`
 2. **Repository Setup**: Clones/updates `lumora-web` in `~/lumora-web`  
@@ -13,6 +16,17 @@ The deployment script (`deploy-n8n-ip-mode.sh`) performs these tasks:
 5. **Verification**: Checks container status and connectivity
 6. **Firewall Setup**: Configures UFW to allow port 5678 if needed
 7. **Testing**: Tests local and remote connectivity
+
+### 2. Exact Steps Deployment (`deploy-n8n-exact-steps.sh`)
+Alternative script that implements exact steps as specified:
+
+1. **Print Services**: `docker ps --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}"`
+2. **Modify docker-compose.yml**: Directly modifies the main docker-compose.yml to add `ports: - "5678:5678"`
+3. **Firewall Setup**: `if ufw status | grep -qi active; then ufw allow 5678/tcp; fi` and `ss -tulpen | awk 'NR==1 || /LISTEN/'`
+4. **Health Check**: `curl -fsSILm 5 http://127.0.0.1:5678` and `curl -fsm 5 http://127.0.0.1:5678 | head -n 5`
+5. **Final Link**: `echo "OPEN THIS: http://$(hostname -I | awk '{print $1}'):5678"`
+
+## Overview
 
 ## Prerequisites
 
@@ -23,9 +37,16 @@ The deployment script (`deploy-n8n-ip-mode.sh`) performs these tasks:
 
 ## Quick Start
 
-1. **Run the deployment script:**
+### Option 1: Standard Deployment (Recommended)
+1. **Run the main deployment script:**
    ```bash
    ./deploy-n8n-ip-mode.sh
+   ```
+
+### Option 2: Exact Steps Deployment
+1. **Run the exact steps script:**
+   ```bash
+   ./deploy-n8n-exact-steps.sh
    ```
 
 2. **Access n8n:**
