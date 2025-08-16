@@ -1,20 +1,38 @@
-#!/bin/bash
-echo "[INFO] Starting Universal Deploy Script..."
+#!/usr/bin/env bash
+set -euo pipefail
 
-# Step 1: Find the first available deploy script
-TARGET_SCRIPT=$(ls deploy-*.sh 2>/dev/null | head -n 1)
+# Always run from the repo root (folder containing this script)
+cd "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-if [ -z "$TARGET_SCRIPT" ]; then
-echo "[ERROR] No deploy-*.sh file found in this folder."
+echo "[INFO] Starting universal deploy…"
+
+# Prefer a known-good script, in this order
+CANDIDATES=(
+"deploy-n8n-ip-mode.sh"
+"deploy-n8n-vps-exact.sh"
+"deploy-complete.sh"
+)
+
+TARGET=""
+
+for f in "${CANDIDATES[@]}"; do
+if [[ -f "$f" ]]; then
+TARGET="$f"
+break
+fi
+done
+
+if [[ -z "${TARGET}" ]]; then
+echo "[ERROR] No known deploy script found."
+echo "Looked for:"
+printf ' - %s\n' "${CANDIDATES[@]}"
+echo "[INFO] Available deploy-like scripts:"
+ls -1 deploy*.sh 2>/dev/null || true
 exit 1
 fi
 
-echo "[INFO] Found deploy script: $TARGET_SCRIPT"
+chmod +x "$TARGET"
+echo "[INFO] Running: $TARGET"
+"./$TARGET"
 
-# Step 2: Make it executable
-chmod +x "$TARGET_SCRIPT"
-
-# Step 3: Run the script
-./"$TARGET_SCRIPT"
-
-echo "[INFO] Universal deployment complete."
+echo "[INFO] Universal deploy complete."
