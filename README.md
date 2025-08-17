@@ -1,10 +1,10 @@
-# Lumora Web - Social Media Automation Platform
+# SolyntraAI Web - AI-Powered Social Media Automation Platform
 
-A static website for the Lumora social media automation platform with integrated n8n deployment capabilities.
+A cutting-edge static website for the SolyntraAI artificial intelligence social media automation platform with integrated n8n deployment capabilities and premium metallic 3D design.
 
 ## Quick Start (Static Website)
 
-This repository contains the static website files for Lumora. For local development:
+This repository contains the static website files for SolyntraAI. For local development:
 
 ```bash
 # Serve locally (requires a web server)

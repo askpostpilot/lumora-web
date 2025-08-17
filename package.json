@@ -1,0 +1,30 @@
+{
+  "name": "solyntraai-web",
+  "version": "1.0.0",
+  "description": "SolyntraAI - AI-powered social media automation platform website",
+  "main": "index.html",
+  "scripts": {
+    "start": "python3 -m http.server 8000",
+    "serve": "npx serve .",
+    "build": "echo 'Static site build complete - no build process required'",
+    "dev": "python3 -m http.server 3000",
+    "preview": "python3 -m http.server 8080"
+  },
+  "keywords": [
+    "social-media",
+    "automation",
+    "ai",
+    "static-site",
+    "netlify"
+  ],
+  "author": "SolyntraAI",
+  "license": "PROPRIETARY",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/askpostpilot/lumora-web.git"
+  },
+  "homepage": "https://solyntraai.com",
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}
