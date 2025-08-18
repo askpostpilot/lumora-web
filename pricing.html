@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>SolyntraAI — Pricing</title>
+        <meta name="description" content="Choose your SolyntraAI plan. Luxury-grade social media scheduling, analytics, and AI tools for creators and brands.">
+        <meta property="og:title" content="SolyntraAI — Pricing" />
+        <meta property="og:description" content="Choose your SolyntraAI plan. Luxury-grade social media scheduling, analytics, and AI tools for creators and brands." />
+        <meta property="og:image" content="/public/brand/og-solyntraai.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="SolyntraAI — Pricing" />
+        <meta name="twitter:description" content="Choose your SolyntraAI plan. Luxury-grade social media scheduling, analytics, and AI tools for creators and brands." />
+        <meta name="twitter:image" content="/public/brand/og-solyntraai.png" />
+        <link rel="canonical" href="https://solyntraai.com/pricing.html" />
+        <meta name="robots" content="index, follow" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@500;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg1: #0d1421;
+            --bg2: #1a0b2e;
+            --bg3: #2d1b69;
+            --accent1: #00f5ff;
+            --accent2: #ff00ff;
+            --text: #fff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto;
+            background: linear-gradient(135deg, var(--bg1) 0%, var(--bg2) 50%, var(--bg3) 100%);
+            color: var(--text);
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px
+        }
+
+        /* Nav */
+        .nav {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background: rgba(13, 20, 33, .9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, .08)
+        }
+
+        .nav-wrap {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 0
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 1.4rem;
+            background: linear-gradient(45deg, var(--accent1), var(--accent2));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px
+        }
+
+        .nav-cta {
+            padding: .55rem 1.1rem;
+            border-radius: 999px;
+            font-weight: 700;
+            background: linear-gradient(45deg, var(--accent1), var(--accent2));
+            box-shadow: 0 8px 24px rgba(0, 245, 255, .25)
+        }
+
+        /* Page header */
+        .hero {
+            padding: 88px 0 24px;
+            text-align: center;
+            position: relative
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            line-height: 1.05;
+            margin-bottom: 12px;
+            background: linear-gradient(45deg, #fff, var(--accent1), var(--accent2));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent
+        }
+
+        .sub {
+            opacity: .85;
+            max-width: 760px;
+            margin: 0 auto
+        }
+
+        /* Trial banner */
+        .trial {
+            margin: 28px auto 0;
+            max-width: 820px;
+            border: 1px solid rgba(255, 255, 255, .12);
+            border-radius: 16px;
+            padding: 14px 16px;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            background: linear-gradient(90deg, rgba(0, 245, 255, .08), rgba(255, 0, 255, .08));
+        }
+
+        /* Toggle */
+        .toggle {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin: 28px 0
+        }
+
+        .toggle button {
+            background: rgba(255, 255, 255, .06);
+            border: 1px solid rgba(255, 255, 255, .12);
+            color: #fff;
+            padding: .5rem 1rem;
+            border-radius: 999px;
+            cursor: pointer;
+            font-weight: 700
+        }
+
+        .toggle button.active {
+            background: linear-gradient(45deg, var(--accent1), var(--accent2));
+            box-shadow: 0 12px 30px rgba(0, 245, 255, .25)
+        }
+
+        /* Cards */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 22px;
+            margin: 18px 0 48px
+        }
+
+        .card {
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, .12);
+            border-radius: 18px;
+            background: rgba(255, 255, 255, .04);
+            padding: 24px;
+            overflow: hidden;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, .04);
+        }
+
+        .card.featured {
+            transform: scale(1.02);
+            border-color: var(--accent1)
+        }
+
+        .badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            font-size: .72rem;
+            font-weight: 800;
+            padding: .25rem .6rem;
+            border-radius: 999px;
+            background: linear-gradient(45deg, var(--accent1), var(--accent2))
+        }
+
+        .card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 6px;
+            color: var(--accent1)
+        }
+
+        .price {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin: 6px 0 10px
+        }
+
+        .per {
+            opacity: .7;
+            font-size: .9rem
+        }
+
+        .ul {
+            list-style: none;
+            margin: 14px 0 18px
+        }
+
+        .ul li {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, .08)
+        }
+
+        .btn {
+            display: inline-block;
+            text-align: center;
+            width: 100%;
+            padding: .8rem 1rem;
+            border-radius: 12px;
+            font-weight: 800;
+            background: linear-gradient(45deg, var(--accent1), var(--accent2));
+            box-shadow: 0 14px 36px rgba(0, 245, 255, .22)
+        }
+
+        /* Why Lumora */
+        .why {
+            margin: 36px 0 18px
+        }
+
+        .why h2 {
+            text-align: center;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #fff, var(--accent1));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent
+        }
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 16px
+        }
+
+        .why-card {
+            border: 1px solid rgba(255, 255, 255, .12);
+            border-radius: 14px;
+            padding: 16px;
+            background: rgba(255, 255, 255, .04)
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid rgba(255, 255, 255, .08);
+            margin-top: 40px;
+            padding: 28px 0
+        }
+
+        .foot {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            justify-content: center;
+            font-size: .95rem
+        }
+
+        .foot a {
+            opacity: .8
+        }
+
+        .foot a:hover {
+            opacity: 1;
+            color: var(--accent1)
+        }
+
+        /* Floating CTA */
+        .float-cta {
+            position: fixed;
+            right: 18px;
+            bottom: 18px;
+            z-index: 20;
+            padding: .9rem 1.1rem;
+            border-radius: 999px;
+            font-weight: 900;
+            background: linear-gradient(45deg, var(--accent1), var(--accent2));
+            box-shadow: 0 16px 44px rgba(0, 245, 255, .28)
+        }
+
+        @media (max-width:768px) {
+            .hero h1 {
+                font-size: 2.25rem
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Nav -->
+    <nav class="nav">
+        <div class="container nav-wrap">
+            <a class="logo" href="index.html">SOLYNTRA AI</a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="pricing.html" class="nav-cta">Pricing</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <section class="hero">
+        <div class="container">
+            <h1>Choose Your Plan — 14‑Day Free Trial</h1>
+            <p class="sub">Plan, schedule, and auto‑post across every major platform with a premium 3D UI. Optional AI
+                for captions, hashtags, thumbnails, and timing. Pre‑post QA included on every plan.</p>
+            <div class="trial"> <strong>14‑Day Free Trial:</strong>&nbsp;No credit card required. Cancel anytime.</div>
+            <div class="toggle">
+                <button id="monthlyBtn" class="active" onclick="setBilling('m')">Monthly</button>
+                <button id="yearlyBtn" onclick="setBilling('y')">Yearly (2 months free)</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Supported Platforms -->
+    <section class="platforms" style="padding:32px 0 10px;">
+        <div class="container">
+            <div style="text-align:center;margin-bottom:18px;">
+                <span class="pill"
+                    style="font-size:1.1rem;font-weight:900;letter-spacing:.5px;padding:10px 22px;background:linear-gradient(90deg,#00f5ff,#ff00ff);color:#fff;border:none;box-shadow:0 4px 15px rgba(0,245,255,.18);">SUPPORTED
+                    EVERYWHERE</span>
+            </div>
+            <ul class="platform-icons" aria-label="Supported social platforms"
+                style="display:flex;flex-wrap:wrap;gap:18px;justify-content:center;align-items:center;list-style:none;padding:0;margin:0 auto;max-width:1200px;">
+                <li
+                    style="background:rgba(255,255,255,.08);border-radius:14px;padding:14px 18px;font-weight:700;box-shadow:0 2px 8px rgba(0,245,255,.08);color:#00f5ff;min-width:120px;text-align:center;">
+                    INSTAGRAM</li>
+                <li
+                    style="background:rgba(255,255,255,.08);border-radius:14px;padding:14px 18px;font-weight:700;box-shadow:0 2px 8px rgba(0,245,255,.08);color:#4267B2;min-width:120px;text-align:center;">
+                    FACEBOOK</li>
+                <li
+                    style="background:rgba(255,255,255,.08);border-radius:14px;padding:14px 18px;font-weight:700;box-shadow:0 2px 8px rgba(0,245,255,.08);color:#0077B5;min-width:120px;text-align:center;">
+                    LINKEDIN</li>
+                <li
+                    style="background:rgba(255,255,255,.08);border-radius:14px;padding:14px 18px;font-weight:700;box-shadow:0 2px 8px rgba(0,245,255,.08);color:#1DA1F2;min-width:120px;text-align:center;">
+                    X (TWITTER)</li>
+                <li
+                    style="background:rgba(255,255,255,.08);border-radius:14px;padding:14px 18px;font-weight:700;box-shadow:0 2px 8px rgba(0,245,255,.08);color:#E60023;min-width:120px;text-align:center;">
+                    PINTEREST</li>
+                <li
+                    style="background:rgba(255,255,255,.08);border-radius:14px;padding:14px 18px;font-weight:700;box-shadow:0 2px 8px rgba(0,245,255,.08);color:#69C9D0;min-width:120px;text-align:center;">
+                    TIKTOK</li>
+                <li
+                    style="background:rgba(255,255,255,.08);border-radius:14px;padding:14px 18px;font-weight:700;box-shadow:0 2px 8px rgba(0,245,255,.08);color:#FF0000;min-width:120px;text-align:center;">
+                    YOUTUBE SHORTS</li>
+                <li
+                    style="background:rgba(255,255,255,.08);border-radius:14px;padding:14px 18px;font-weight:700;box-shadow:0 2px 8px rgba(0,245,255,.08);color:#9146FF;min-width:120px;text-align:center;">
+                    THREADS</li>
+                <li
+                    style="background:rgba(255,255,255,.08);border-radius:14px;padding:14px 18px;font-weight:700;box-shadow:0 2px 8px rgba(0,245,255,.08);color:#0088CC;min-width:120px;text-align:center;">
+                    TELEGRAM</li>
+                <li
+                    style="background:rgba(255,255,255,.08);border-radius:14px;padding:14px 18px;font-weight:700;box-shadow:0 2px 8px rgba(0,245,255,.08);color:#4285F4;min-width:120px;text-align:center;">
+                    GOOGLE BUSINESS</li>
+                <li
+                    style="background:rgba(255,255,255,.08);border-radius:14px;padding:14px 18px;font-weight:700;box-shadow:0 2px 8px rgba(0,245,255,.08);color:#FF4500;min-width:120px;text-align:center;">
+                    REDDIT</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Plans -->
+    <section>
+        <div class="container grid" id="plans"
+            style="display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin:18px 0 48px;">
+            <!-- Lite -->
+            <div class="card">
+                <h3>Lite</h3>
+                <div class="price"><span class="amount" data-m="9" data-y="7">$9</span><span class="per">/mo</span>
+                </div>
+                <ul class="ul">
+                    <li>Instagram + Facebook posting</li>
+                    <li>AI Captions & Hashtags</li>
+                    <li>Schedule 30 days in 30 minutes</li>
+                </ul>
+                <a class="btn" href="signup.html" data-plan="lite">Start Lite</a>
+            </div>
+
+            <!-- Starter -->
+            <div class="card">
+                <h3>Starter</h3>
+                <div class="price"><span class="amount" data-m="29" data-y="24">$29</span><span class="per">/mo</span>
+                </div>
+                <ul class="ul">
+                    <li>Up to 5 social accounts</li>
+                    <li>Basic scheduling</li>
+                    <li>AI Tools (on/off Toggles)</li>
+                    <li>Calendar + CSV/Notion bulk uploads</li>
+                    <li>Pre-Post QA Agent</li>
+                    <li>Email support</li>
+                </ul>
+                <a class="btn" href="signup.html" data-plan="starter">Start Starter</a>
+            </div>
+
+            <!-- Professional -->
+            <div class="card featured">
+                <div class="badge">MOST POPULAR</div>
+                <h3>Professional</h3>
+                <div class="price"><span class="amount" data-m="79" data-y="66">$79</span><span class="per">/mo</span>
+                </div>
+                <ul class="ul">
+                    <li>Up to 10 social accounts</li>
+                    <li>Advanced scheduling & Analytics Dashboard</li>
+                    <li>AI Tools (on/off Toggles)</li>
+                    <li>AI captions + HASHTAGS + THUMBNAILS</li>
+                    <li>REPURPOSING AGENT (MULTI-PLATFORM)</li>
+                    <li>Calendar + CSV/Notion bulk uploads</li>
+                    <li>Pre-Post QA Agent</li>
+                    <li>Priority email support</li>
+                </ul>
+                <a class="btn" href="signup.html" data-plan="professional">Start Professional</a>
+            </div>
+
+            <!-- Enterprise -->
+            <div class="card">
+                <h3>Enterprise</h3>
+                <div class="price"><span class="amount" data-m="199" data-y="166">$199</span><span
+                        class="per">/mo</span></div>
+                <ul class="ul">
+                    <li>Unlimited social accounts</li>
+                    <li>Advanced scheduling & Analytics Dashboard</li>
+                    <li>AI Tools (on/off Toggles)</li>
+                    <li>AI captions + HASHTAGS + THUMBNAILS</li>
+                    <li>REPURPOSING AGENT (MULTI-PLATFORM)</li>
+                    <li>Calendar + CSV/Notion bulk uploads</li>
+                    <li>Pre-Post QA Agent</li>
+                </ul>
+                <a class="btn" href="contact.html" data-plan="enterprise">Contact Sales</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why SolyntraAI -->
+    <section class="why">
+        <div class="container">
+            <h2
+                style="text-align:center;font-size:2.2rem;font-weight:900;background:linear-gradient(45deg,#fff,#00f5ff,#ff00ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">
+                Why SolyntraAI?</h2>
+            <p class="sub" style="text-align:center;font-size:1.15rem;max-width:700px;margin:0 auto 18px;">Unlock the
+                power of effortless social media management with SolyntraAI. Our platform is designed for creators,
+                brands, and agencies who demand results, speed, and style. Here’s why thousands choose us:</p>
+            <div class="why-grid" style="margin-top:16px;display:grid;grid-template-columns:repeat(2,1fr);gap:24px;">
+                <div class="why-card"
+                    style="background:rgba(255,255,255,.08);border-radius:16px;padding:22px;text-align:left;box-shadow:0 2px 8px rgba(0,245,255,.08);">
+                    <h3 style="color:#00f5ff;margin-bottom:8px;">All-in-One Dashboard</h3>
+                    <p>Manage every major platform from a single, luxury-grade interface. No more juggling apps—just
+                        pure productivity.</p>
+                </div>
+                <div class="why-card"
+                    style="background:rgba(255,255,255,.08);border-radius:16px;padding:22px;text-align:left;box-shadow:0 2px 8px rgba(0,245,255,.08);">
+                    <h3 style="color:#00f5ff;margin-bottom:8px;">Optional AI Superpowers</h3>
+                    <p>Instantly generate captions, hashtags, thumbnails, and best-time suggestions. AI is always
+                        optional—your creativity stays in control.</p>
+                </div>
+                <div class="why-card"
+                    style="background:rgba(255,255,255,.08);border-radius:16px;padding:22px;text-align:left;box-shadow:0 2px 8px rgba(0,245,255,.08);">
+                    <h3 style="color:#00f5ff;margin-bottom:8px;">Save Hours Every Week</h3>
+                    <p>Batch upload, smart scheduling, and bulk actions let you plan a month’s content in minutes. Focus
+                        on growth, not grunt work.</p>
+                </div>
+                <div class="why-card"
+                    style="background:rgba(255,255,255,.08);border-radius:16px;padding:22px;text-align:left;box-shadow:0 2px 8px rgba(0,245,255,.08);">
+                    <h3 style="color:#00f5ff;margin-bottom:8px;">Premium Support & Security</h3>
+                    <p>Enjoy 99.9% uptime, instant retries, audit logs, and a dedicated support team. Your brand’s
+                        reputation and data are always protected.</p>
+                </div>
+            </div>
+            <div style="text-align:center;margin-top:28px;">
+                <a href="#plans" class="btn"
+                    style="font-size:1.15rem;font-weight:900;padding:1rem 2.4rem;border-radius:50px;background:linear-gradient(45deg,#00f5ff,#ff00ff);color:#fff;box-shadow:0 10px 30px rgba(0,245,255,.35);text-decoration:none;">Start
+                    Your Free Trial Today</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container foot">
+            <a href="index.html">Home</a>
+            <a href="pricing.html">Pricing</a>
+            <a href="api.html">API</a>
+            <a href="affiliate.html">Affiliate</a>
+            <a href="privacy.html">Privacy</a>
+            <a href="terms.html">Terms</a>
+            <a href="refund-policy.html">Refund Policy</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <div class="container" style="text-align:center;opacity:.7;font-size:.9rem">© 2025 SolyntraAI. All rights
+            reserved.
+        </div>
+    </footer>
+
+    <!-- Floating CTA -->
+    <a class="float-cta" href="signup.html">Start 14‑Day Free Trial</a>
+
+    <script>
+        function setBilling(mode) {
+            const mBtn = document.getElementById('monthlyBtn');
+            const yBtn = document.getElementById('yearlyBtn');
+            mBtn.classList.toggle('active', mode === 'm');
+            yBtn.classList.toggle('active', mode === 'y');
+            document.querySelectorAll('.amount').forEach(el => {
+                const price = mode === 'y' ? el.dataset.y : el.dataset.m;
+                el.textContent = '$' + price;
+            });
+        }
+    </script>
+</body>
+
+</html>

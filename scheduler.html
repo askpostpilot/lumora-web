@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SolyntraAI — Scheduler</title>
+    <meta name="description" content="Schedule posts, automate content, and grow your brand with SolyntraAI's luxury-grade scheduler and AI tools.">
+    <meta property="og:title" content="SolyntraAI — Scheduler" />
+    <meta property="og:description" content="Schedule posts, automate content, and grow your brand with SolyntraAI's luxury-grade scheduler and AI tools." />
+    <meta property="og:image" content="/public/brand/og-solyntraai.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="SolyntraAI — Scheduler" />
+    <meta name="twitter:description" content="Schedule posts, automate content, and grow your brand with SolyntraAI's luxury-grade scheduler and AI tools." />
+    <meta name="twitter:image" content="/public/brand/og-solyntraai.png" />
+    <link rel="canonical" href="https://solyntraai.com/scheduler.html" />
+    <meta name="robots" content="index, follow" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@500;700;800&display=swap" rel="stylesheet">
+        rel="stylesheet" />
+
+    <style>
+        :root {
+            --bg1: #0d1421;
+            --bg2: #1a0b2e;
+            --bg3: #2d1b69;
+            --glass: rgba(255, 255, 255, 0.06);
+            --border: rgba(255, 255, 255, 0.18);
+            --text: #e9eefc;
+            --muted: rgba(233, 238, 252, 0.7);
+            --accent1: #00f5ff;
+            --accent2: #7a3cff;
+            /* deep violet */
+            --accent3: #a4fffb;
+            /* cyan highlight */
+            --good: #00d28f;
+            --warn: #ffb020;
+            --bad: #ff4d6d;
+            --shadow-dark: rgba(0, 0, 0, 0.55);
+            --shadow-glow: rgba(122, 60, 255, 0.35);
+            --radius-xl: 22px;
+            --radius-lg: 16px;
+            --radius-md: 12px;
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        html,
+        body {
+            height: 100%
+        }
+
+        body {
+            margin: 0;
+            font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+            color: var(--text);
+            background:
+                radial-gradient(1200px 600px at 10% 10%, rgba(0, 245, 255, 0.10), transparent 60%),
+                radial-gradient(1200px 600px at 90% 30%, rgba(122, 60, 255, 0.10), transparent 65%),
+                linear-gradient(135deg, var(--bg1), var(--bg2) 55%, var(--bg3) 100%);
+            overflow-x: hidden;
+        }
+
+        /* Top nav */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            backdrop-filter: blur(10px);
+            background: linear-gradient(180deg, rgba(13, 20, 33, 0.75), rgba(13, 20, 33, 0.35));
+            border-bottom: 1px solid var(--border);
+            padding: 14px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo {
+            font-family: Poppins, sans-serif;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            font-size: 1.6rem;
+            line-height: 1;
+            position: relative;
+            background: linear-gradient(90deg, #b6ffff, var(--accent1) 25%, #b28cff 60%, var(--accent2) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow:
+                0 6px 18px rgba(0, 0, 0, 0.55),
+                0 0 18px rgba(122, 60, 255, 0.25);
+        }
+
+        .logo::after {
+            content: "";
+            position: absolute;
+            left: -4px;
+            right: -4px;
+            top: -4px;
+            bottom: -8px;
+            background: radial-gradient(60% 100% at 20% 0%, rgba(255, 255, 255, 0.10), transparent 60%);
+            pointer-events: none;
+            filter: blur(2px);
+        }
+
+        .nav-links a {
+            color: var(--muted);
+            text-decoration: none;
+            margin: 0 10px;
+            font-weight: 600;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent3)
+        }
+
+        .cta {
+            padding: 10px 16px;
+            border-radius: 999px;
+            font-weight: 700;
+            text-decoration: none;
+            color: #0b1020;
+            background: linear-gradient(90deg, var(--accent1), var(--accent2));
+            box-shadow:
+                0 8px 28px var(--shadow-glow),
+                inset 0 1px 0 rgba(255, 255, 255, 0.25);
+        }
+
+        .cta:hover {
+            filter: brightness(1.05)
+        }
+
+        /* Layout */
+        .wrap {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 22px;
+            max-width: 1400px;
+            margin: 30px auto;
+            padding: 0 18px 48px;
+        }
+
+        /* Sidebar */
+        .side {
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.03));
+            border: 1px solid var(--border);
+            border-radius: var(--radius-xl);
+            box-shadow:
+                0 14px 40px var(--shadow-dark),
+                0 0 0 1px rgba(122, 60, 255, 0.08) inset,
+                0 0 60px rgba(0, 245, 255, 0.06) inset;
+            padding: 16px;
+            backdrop-filter: blur(12px);
+        }
+
+        .side h4 {
+            font-family: Poppins, sans-serif;
+            letter-spacing: 0.4px;
+            margin: 6px 10px 14px;
+        }
+
+        .menu a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 14px;
+            margin: 8px 4px;
+            text-decoration: none;
+            color: var(--text);
+            border-radius: 12px;
+            border: 1px solid transparent;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.00));
+        }
+
+        .menu a:hover {
+            border-color: var(--border);
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.03));
+        }
+
+        .menu a.active {
+            border-color: rgba(0, 245, 255, 0.25);
+            background:
+                linear-gradient(180deg, rgba(0, 245, 255, 0.08), rgba(122, 60, 255, 0.08));
+            box-shadow: 0 0 0 1px rgba(0, 245, 255, 0.15) inset;
+        }
+
+        /* Main */
+        .main {
+            display: grid;
+            gap: 22px;
+        }
+
+        .panel {
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.03));
+            border: 1px solid var(--border);
+            border-radius: var(--radius-xl);
+            padding: 22px;
+            box-shadow:
+                0 16px 48px var(--shadow-dark),
+                0 0 0 1px rgba(122, 60, 255, 0.10) inset,
+                0 0 80px rgba(0, 245, 255, 0.06) inset;
+            backdrop-filter: blur(12px);
+        }
+
+        .panel h2 {
+            font-family: Poppins, sans-serif;
+            margin: 0 0 14px;
+            letter-spacing: 0.3px;
+            background: linear-gradient(90deg, #fff, #b6ffff 50%, #b28cff 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .muted {
+            color: var(--muted);
+            font-size: 0.95rem
+        }
+
+        /* Platform chips */
+        .chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px
+        }
+
+        .chip {
+            padding: 9px 12px;
+            border-radius: 999px;
+            border: 1px solid var(--border);
+            cursor: pointer;
+            user-select: none;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02));
+            font-weight: 600;
+            font-size: 0.92rem;
+            color: var(--text);
+        }
+
+        .chip.active {
+            border-color: rgba(0, 245, 255, 0.35);
+            box-shadow: 0 0 0 1px rgba(0, 245, 255, 0.2) inset, 0 6px 18px var(--shadow-glow);
+            background: linear-gradient(90deg, rgba(0, 245, 255, 0.14), rgba(122, 60, 255, 0.14));
+        }
+
+        /* Upload */
+        .drop {
+            margin-top: 14px;
+            padding: 28px;
+            border: 1.5px dashed rgba(255, 255, 255, 0.35);
+            border-radius: var(--radius-lg);
+            text-align: center;
+            color: var(--muted);
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02));
+        }
+
+        .drop:hover {
+            border-color: var(--accent3)
+        }
+
+        input[type="file"] {
+            display: none
+        }
+
+        /* Toggles */
+        .row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin: 14px 0
+        }
+
+        .switch {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            padding: 12px 14px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01));
+        }
+
+        .switch label {
+            font-weight: 600
+        }
+
+        .toggle {
+            width: 56px;
+            height: 32px;
+            border-radius: 999px;
+            position: relative;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.10), rgba(0, 0, 0, 0.25));
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.4), inset 0 -1px 0 rgba(255, 255, 255, 0.2);
+            cursor: pointer;
+        }
+
+        .knob {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 4px;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, #ffffff, #a4b2ff 65%, #7a3cff 100%);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4), 0 0 16px rgba(122, 60, 255, 0.35);
+            transition: left .2s ease;
+        }
+
+        .toggle.active .knob {
+            left: 28px
+        }
+
+        /* Date/time row */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px
+        }
+
+        .field {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .field input,
+        .field textarea,
+        .field select {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid var(--border);
+            color: var(--text);
+            padding: 12px 14px;
+            border-radius: 12px;
+            font: inherit;
+            outline: none;
+        }
+
+        .field textarea {
+            min-height: 100px;
+            resize: vertical
+        }
+
+        /* Preview card (3D) */
+        .preview {
+            margin-top: 14px;
+            padding: 18px;
+            border-radius: var(--radius-lg);
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.03));
+            border: 1px solid var(--border);
+            box-shadow:
+                0 18px 50px var(--shadow-dark),
+                0 0 0 1px rgba(0, 245, 255, 0.08) inset,
+                inset 0 60px 140px rgba(122, 60, 255, 0.08);
+        }
+
+        .preview h4 {
+            margin: 0 0 8px;
+            font-family: Poppins
+        }
+
+        .meta {
+            color: var(--muted);
+            font-size: 0.9rem
+        }
+
+        /* Buttons */
+        .actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 16px;
+            flex-wrap: wrap
+        }
+
+        .btn {
+            border: none;
+            cursor: pointer;
+            font-weight: 800;
+            letter-spacing: 0.2px;
+            padding: 12px 18px;
+            border-radius: 12px;
+            background: linear-gradient(90deg, var(--accent1), var(--accent2));
+            color: #0b1020;
+            box-shadow:
+                0 10px 28px var(--shadow-glow),
+                inset 0 1px 0 rgba(255, 255, 255, 0.25);
+        }
+
+        .btn.secondary {
+            color: var(--text);
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
+            border: 1px solid var(--border);
+        }
+
+        .btn:active {
+            transform: translateY(1px)
+        }
+
+        /* Toast */
+        .toast {
+            position: fixed;
+            right: 18px;
+            bottom: 18px;
+            padding: 12px 16px;
+            border-radius: 12px;
+            background: linear-gradient(180deg, rgba(0, 245, 255, 0.18), rgba(122, 60, 255, 0.18));
+            border: 1px solid rgba(0, 245, 255, 0.35);
+            color: var(--text);
+            box-shadow: 0 10px 28px var(--shadow-glow);
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all .25s ease;
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateY(0)
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .wrap {
+                grid-template-columns: 1fr
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <header class="navbar">
+        <a class="brand" href="index.html">
+            <div class="logo">SOLYNTRA AI</div>
+        </a>
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="pricing.html">Pricing</a>
+            <a href="affiliate.html">Affiliate</a>
+            <a href="api.html">API</a>
+            <a href="analytics.html">Analytics</a>
+            <a class="cta" href="login.html">Login</a>
+        </nav>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section
+        style="width:100%;background:linear-gradient(135deg,#0d1421 0%,#1a0b2e 50%,#2d1b69 100%);padding:48px 0 32px;margin-bottom:0;text-align:center;box-shadow:0 10px 40px rgba(0,245,255,.08);">
+        <h1
+            style="font-family:Poppins,sans-serif;font-size:2.8rem;font-weight:900;letter-spacing:1px;background:linear-gradient(45deg,#fff,#00f5ff,#ff00ff);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:18px;">
+            Schedule Smarter. Grow Faster.</h1>
+        <p style="font-size:1.25rem;max-width:600px;margin:0 auto 18px;color:#e9eefc;opacity:.92;">SolyntraAI gives you
+            luxury-grade scheduling, AI-powered automation, and seamless multi-platform posting—all in one beautiful
+            dashboard.</p>
+        <div
+            style="margin:18px auto 0;display:inline-block;padding:8px 22px;border-radius:999px;background:linear-gradient(90deg,#00f5ff,#ff00ff);color:#fff;font-weight:800;box-shadow:0 4px 18px rgba(0,245,255,.18);font-size:1.08rem;">
+            Trusted by 50,000+ creators & brands</div>
+    </section>
+
+    <main style="max-width:1200px;margin:0 auto;padding:0 18px 48px;">
+        <!-- MAIN -->
+        <section class="main">
+
+            <!-- TARGET PLATFORMS -->
+            <div class="panel">
+                <h2>Choose Platforms</h2>
+                <p class="muted">Post everywhere. SolyntraAI adapts aspect ratios + formats automatically.</p>
+                <div class="chips" id="platformChips"
+                    style="display:flex;flex-wrap:wrap;gap:18px;justify-content:center;align-items:center;">
+                    <div class="chip" title="Instagram" style="display:flex;align-items:center;gap:8px;">
+                        <span
+                            style="display:inline-block;width:22px;height:22px;background:radial-gradient(circle at 60% 40%,#fdc468 60%,#e1306c 100%);border-radius:50%;"></span>Instagram
+                    </div>
+                    <div class="chip" title="Facebook" style="display:flex;align-items:center;gap:8px;">
+                        <span
+                            style="display:inline-block;width:22px;height:22px;background:#4267B2;border-radius:50%;"></span>Facebook
+                    </div>
+                    <div class="chip" title="LinkedIn" style="display:flex;align-items:center;gap:8px;">
+                        <span
+                            style="display:inline-block;width:22px;height:22px;background:#0077B5;border-radius:50%;"></span>LinkedIn
+                    </div>
+                    <div class="chip" title="Pinterest" style="display:flex;align-items:center;gap:8px;">
+                        <span
+                            style="display:inline-block;width:22px;height:22px;background:#E60023;border-radius:50%;"></span>Pinterest
+                    </div>
+                    <div class="chip" title="X" style="display:flex;align-items:center;gap:8px;">
+                        <span
+                            style="display:inline-block;width:22px;height:22px;background:#1DA1F2;border-radius:50%;"></span>X
+                    </div>
+                    <div class="chip" title="YouTube" style="display:flex;align-items:center;gap:8px;">
+                        <span
+                            style="display:inline-block;width:22px;height:22px;background:#FF0000;border-radius:50%;"></span>YouTube
+                    </div>
+                    <div class="chip" title="YouTube Shorts" style="display:flex;align-items:center;gap:8px;">
+                        <span
+                            style="display:inline-block;width:22px;height:22px;background:#FF0000;border-radius:50%;"></span>YouTube
+                        Shorts
+                    </div>
+                    <div class="chip" title="Threads" style="display:flex;align-items:center;gap:8px;">
+                        <span
+                            style="display:inline-block;width:22px;height:22px;background:#9146FF;border-radius:50%;"></span>Threads
+                    </div>
+                    <div class="chip" title="Reddit" style="display:flex;align-items:center;gap:8px;">
+                        <span
+                            style="display:inline-block;width:22px;height:22px;background:#FF4500;border-radius:50%;"></span>Reddit
+                    </div>
+                    <div class="chip" title="Quora" style="display:flex;align-items:center;gap:8px;">
+                        <span
+                            style="display:inline-block;width:22px;height:22px;background:#B92B27;border-radius:50%;"></span>Quora
+                    </div>
+                    <div class="chip" title="Telegram" style="display:flex;align-items:center;gap:8px;">
+                        <span
+                            style="display:inline-block;width:22px;height:22px;background:#0088CC;border-radius:50%;"></span>Telegram
+                    </div>
+                    <div class="chip" title="Tumblr" style="display:flex;align-items:center;gap:8px;">
+                        <span
+                            style="display:inline-block;width:22px;height:22px;background:#36465D;border-radius:50%;"></span>Tumblr
+                    </div>
+                </div>
+            </div>
+
+            <!-- CONTENT & AI OPTIONS -->
+            <div class="panel" style="max-width:900px;margin:0 auto;">
+                <h2
+                    style="text-align:center;font-size:2rem;font-weight:800;background:linear-gradient(45deg,#fff,#00f5ff,#ff00ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">
+                    Content & AI Options</h2>
+
+                <!-- Upload -->
+                <div style="display:flex;flex-direction:column;align-items:center;gap:18px;">
+                    <label class="drop" for="media" style="width:100%;max-width:500px;">
+                        <strong>Drop media here</strong> or click to upload<br />
+                        <small class="muted">Images/Video • MP4, PNG, JPG • Max 200MB</small>
+                    </label>
+                    <input id="media" type="file" accept="image/*,video/*" />
+                    <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;width:100%;">
+                        <label class="btn secondary" style="cursor:pointer;" for="csvUpload">Upload CSV</label>
+                        <input id="csvUpload" type="file" accept=".csv" style="display:none;" />
+                        <label class="btn secondary" style="cursor:pointer;" for="excelUpload">Upload Excel</label>
+                        <input id="excelUpload" type="file" accept=".xlsx,.xls" style="display:none;" />
+                        <label class="btn secondary" style="cursor:pointer;" for="notionUpload">Upload Notion
+                            Export</label>
+                        <input id="notionUpload" type="file" accept=".csv,.xlsx,.xls" style="display:none;" />
+                    </div>
+                    <small class="muted" style="text-align:center;max-width:500px;">Upload your content in any format:
+                        CSV, Excel, or Notion export. Perfect for creators, marketers, and non-tech users.</small>
+                </div>
+
+                <!-- Caption / Hashtags / Thumbnail toggles + Pre-QA Agent -->
+                <div class="row" style="margin-top:24px;">
+                    <div class="switch">
+                        <label>AI Captions</label>
+                        <div class="toggle" data-bind="aiCaptions">
+                            <div class="knob"></div>
+                        </div>
+                    </div>
+                    <div class="switch">
+                        <label>AI Hashtags</label>
+                        <div class="toggle" data-bind="aiHashtags">
+                            <div class="knob"></div>
+                        </div>
+                    </div>
+                    <div class="switch">
+                        <label>AI Thumbnail (YouTube/Shorts)</label>
+                        <div class="toggle" data-bind="aiThumb">
+                            <div class="knob"></div>
+                        </div>
+                    </div>
+                    <div class="switch">
+                        <label>Auto Repurpose (ratio/length)</label>
+                        <div class="toggle" data-bind="autoRepurpose">
+                            <div class="knob"></div>
+                        </div>
+                    </div>
+                    <div class="switch">
+                        <label>Pre‑Post QA Agent</label>
+                        <div class="toggle" data-bind="preQA">
+                            <div class="knob"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Manual fields -->
+                <div class="field">
+                    <label>Caption (optional — AI can generate)</label>
+                    <textarea id="caption" placeholder="Write your caption or leave blank to auto-generate…"></textarea>
+                </div>
+                <div class="field">
+                    <label>Hashtags (optional)</label>
+                    <input id="hashtags" placeholder="#socialmedia #solyntraai #automation" />
+                </div>
+
+                <!-- Schedule -->
+                <div class="grid-3" style="margin-top:18px;">
+                    <div class="field">
+                        <label>Date</label>
+                        <input id="date" type="date" />
+                    </div>
+                    <div class="field">
+                        <label>Time</label>
+                        <input id="time" type="time" />
+                    </div>
+                    <div class="field">
+                        <label>Timezone</label>
+                        <select id="tz">
+                            <option value="local">Local time</option>
+                            <option value="UTC">UTC</option>
+                            <option value="IST">IST (UTC+5:30)</option>
+                            <option value="EST">EST (UTC-5)</option>
+                            <option value="PST">PST (UTC-8)</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="field" style="margin-top:18px;max-width:320px;">
+                    <label>Schedule Duration</label>
+                    <select id="duration">
+                        <option value="1m">1 Month</option>
+                        <option value="6m">6 Months</option>
+                        <option value="12m">1 Year</option>
+                        <option value="custom">Custom</option>
+                    </select>
+                </div>
+
+                <!-- Live preview -->
+                <div class="preview" id="preview">
+                    <h4>Preview</h4>
+                    <div class="meta" id="previewMeta">No file selected</div>
+                </div>
+
+                <!-- Actions -->
+                <div class="actions">
+                    <button class="btn" id="btnSchedule">Schedule</button>
+                    <button class="btn secondary" id="btnValidate">Validate Media</button>
+                    <button class="btn secondary" id="btnDraft">Save as Draft</button>
+                </div>
+                <p class="muted" style="text-align:center;max-width:600px;margin:18px auto 0;">Pre‑post QA checks will
+                    verify size, ratio, length & safe‑posting rules before publishing. Toggle the Pre‑Post QA Agent for
+                    extra peace of mind.</p>
+            </div>
+
+        </section>
+    </main>
+
+    <div class="toast" id="toast">Saved</div>
+
+    <!-- Floating Help/Chat Button -->
+    <a href="contact.html"
+        style="position:fixed;right:22px;bottom:22px;z-index:1200;display:inline-flex;align-items:center;justify-content:center;padding:14px 22px;border-radius:999px;font-weight:900;letter-spacing:.3px;background:linear-gradient(45deg,#00f5ff,#ff00ff);color:#fff;text-decoration:none;box-shadow:0 10px 26px rgba(0,245,255,.35),0 0 0 1px rgba(255,255,255,.08) inset;transition:.25s;font-size:1.08rem;gap:10px;">
+        <span
+            style="display:inline-block;width:22px;height:22px;background:linear-gradient(135deg,#00f5ff,#ff00ff);border-radius:50%;margin-right:8px;"></span>
+        Help & Chat
+    </a>
+
+    <script>
+        // --- platform chip select ---
+        const chips = document.querySelectorAll('.chip');
+        chips.forEach(c => {
+            c.addEventListener('click', () => c.classList.toggle('active'));
+        });
+
+        // --- toggles ---
+        const toggles = document.querySelectorAll('.toggle');
+        const state = { aiCaptions: false, aiHashtags: false, aiThumb: false, autoRepurpose: false };
+        toggles.forEach(t => {
+            t.addEventListener('click', () => {
+                t.classList.toggle('active');
+                const k = t.getAttribute('data-bind');
+                state[k] = t.classList.contains('active');
+            });
+        });
+
+        // --- file preview ---
+        const media = document.getElementById('media');
+        const previewMeta = document.getElementById('previewMeta');
+        let loadedMedia = null;
+
+        media.addEventListener('change', () => {
+            if (!media.files.length) { previewMeta.textContent = 'No file selected'; return; }
+            const f = media.files[0];
+            loadedMedia = f;
+            previewMeta.textContent = `${f.name} • ${(f.size / 1024 / 1024).toFixed(2)} MB`;
+        });
+
+        // --- simple platform requirements (extend as needed) ---
+        const REQ = {
+            "Instagram": { ratio: ["1:1", "4:5", "9:16"], maxMB: 200 },
+            "Facebook": { ratio: ["1:1", "16:9", "4:5"], maxMB: 200 },
+            "LinkedIn": { ratio: ["1:1", "16:9"], maxMB: 200 },
+            "Pinterest": { ratio: ["2:3", "1000:1500"], maxMB: 200 },
+            "X": { ratio: ["16:9", "1:1"], maxMB: 200 },
+            "YouTube": { ratio: ["16:9"], maxMB: 512 },
+            "YouTube Shorts": { ratio: ["9:16"], maxMB: 512 },
+            "Threads": { ratio: ["1:1", "4:5"], maxMB: 200 },
+            "Reddit": { ratio: ["16:9", "1:1"], maxMB: 200 },
+            "Quora": { ratio: ["16:9", "1:1"], maxMB: 200 },
+            "Telegram": { ratio: ["1:1", "4:5", "9:16"], maxMB: 200 },
+            "Tumblr": { ratio: ["1:1", "16:9"], maxMB: 200 }
+        };
+
+        // Fake detector for ratio from filename (placeholder).
+        // In production, detect via canvas/video metadata.
+        function inferRatioFromName(name) {
+            const n = name.toLowerCase();
+            if (n.includes("9x16") || n.includes("1080x1920")) return "9:16";
+            if (n.includes("16x9") || n.includes("1920x1080")) return "16:9";
+            if (n.includes("4x5")) return "4:5";
+            if (n.includes("2x3")) return "2:3";
+            if (n.includes("1x1") || n.includes("1080x1080")) return "1:1";
+            return "unknown";
+        }
+
+        function getSelectedPlatforms() {
+            return Array.from(document.querySelectorAll('.chip.active')).map(c => c.textContent.trim());
+        }
+
+        function showToast(msg) {
+            const t = document.getElementById('toast');
+            t.textContent = msg;
+            t.classList.add('show');
+            setTimeout(() => t.classList.remove('show'), 2200);
+        }
+
+        // --- Validate button ---
+        document.getElementById('btnValidate').addEventListener('click', () => {
+            const plats = getSelectedPlatforms();
+            if (plats.length === 0) { showToast("Select at least one platform"); return; }
+            if (!loadedMedia) { showToast("Upload a media file first"); return; }
+
+            const ratio = inferRatioFromName(loadedMedia.name);
+            const mb = loadedMedia.size / 1024 / 1024;
+            let okAll = true, notes = [];
+
+            plats.forEach(p => {
+                const req = REQ[p];
+                const ratioOK = (ratio === "unknown") ? true : req.ratio.includes(ratio);
+                const sizeOK = mb <= req.maxMB;
+                if (!ratioOK) { okAll = false; notes.push(`${p}: ratio mismatch (have ${ratio}, need ${req.ratio.join(" / ")})`) }
+                if (!sizeOK) { okAll = false; notes.push(`${p}: file too large (${mb.toFixed(1)}MB > ${req.maxMB}MB)`) }
+            });
+
+            if (okAll) {
+                showToast(" Media looks good for selected platforms");
+            } else {
+                alert("Pre‑post QA found issues:\n\n" + notes.join("\n"));
+            }
+        });
+
+        // --- Schedule button (dry action) ---
+        document.getElementById('btnSchedule').addEventListener('click', () => {
+            const plats = getSelectedPlatforms();
+            if (plats.length === 0) { showToast("Select at least one platform"); return; }
+            if (!loadedMedia) { showToast("Upload a media file first"); return; }
+            const d = document.getElementById('date').value;
+            const t = document.getElementById('time').value;
+            if (!d || !t) { showToast("Pick date & time"); return; }
+            showToast(" Scheduled! (demo)");
+        });
+
+        // --- Draft button (dry action) ---
+        document.getElementById('btnDraft').addEventListener('click', () => {
+            showToast(" Saved as draft (demo)");
+        });
+    </script>
+
+</body>
+
+</html>
