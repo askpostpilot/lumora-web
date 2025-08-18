@@ -1,54 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Privacy Policy – Lumora</title>
-  <link rel="stylesheet" href="../assets/style.css" />
-</head>
-<body>
-  <header>
-    <div class="logo">Lumora</div>
-    <nav>
-      <ul>
-        <li><a href="../index.html">Home</a></li>
-        <li><a href="../pricing.html">Pricing</a></li>
-        <li><a href="../signup.html">Sign Up</a></li>
-        <li><a href="../login.html">Log In</a></li>
-        <li><a href="../dashboard.html">Dashboard</a></li>
-        <li><a href="../scheduler.html">Scheduler</a></li>
-        <li><a href="../analytics.html">Analytics</a></li>
-        <li><a href="../api.html">API</a></li>
-        <li><a href="../contact.html">Contact</a></li>
-        <li><a href="../info.html">Info</a></li>
-      </ul>
-    </nav>
-    <a href="../pricing.html" class="cta-button">Start Free Trial</a>
-  </header>
-  <main class="container">
-    <h1>Privacy Policy</h1>
-    <p>Your privacy is important to us. This placeholder policy explains how we collect, use, and protect your personal information when you use Lumora. Replace this text with your actual privacy policy prior to launch.</p>
-  </main>
-  <footer>
-    <div class="footer-links">
-      <a href="../index.html">Home</a>
-      <a href="../pricing.html">Pricing</a>
-      <a href="../signup.html">Sign Up</a>
-      <a href="../login.html">Log In</a>
-      <a href="../contact.html">Contact</a>
-      <a href="../info.html">Info</a>
-      <a href="terms.html">Terms</a>
-      <a href="privacy.html">Privacy</a>
-      <a href="refund-policy.html">Refund Policy</a>
-      <a href="api-policy.html">API Policy</a>
-      <a href="affiliate.html">Affiliate</a>
-    </div>
-    <p>&copy; <span id="year"></span> Lumora. All rights reserved.</p>
-  </footer>
-  <div class="floating-cta">Start Free Trial</div>
-  <script src="../assets/js/main.js"></script>
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Privacy Policy — SolyntraAI</title>
+    <link rel="stylesheet" href="../styles/tokens.css" />
+    <link rel="stylesheet" href="../assets/style.css" />
+    <script src="/.netlify/functions/config"></script>
+    <style>
+      .policy-page {
+        max-width: 720px;
+        margin: 0 auto;
+        padding: 32px 24px 64px;
+        position: relative;
+        z-index: 1;
+      }
+      .policy-page h1 {
+        font-family: var(--font-heading);
+        margin-bottom: 8px;
+      }
+      .policy-page pre.policy-body {
+        white-space: pre-wrap;
+        font-family: var(--font-body);
+        font-size: 1rem;
+        line-height: 1.65;
+        color: var(--text-secondary);
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a class="brand" href="../index.html"
+          ><span class="brand-badge"></span><span class="logo"><span class="logo-metal">SolyntraAI</span></span></a
+        >
+      </div>
+    </header>
+    <main class="policy-page">
+      <h1>Privacy Policy</h1>
+      <p class="muted" style="margin-bottom: 24px">Last updated: March 2026</p>
+      <pre class="policy-body">1. Data We Collect
+- Account: email address, name (when provided), OAuth provider ID
+- Usage: posts scheduled, platforms connected, feature usage
+- Technical: IP address, browser type (standard server logs)
+
+2. How We Use Your Data
+- To operate the Service and your account
+- To send account-related emails (password reset, billing)
+- We do NOT sell your data to anyone
+- We do NOT share your data with third parties except:
+  - Supabase (database hosting — supabase.com/privacy)
+  - OpenAI (AI features only — openai.com/privacy)
+  - PayPal (payment processing — paypal.com/privacy)
+
+3. Data Storage
+Your data is stored securely on Supabase (hosted on AWS). We do not store
+your social media passwords — only scheduling data you create in our tool.
+
+4. Your Rights
+- Access: request a copy of your data — email support@solyntraai.com
+- Delete: request account deletion — we will delete within 30 days
+- Correct: update your info in account settings
+
+5. Cookies
+We use essential cookies for login sessions only. No tracking or advertising cookies.
+
+6. Children
+This Service is not for users under 13. If you are under 13, do not use it.
+
+7. Changes
+We will notify you of material changes via email.
+Contact: support@solyntraai.com</pre>
+    </main>
+    <footer class="site-footer">
+      <div class="container footer-bottom">
+        <p class="muted">© <span id="year"></span> SolyntraAI</p>
+      </div>
+    </footer>
+    <script src="../assets/js/main.js"></script>
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
 </html>

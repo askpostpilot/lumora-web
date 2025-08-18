@@ -1,92 +1,940 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SolyntraAI – Advanced Social Media Automation</title>
-  <meta name="description" content="SolyntraAI provides cutting-edge AI-powered social media automation. Schedule content, analyze performance, and grow your audience with intelligent insights and seamless workflow integration." />
-  <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://solyntraai.com/" />
-  
-  <!-- Open Graph / Facebook -->
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://solyntraai.com/" />
-  <meta property="og:title" content="SolyntraAI – Advanced Social Media Automation" />
-  <meta property="og:description" content="SolyntraAI provides cutting-edge AI-powered social media automation. Schedule content, analyze performance, and grow your audience with intelligent insights." />
-  <meta property="og:image" content="https://solyntraai.com/public/brand/solyntraai-logo.svg" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Twitter -->
-  <meta property="twitter:card" content="summary_large_image" />
-  <meta property="twitter:url" content="https://solyntraai.com/" />
-  <meta property="twitter:title" content="SolyntraAI – Advanced Social Media Automation" />
-  <meta property="twitter:description" content="SolyntraAI provides cutting-edge AI-powered social media automation. Schedule content, analyze performance, and grow your audience with intelligent insights." />
-  <meta property="twitter:image" content="https://solyntraai.com/public/brand/solyntraai-logo.svg" />
-  
-  <!-- Favicon -->
-  <link rel="icon" type="image/svg+xml" href="/public/brand/solyntraai-logo.svg" />
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-  <link rel="manifest" href="/site.webmanifest" />
-  <meta name="theme-color" content="#0ee7f0" />
-  
-  <link rel="stylesheet" href="./styles/tokens.css" />
-  <link rel="stylesheet" href="./assets/style.css" />
-</head>
-<body>
-  <header>
-    <div class="logo">SolyntraAI</div>
-    <nav>
-      <ul>
-        <li><a href="index.html" class="active">Home</a></li>
-        <li><a href="pricing.html">Pricing</a></li>
-        <li><a href="signup.html">Sign Up</a></li>
-        <li><a href="login.html">Log In</a></li>
-        <li><a href="dashboard.html">Dashboard</a></li>
-        <li><a href="scheduler.html">Scheduler</a></li>
-        <li><a href="analytics.html">Analytics</a></li>
-        <li><a href="api.html">API</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="info.html">Info</a></li>
-      </ul>
-    </nav>
-    <!-- Top CTA directs users straight to the Starter subscription link -->
-    <a href="https://www.paypal.com/ncp/payment/3UYP578XT4AE6" target="_blank" class="cta-button">Start Free Trial</a>
-  </header>
-  <main>
-    <section class="hero">
-      <h1>Elevate your social presence with AI precision</h1>
-      <p>
-        SolyntraAI harnesses advanced artificial intelligence to automate your content scheduling, 
-        deliver deep analytics insights, and optimize engagement so you can focus on creating 
-        exceptional content and building meaningful connections.
-      </p>
-      <!-- Hero CTA directs to the Starter subscription -->
-      <a href="https://www.paypal.com/ncp/payment/3UYP578XT4AE6" target="_blank" class="cta-button">Start Free Trial</a>
-    </section>
-  </main>
-  <footer>
-    <div class="footer-links">
-      <a href="index.html">Home</a>
-      <a href="pricing.html">Pricing</a>
-      <a href="signup.html">Sign Up</a>
-      <a href="login.html">Log In</a>
-      <a href="contact.html">Contact</a>
-      <a href="info.html">Info</a>
-      <a href="policies/terms.html">Terms</a>
-      <a href="policies/privacy.html">Privacy</a>
-      <a href="policies/refund-policy.html">Refund Policy</a>
-      <a href="policies/api-policy.html">API Policy</a>
-      <a href="policies/affiliate.html">Affiliate</a>
+    <title>SolyntraAI — Automate Your Social Universe</title>
+    <meta
+      name="description"
+      content="Schedule once. Post smart. Track with Zynera."
+    />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://solyntraai.com/" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://solyntraai.com/" />
+    <meta property="og:title" content="SolyntraAI — Automate Your Social Universe" />
+    <meta
+      property="og:description"
+      content="Schedule once. Post smart. Track with Zynera."
+    />
+    <meta property="og:image" content="/public/brand/og-solyntraai.png" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="SolyntraAI — Automate Your Social Universe" />
+    <meta
+      name="twitter:description"
+      content="Schedule once. Post smart. Track with Zynera."
+    />
+    <meta name="twitter:image" content="/public/brand/og-solyntraai.png" />
+
+    <meta name="theme-color" content="#03050a" />
+
+    <link rel="icon" type="image/svg+xml" href="/public/brand/solyntraai-logo.svg" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Orbitron:wght@400;700;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="./styles/tokens.css" />
+    <link rel="stylesheet" href="./assets/style.css" />
+    <script src="/.netlify/functions/config"></script>
+
+    <style>
+      .hero {
+        min-height: calc(100vh - 74px);
+        display: grid;
+        align-items: center;
+        position: relative;
+        z-index: 1;
+        padding: 72px 0 44px;
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1.15fr 0.85fr;
+        gap: 24px;
+        align-items: center;
+      }
+
+      @media (max-width: 980px) {
+        .hero-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .hero h1 {
+        font-size: clamp(2.6rem, 5vw, 5.2rem);
+        line-height: 1.02;
+        margin: 0 0 16px;
+      }
+
+      .hero .sub {
+        font-size: clamp(1.05rem, 1.5vw, 1.2rem);
+        line-height: 1.65;
+        color: var(--text-secondary);
+        max-width: 54ch;
+        margin: 0 0 22px;
+      }
+
+      .hero-ctas {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+
+      .scroll-indicator {
+        position: absolute;
+        left: 50%;
+        bottom: 18px;
+        transform: translateX(-50%);
+        width: 44px;
+        height: 44px;
+        border-radius: 999px;
+        border: 1px solid rgba(232, 237, 245, 0.12);
+        background: rgba(255, 255, 255, 0.03);
+        display: grid;
+        place-items: center;
+        box-shadow: var(--shadow-metal);
+      }
+
+      .scroll-indicator span {
+        display: block;
+        width: 10px;
+        height: 10px;
+        border-right: 2px solid rgba(232, 237, 245, 0.8);
+        border-bottom: 2px solid rgba(232, 237, 245, 0.8);
+        transform: rotate(45deg);
+        animation: bounce 1.25s ease-in-out infinite;
+      }
+
+      @keyframes bounce {
+        0%,
+        100% {
+          transform: translateY(0) rotate(45deg);
+          opacity: 0.7;
+        }
+        50% {
+          transform: translateY(4px) rotate(45deg);
+          opacity: 1;
+        }
+      }
+
+      .mockup {
+        padding: 18px;
+      }
+
+      .mockup-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 12px 12px 14px;
+        border-bottom: 1px solid rgba(232, 237, 245, 0.08);
+      }
+
+      .mockup-title {
+        font-family: var(--font-heading);
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        font-size: 0.9rem;
+        color: rgba(232, 237, 245, 0.88);
+      }
+
+      .mockup-chip {
+        font-family: var(--font-mono);
+        font-size: 0.82rem;
+      }
+
+      .mockup-body {
+        display: grid;
+        gap: 10px;
+        padding: 14px 12px 12px;
+      }
+
+      .row {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 10px;
+        align-items: center;
+        padding: 10px 10px;
+        border-radius: 14px;
+        border: 1px solid rgba(232, 237, 245, 0.08);
+        background: rgba(255, 255, 255, 0.02);
+      }
+
+      .row .meta {
+        display: grid;
+        gap: 3px;
+      }
+
+      .row .meta strong {
+        font-size: 0.95rem;
+      }
+
+      .row .meta span {
+        font-size: 0.9rem;
+        color: var(--text-secondary);
+      }
+
+      .status {
+        padding: 7px 10px;
+        border-radius: 999px;
+        font-size: 0.85rem;
+        border: 1px solid rgba(0, 212, 255, 0.22);
+        color: rgba(232, 237, 245, 0.9);
+        background: rgba(0, 212, 255, 0.06);
+      }
+
+      .social-proof {
+        position: relative;
+        z-index: 1;
+      }
+
+      .proof-bar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+        flex-wrap: wrap;
+        padding: 16px 18px;
+      }
+
+      .proof-left {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        flex-wrap: wrap;
+      }
+
+      .counter {
+        display: inline-flex;
+        align-items: baseline;
+        gap: 8px;
+        padding: 8px 10px;
+        border-radius: 999px;
+        border: 1px solid rgba(232, 237, 245, 0.12);
+        background: rgba(255, 255, 255, 0.02);
+        box-shadow: var(--shadow-metal);
+      }
+
+      .counter .num {
+        font-family: var(--font-mono);
+        font-size: 1.1rem;
+        color: rgba(240, 244, 248, 0.95);
+      }
+
+      .logos {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        align-items: center;
+        justify-content: flex-end;
+      }
+
+      .logo-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 10px;
+        border-radius: 14px;
+        border: 1px solid rgba(232, 237, 245, 0.12);
+        background: rgba(255, 255, 255, 0.02);
+      }
+
+      .logo-pill svg {
+        width: 16px;
+        height: 16px;
+        opacity: 0.9;
+      }
+
+      .grid-3 {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px;
+      }
+
+      @media (max-width: 980px) {
+        .grid-3 {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .card-title {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin: 0 0 8px;
+      }
+
+      .card-title .icon {
+        width: 38px;
+        height: 38px;
+        border-radius: 14px;
+        display: grid;
+        place-items: center;
+        border: 1px solid rgba(232, 237, 245, 0.14);
+        background: radial-gradient(circle at 30% 30%, rgba(0, 212, 255, 0.14), transparent 60%),
+          radial-gradient(circle at 70% 70%, rgba(123, 97, 255, 0.12), transparent 65%),
+          rgba(255, 255, 255, 0.02);
+        box-shadow: var(--shadow-metal);
+      }
+
+      .card-title h3 {
+        margin: 0;
+        font-size: 1.15rem;
+      }
+
+      .card p {
+        margin: 0;
+        color: var(--text-secondary);
+        line-height: 1.65;
+      }
+
+      .timeline {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px;
+        position: relative;
+      }
+
+      @media (max-width: 980px) {
+        .timeline {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .timeline::before {
+        content: "";
+        position: absolute;
+        left: 12px;
+        right: 12px;
+        top: 26px;
+        height: 1px;
+        background: linear-gradient(90deg, rgba(0, 212, 255, 0), rgba(0, 212, 255, 0.35), rgba(123, 97, 255, 0.25), rgba(0, 212, 255, 0));
+        opacity: 0.7;
+      }
+
+      @media (max-width: 980px) {
+        .timeline::before {
+          display: none;
+        }
+      }
+
+      .step {
+        padding: 18px;
+      }
+
+      .step .dot {
+        width: 18px;
+        height: 18px;
+        border-radius: 999px;
+        background: rgba(0, 212, 255, 0.25);
+        border: 1px solid rgba(0, 212, 255, 0.45);
+        box-shadow: var(--shadow-glow-teal);
+        margin: 2px 0 12px;
+      }
+
+      .testimonial {
+        padding: 18px;
+      }
+
+      .t-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 12px;
+      }
+
+      .avatar {
+        width: 38px;
+        height: 38px;
+        border-radius: 14px;
+        display: grid;
+        place-items: center;
+        font-family: var(--font-heading);
+        border: 1px solid rgba(232, 237, 245, 0.14);
+        background: rgba(255, 255, 255, 0.03);
+      }
+
+      .stars {
+        font-family: var(--font-mono);
+        color: rgba(255, 184, 0, 0.95);
+        letter-spacing: 0.1em;
+        font-size: 0.95rem;
+      }
+
+      .pricing-teaser {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 14px;
+        align-items: stretch;
+      }
+
+      @media (max-width: 1180px) {
+        .pricing-teaser {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 640px) {
+        .pricing-teaser {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .plan {
+        padding: 18px;
+      }
+
+      .plan h3 {
+        margin: 0 0 6px;
+      }
+
+      .plan .price {
+        font-family: var(--font-mono);
+        font-size: 1.8rem;
+        margin: 8px 0 8px;
+      }
+
+      .plan ul {
+        margin: 12px 0 0;
+        padding: 0 0 0 18px;
+        color: var(--text-secondary);
+        line-height: 1.7;
+      }
+
+      .center {
+        text-align: center;
+      }
+
+      .kicker {
+        display: inline-flex;
+        gap: 10px;
+        align-items: center;
+        padding: 8px 12px;
+        border-radius: 999px;
+        border: 1px solid rgba(232, 237, 245, 0.12);
+        background: rgba(255, 255, 255, 0.02);
+        box-shadow: var(--shadow-metal);
+        color: var(--text-secondary);
+      }
+
+      .shapes {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+        overflow: hidden;
+      }
+
+      .shape {
+        position: absolute;
+        width: 220px;
+        height: 220px;
+        border-radius: 28px;
+        border: 1px solid rgba(232, 237, 245, 0.08);
+        background: radial-gradient(circle at 30% 30%, rgba(0, 212, 255, 0.12), transparent 55%),
+          radial-gradient(circle at 70% 70%, rgba(123, 97, 255, 0.1), transparent 60%),
+          rgba(255, 255, 255, 0.01);
+        box-shadow: var(--shadow-float);
+        transform-style: preserve-3d;
+        animation: float 10s ease-in-out infinite;
+        opacity: 0.5;
+      }
+
+      .shape.one {
+        top: 16%;
+        left: -60px;
+        transform: rotateX(25deg) rotateY(30deg);
+      }
+
+      .shape.two {
+        bottom: 10%;
+        right: -70px;
+        width: 260px;
+        height: 260px;
+        border-radius: 999px;
+        transform: rotateX(12deg) rotateY(-22deg);
+        opacity: 0.35;
+      }
+
+      .shape.three {
+        top: 40%;
+        right: 10%;
+        width: 160px;
+        height: 160px;
+        border-radius: 999px;
+        opacity: 0.18;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="bg-orbs" aria-hidden="true">
+      <div
+        class="orb orb-1"
+        style="
+          width: 400px;
+          height: 400px;
+          background: radial-gradient(circle, rgba(0, 212, 255, 0.3), transparent);
+          top: -100px;
+          left: -100px;
+          animation-delay: 0s;
+        "
+      ></div>
+      <div
+        class="orb orb-2"
+        style="
+          width: 300px;
+          height: 300px;
+          background: radial-gradient(circle, rgba(123, 97, 255, 0.25), transparent);
+          bottom: -50px;
+          right: -50px;
+          animation-delay: -3s;
+        "
+      ></div>
+      <div
+        class="orb orb-3"
+        style="
+          width: 200px;
+          height: 200px;
+          background: radial-gradient(circle, rgba(0, 255, 157, 0.15), transparent);
+          top: 50%;
+          left: 50%;
+          animation-delay: -6s;
+        "
+      ></div>
     </div>
-    <p>&copy; <span id="year"></span> SolyntraAI. All rights reserved.</p>
-  </footer>
-  <div class="floating-cta">Start Free Trial</div>
-  <script src="./assets/js/main.js"></script>
-  <script>
-    // update footer year
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
-</body>
+
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a class="brand" href="index.html" aria-label="SolyntraAI home">
+          <span class="brand-badge" aria-hidden="true"></span>
+          <span class="logo"><span class="logo-metal">SolyntraAI</span></span>
+        </a>
+
+        <nav class="nav nav-public" aria-label="Public navigation">
+          <button class="nav-toggle" type="button" aria-label="Toggle menu">
+            <span class="hamburger" aria-hidden="true"><span></span><span></span><span></span></span>
+          </button>
+          <div class="nav-links" role="list">
+            <a class="nav-link" href="features.html">Features</a>
+            <a class="nav-link" href="pricing.html">Pricing</a>
+            <a class="nav-link" href="contact.html">Contact</a>
+            <a class="nav-link" href="api.html">API</a>
+          </div>
+          <div class="nav-actions">
+            <a class="btn btn-ghost btn-sm" href="login.html">Log In</a>
+            <a class="btn btn-primary btn-sm" href="signup.html">Start Free →</a>
+          </div>
+        </nav>
+
+        <nav class="nav nav-app hidden" aria-label="App navigation">
+          <button class="nav-toggle" type="button" aria-label="Toggle menu">
+            <span class="hamburger" aria-hidden="true"><span></span><span></span><span></span></span>
+          </button>
+          <div class="nav-links" role="list">
+            <a class="nav-link" href="dashboard.html">Dashboard</a>
+            <a class="nav-link" href="scheduler.html">Scheduler</a>
+            <a class="nav-link" href="analytics.html">Analytics</a>
+            <a class="nav-link" href="api.html">API</a>
+            <a class="nav-link" href="info.html">Account</a>
+          </div>
+          <div class="nav-actions">
+            <button class="btn btn-ghost btn-sm" type="button" id="logoutBtn">Logout</button>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="shapes" aria-hidden="true">
+          <div class="shape one"></div>
+          <div class="shape two"></div>
+          <div class="shape three"></div>
+        </div>
+
+        <div class="container hero-grid">
+          <div>
+            <div class="kicker">Liquid Metal Cosmos • 3D UI • Vanilla JS</div>
+            <h1 class="heading text-metal">Automate Your Social Universe</h1>
+            <p class="sub">Schedule once. Post smart. Track with Zynera.</p>
+            <div class="hero-ctas">
+              <a class="btn btn-primary" href="signup.html">Start Free — 14 Days</a>
+              <a class="btn btn-ghost" href="features.html">See How It Works</a>
+            </div>
+          </div>
+
+          <aside class="glass-card card-3d mockup" aria-label="Scheduler mockup">
+            <div class="mockup-top">
+              <div class="mockup-title">Scheduler</div>
+              <div class="badge badge-teal mockup-chip">Next: Tue 7:00 PM</div>
+            </div>
+            <div class="mockup-body">
+              <div class="row">
+                <div class="meta">
+                  <strong>Instagram</strong>
+                  <span>“New drop just landed. Minimal. Metallic.”</span>
+                </div>
+                <span class="status">Scheduled</span>
+              </div>
+              <div class="row">
+                <div class="meta">
+                  <strong>LinkedIn</strong>
+                  <span>“A faster content workflow for teams.”</span>
+                </div>
+                <span class="status">Queued</span>
+              </div>
+              <div class="row">
+                <div class="meta">
+                  <strong>TikTok</strong>
+                  <span>“Behind the scenes: building in public.”</span>
+                </div>
+                <span class="status">Draft</span>
+              </div>
+            </div>
+          </aside>
+        </div>
+
+        <a class="scroll-indicator" href="#proof" aria-label="Scroll for more">
+          <span aria-hidden="true"></span>
+        </a>
+      </section>
+
+      <section id="proof" class="section-tight social-proof">
+        <div class="container">
+          <div class="glass-card proof-bar">
+            <div class="proof-left">
+              <div class="counter">
+                <span class="num" data-count="2000">0</span>
+                <span class="muted">Trusted creators worldwide</span>
+              </div>
+              <div class="counter">
+                <span class="num" data-count="47000">0</span>
+                <span class="muted">Posts scheduled</span>
+              </div>
+            </div>
+
+            <div class="logos" aria-label="Platforms">
+              <span class="logo-pill">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M7 12c0 2.76 2.24 5 5 5s5-2.24 5-5-2.24-5-5-5-5 2.24-5 5Z" stroke="currentColor" stroke-width="1.6" />
+                  <path d="M16.5 7.5h.01" stroke="currentColor" stroke-width="3" stroke-linecap="round" />
+                  <path d="M7 3h10a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4Z" stroke="currentColor" stroke-width="1.6" />
+                </svg>
+                <span class="muted">Instagram</span>
+              </span>
+              <span class="logo-pill">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M14 10.5 21 3h-4l-5 5.7L8 3H3l7.7 10.1L3 21h4l5.5-6.2L17 21h4l-7-10.5Z" fill="currentColor" />
+                </svg>
+                <span class="muted">X</span>
+              </span>
+              <span class="logo-pill">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M4 3h4v18H4V3Zm6 7h4v11h-4V10Zm0-7h4v5h-4V3Zm6 7h4v11h-4V10Z" fill="currentColor" />
+                </svg>
+                <span class="muted">LinkedIn</span>
+              </span>
+              <span class="logo-pill">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M10 9.2V15a2.5 2.5 0 0 0 5 0V4h2v11a4.5 4.5 0 0 1-9 0V9.2h2Z" fill="currentColor" />
+                </svg>
+                <span class="muted">TikTok</span>
+              </span>
+              <span class="logo-pill">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M10 15V9l6 3-6 3Z" fill="currentColor" />
+                  <path d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" stroke="currentColor" stroke-width="1.6" />
+                </svg>
+                <span class="muted">YouTube</span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="center" style="margin-bottom: 18px">
+            <div class="kicker">Core capabilities</div>
+            <h2 class="heading" style="margin: 12px 0 0">Built for creators who ship</h2>
+            <p class="muted" style="margin: 10px auto 0; max-width: 70ch">
+              Glassmorphism surfaces, metallic depth, and pragmatic automation—so you can schedule in minutes and stay
+              consistent for months.
+            </p>
+          </div>
+
+          <div class="grid-3">
+            <article class="glass-card card-3d card card-pad">
+              <div class="card-title">
+                <div class="icon" aria-hidden="true">🤖</div>
+                <h3>AI Caption Generator</h3>
+              </div>
+              <p>Generate captions that match your voice—then tweak, approve, and ship.</p>
+            </article>
+            <article class="glass-card card-3d card card-pad">
+              <div class="card-title">
+                <div class="icon" aria-hidden="true">📅</div>
+                <h3>Multi‑Year Scheduling</h3>
+              </div>
+              <p>Plan campaigns across months (or years) without losing the calendar view.</p>
+            </article>
+            <article class="glass-card card-3d card card-pad">
+              <div class="card-title">
+                <div class="icon" aria-hidden="true">🔄</div>
+                <h3>Content Repurposing</h3>
+              </div>
+              <p>Turn one idea into platform‑specific variants—fast, clean, consistent.</p>
+            </article>
+
+            <article class="glass-card card-3d card card-pad">
+              <div class="card-title">
+                <div class="icon" aria-hidden="true">📊</div>
+                <h3>Value metrics</h3>
+              </div>
+              <p>Value metrics (posts scheduled, hours saved) — then go deeper on <a href="https://zynera.cloud" target="_blank">Zynera.cloud</a>.</p>
+            </article>
+            <article class="glass-card card-3d card card-pad">
+              <div class="card-title">
+                <div class="icon" aria-hidden="true">🌐</div>
+                <h3>10+ Major Platforms</h3>
+              </div>
+              <p>One workflow for the platforms you use today—and the ones you’ll add tomorrow.</p>
+            </article>
+            <article class="glass-card card-3d card card-pad">
+              <div class="card-title">
+                <div class="icon" aria-hidden="true">⚡</div>
+                <h3>One‑Click Posting</h3>
+              </div>
+              <p>From idea → schedule → publish. Fewer steps. Less friction. More output.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-tight">
+        <div class="container">
+          <div class="center" style="margin-bottom: 18px">
+            <div class="kicker">How it works</div>
+            <h2 class="heading" style="margin: 12px 0 0">How It Works</h2>
+          </div>
+
+          <div class="timeline">
+            <article class="glass-card card-3d step">
+              <div class="dot" aria-hidden="true"></div>
+              <h3 style="margin: 0 0 8px">1) Schedule with Solyntra</h3>
+              <p class="muted">Plan content in one calendar and queue your posts quickly.</p>
+            </article>
+            <article class="glass-card card-3d step">
+              <div class="dot" aria-hidden="true"></div>
+              <h3 style="margin: 0 0 8px">2) Post goes live automatically</h3>
+              <p class="muted">Solyntra publishes on schedule across your selected platforms.</p>
+            </article>
+            <article class="glass-card card-3d step">
+              <div class="dot" aria-hidden="true"></div>
+              <h3 style="margin: 0 0 8px">3) <a href="https://zynera.cloud" target="_blank">Track performance on Zynera.cloud →</a></h3>
+              <p class="muted">Analyze engagement, growth, and best posting times in Zynera.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="center" style="margin-bottom: 18px">
+            <div class="kicker">Testimonials</div>
+            <h2 class="heading" style="margin: 12px 0 0">Creators love the calm</h2>
+          </div>
+
+          <div class="grid-3">
+            <article class="glass-card card-3d testimonial">
+              <div class="t-head">
+                <div style="display: flex; gap: 10px; align-items: center">
+                  <div class="avatar" aria-hidden="true">A</div>
+                  <div>
+                    <strong>Aria</strong>
+                    <div class="muted" style="font-size: 0.92rem">Creator • Lifestyle</div>
+                  </div>
+                </div>
+                <div class="stars" aria-label="5 stars">★★★★★</div>
+              </div>
+              <p class="muted">“The UI feels premium. Scheduling is finally something I don’t dread.”</p>
+            </article>
+
+            <article class="glass-card card-3d testimonial">
+              <div class="t-head">
+                <div style="display: flex; gap: 10px; align-items: center">
+                  <div class="avatar" aria-hidden="true">M</div>
+                  <div>
+                    <strong>Mateo</strong>
+                    <div class="muted" style="font-size: 0.92rem">Founder • SaaS</div>
+                  </div>
+                </div>
+                <div class="stars" aria-label="5 stars">★★★★★</div>
+              </div>
+              <p class="muted">“We schedule a week of content in 20 minutes. The rest is just shipping.”</p>
+            </article>
+
+            <article class="glass-card card-3d testimonial">
+              <div class="t-head">
+                <div style="display: flex; gap: 10px; align-items: center">
+                  <div class="avatar" aria-hidden="true">S</div>
+                  <div>
+                    <strong>Sana</strong>
+                    <div class="muted" style="font-size: 0.92rem">Marketer • Agency</div>
+                  </div>
+                </div>
+                <div class="stars" aria-label="5 stars">★★★★★</div>
+              </div>
+              <p class="muted">“It’s not bloated analytics—just the numbers that actually move decisions.”</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-tight">
+        <div class="container">
+          <div class="center" style="margin-bottom: 18px">
+            <div class="kicker">Pricing</div>
+            <h2 class="heading" style="margin: 12px 0 0">Start small. Scale smoothly.</h2>
+          </div>
+
+          <div class="pricing-teaser">
+            <article class="glass-card card-3d plan">
+              <h3>Free</h3>
+              <div class="muted">Try the workflow</div>
+              <div class="price text-metal">$0</div>
+              <ul>
+                <li>1 brand · 2 platforms</li>
+                <li>10 queue · 10 AI credits</li>
+              </ul>
+            </article>
+            <article class="glass-card card-3d plan">
+              <h3>Starter</h3>
+              <div class="muted">For solo creators</div>
+              <div class="price text-metal">$29<span class="muted" style="font-size: 0.95rem">/mo</span></div>
+              <ul>
+                <li>5 platforms · DALL-E thumbnails</li>
+                <li>CSV bulk import</li>
+              </ul>
+            </article>
+            <article class="glass-card card-3d plan" style="border-color: rgba(123, 97, 255, 0.22)">
+              <span class="badge badge-violet" style="position: absolute; top: 14px; right: 14px">Most Popular</span>
+              <h3>Pro</h3>
+              <div class="muted">Multi-brand + RSS</div>
+              <div class="price text-metal">$79<span class="muted" style="font-size: 0.95rem">/mo</span></div>
+              <ul>
+                <li>3 brands · 10 platforms</li>
+                <li>RSS + Zynera analytics link</li>
+              </ul>
+            </article>
+            <article class="glass-card card-3d plan" style="border-color: rgba(0, 255, 157, 0.18)">
+              <h3>Agency</h3>
+              <div class="muted">Client brands</div>
+              <div class="price text-metal">$149<span class="muted" style="font-size: 0.95rem">/mo</span></div>
+              <ul>
+                <li>10 brands</li>
+                <li>Featured Zynera analytics</li>
+              </ul>
+            </article>
+          </div>
+
+          <div class="center" style="margin-top: 16px">
+            <a class="btn btn-secondary" href="pricing.html">See Full Pricing</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <div class="footer-col">
+          <div class="brand" style="margin-bottom: 10px">
+            <span class="brand-badge" aria-hidden="true"></span>
+            <span class="logo"><span class="logo-metal">SolyntraAI</span></span>
+          </div>
+          <div class="muted" style="max-width: 46ch; line-height: 1.6">
+            Liquid‑metal UI for scheduling, automation, and calm consistency.
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Product</h4>
+          <a href="features.html">Features</a>
+          <a href="pricing.html">Pricing</a>
+          <a href="api.html">API</a>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <a href="contact.html">Contact</a>
+          <a href="info.html">Info</a>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <a href="policies/terms.html">Terms</a>
+          <a href="policies/privacy.html">Privacy</a>
+          <a href="policies/refund-policy.html">Refund</a>
+          <a href="policies/api-policy.html">API Policy</a>
+        </div>
+      </div>
+
+      <div class="container footer-bottom">
+        <div>© <span id="year"></span> SolyntraAI</div>
+        <div class="links">
+          <a href="policies/affiliate.html">Affiliate</a>
+          <a href="login.html">Log In</a>
+          <a href="signup.html">Start Free</a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="./assets/js/main.js"></script>
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      const easeOut = (t) => 1 - Math.pow(1 - t, 3);
+      const counters = [...document.querySelectorAll("[data-count]")];
+      const runCounter = (el) => {
+        const target = Number(el.getAttribute("data-count") || "0");
+        const start = performance.now();
+        const duration = 900;
+        const tick = (now) => {
+          const p = Math.min(1, (now - start) / duration);
+          const v = Math.round(target * easeOut(p));
+          el.textContent = target >= 1000 ? v.toLocaleString() + "+" : String(v);
+          if (p < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+      };
+
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              runCounter(e.target);
+              io.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.6 }
+      );
+      counters.forEach((c) => io.observe(c));
+
+      document.getElementById("logoutBtn")?.addEventListener("click", () => {
+        localStorage.removeItem("sb_user");
+        window.Solyntra?.showToast?.("Logged out", "info");
+        window.Solyntra?.updateNav?.();
+        setTimeout(() => (window.location.href = "index.html"), 400);
+      });
+    </script>
+  </body>
 </html>
+

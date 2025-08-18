@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Link in bio — SolyntraAI</title>
+    <link rel="stylesheet" href="./styles/tokens.css" />
+    <link rel="stylesheet" href="./assets/style.css" />
+    <script src="/.netlify/functions/config"></script>
+  </head>
+  <body>
+    <div class="bio-page-wrapper" id="bio-root">
+      <div id="bio-not-found" style="display: none; text-align: center; padding: 4rem; color: #fff">
+        Page not found
+      </div>
+      <div id="bio-content" style="display: none; width: 100%; max-width: 440px">
+        <img id="bio-avatar" src="" alt="" style="width: 96px; height: 96px; border-radius: 50%; object-fit: cover; margin: 0 auto 16px; display: none; border: 2px solid var(--bio-accent, #00d4ff)" />
+        <h1 id="bio-name" style="color: #fff; text-align: center; margin: 0 0 8px; font-size: 1.5rem"></h1>
+        <p id="bio-text" style="color: #aab; text-align: center; margin: 0 0 24px; line-height: 1.5"></p>
+        <div id="bio-links"></div>
+        <p style="text-align: center; margin-top: 32px; font-size: 12px; opacity: 0.45">
+          <a href="https://solyntraai.com" style="color: inherit">SolyntraAI</a>
+        </p>
+      </div>
+    </div>
+    <script type="module">
+      import { getBioPageBySlug, incrementBioPageViews } from "./supabase.js";
+
+      const slug = new URLSearchParams(window.location.search).get("u");
+
+      document.addEventListener("DOMContentLoaded", async () => {
+        if (!slug) {
+          window.location.href = "/index.html";
+          return;
+        }
+
+        const page = await getBioPageBySlug(slug);
+        if (!page) {
+          document.getElementById("bio-not-found").style.display = "block";
+          return;
+        }
+
+        await incrementBioPageViews(slug);
+
+        document.getElementById("bio-content").style.display = "flex";
+        document.getElementById("bio-content").style.flexDirection = "column";
+        document.getElementById("bio-content").style.alignItems = "center";
+
+        document.getElementById("bio-name").textContent = page.display_name || "";
+        document.getElementById("bio-text").textContent = page.bio || "";
+
+        const av = document.getElementById("bio-avatar");
+        if (page.avatar_url) {
+          av.src = page.avatar_url;
+          av.style.display = "block";
+        }
+
+        document.documentElement.style.setProperty("--bio-bg", page.background_color || "#0d1420");
+        document.documentElement.style.setProperty("--bio-accent", page.accent_color || "#00d4ff");
+        document.getElementById("bio-root").style.background = "var(--bio-bg)";
+
+        const links = Array.isArray(page.links) ? page.links : [];
+        const linksContainer = document.getElementById("bio-links");
+        linksContainer.innerHTML = links
+          .filter((l) => l && l.is_active !== false && l.url)
+          .map(
+            (l) =>
+              `<a href="${l.url.replace(/"/g, "&quot;")}" target="_blank" rel="noopener noreferrer" class="bio-link">
+            ${l.icon ? `<span class="link-icon">${l.icon}</span>` : ""}
+            <span>${(l.title || "Link").replace(/</g, "&lt;")}</span>
+          </a>`
+          )
+          .join("");
+      });
+    </script>
+  </body>
+</html>

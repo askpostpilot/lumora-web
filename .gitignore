@@ -13,3 +13,6 @@ traefik/acme.json
 # Temporary files
 .tmp-*
 *.tmp
+
+# Dependencies
+node_modules/

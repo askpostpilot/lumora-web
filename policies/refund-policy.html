@@ -1,54 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Refund Policy – Lumora</title>
-  <link rel="stylesheet" href="../assets/style.css" />
-</head>
-<body>
-  <header>
-    <div class="logo">Lumora</div>
-    <nav>
-      <ul>
-        <li><a href="../index.html">Home</a></li>
-        <li><a href="../pricing.html">Pricing</a></li>
-        <li><a href="../signup.html">Sign Up</a></li>
-        <li><a href="../login.html">Log In</a></li>
-        <li><a href="../dashboard.html">Dashboard</a></li>
-        <li><a href="../scheduler.html">Scheduler</a></li>
-        <li><a href="../analytics.html">Analytics</a></li>
-        <li><a href="../api.html">API</a></li>
-        <li><a href="../contact.html">Contact</a></li>
-        <li><a href="../info.html">Info</a></li>
-      </ul>
-    </nav>
-    <a href="../pricing.html" class="cta-button">Start Free Trial</a>
-  </header>
-  <main class="container">
-    <h1>Refund Policy</h1>
-    <p>This placeholder policy outlines our approach to refunds. Please update this section with your actual refund policy before launching. Generally, subscription payments are non‑refundable after the free trial period.</p>
-  </main>
-  <footer>
-    <div class="footer-links">
-      <a href="../index.html">Home</a>
-      <a href="../pricing.html">Pricing</a>
-      <a href="../signup.html">Sign Up</a>
-      <a href="../login.html">Log In</a>
-      <a href="../contact.html">Contact</a>
-      <a href="../info.html">Info</a>
-      <a href="terms.html">Terms</a>
-      <a href="privacy.html">Privacy</a>
-      <a href="refund-policy.html">Refund Policy</a>
-      <a href="api-policy.html">API Policy</a>
-      <a href="affiliate.html">Affiliate</a>
-    </div>
-    <p>&copy; <span id="year"></span> Lumora. All rights reserved.</p>
-  </footer>
-  <div class="floating-cta">Start Free Trial</div>
-  <script src="../assets/js/main.js"></script>
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Refund Policy — SolyntraAI</title>
+    <link rel="stylesheet" href="../styles/tokens.css" />
+    <link rel="stylesheet" href="../assets/style.css" />
+    <script src="/.netlify/functions/config"></script>
+    <style>
+      .policy-page {
+        max-width: 720px;
+        margin: 0 auto;
+        padding: 32px 24px 64px;
+        position: relative;
+        z-index: 1;
+      }
+      .policy-page h1 {
+        font-family: var(--font-heading);
+        margin-bottom: 8px;
+      }
+      .policy-page pre.policy-body {
+        white-space: pre-wrap;
+        font-family: var(--font-body);
+        font-size: 1rem;
+        line-height: 1.65;
+        color: var(--text-secondary);
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a class="brand" href="../index.html"
+          ><span class="brand-badge"></span><span class="logo"><span class="logo-metal">SolyntraAI</span></span></a
+        >
+      </div>
+    </header>
+    <main class="policy-page">
+      <h1>Refund Policy</h1>
+      <p class="muted" style="margin-bottom: 24px">Last updated: March 2026</p>
+      <pre class="policy-body">1. Free Trial
+All paid plans include a 14-day free trial. No charge during the trial period.
+Cancel any time during trial for no charge.
+
+2. Monthly Plans
+Monthly subscriptions are non-refundable after the trial period ends.
+You may cancel at any time — your plan continues until the end of the billing period.
+
+3. Yearly Plans
+Yearly plans may be refunded within 7 days of payment if you have not
+exceeded 10 posts scheduled on the platform. After 7 days, no refund.
+
+4. Disputes
+If you have a billing issue, contact us at support@solyntraai.com before
+initiating a PayPal dispute. We will work to resolve it fairly.
+
+5. How to Cancel
+Cancel from your account settings page or by emailing support@solyntraai.com.</pre>
+    </main>
+    <footer class="site-footer">
+      <div class="container footer-bottom">
+        <p class="muted">© <span id="year"></span> SolyntraAI</p>
+      </div>
+    </footer>
+    <script src="../assets/js/main.js"></script>
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
 </html>

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin — SolyntraAI</title>
+    <link rel="stylesheet" href="./styles/tokens.css" />
+    <link rel="stylesheet" href="./assets/style.css" />
+    <script src="/.netlify/functions/config"></script>
+    <style>
+      .wrap {
+        padding: 24px 0 56px;
+        position: relative;
+        z-index: 1;
+      }
+      .table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      .table th,
+      .table td {
+        padding: 10px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        text-align: left;
+      }
+      .plan-badge {
+        padding: 4px 8px;
+        border-radius: 999px;
+      }
+      .plan-badge.free {
+        background: rgba(255, 184, 0, 0.2);
+      }
+      .plan-badge.starter {
+        background: rgba(0, 212, 255, 0.2);
+      }
+      .plan-badge.pro {
+        background: rgba(123, 97, 255, 0.2);
+      }
+      .plan-badge.agency {
+        background: rgba(0, 255, 157, 0.15);
+      }
+      .admin-footnote {
+        margin-top: 24px;
+        color: var(--text-muted);
+        font-size: 0.92rem;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a class="brand" href="dashboard.html"
+          ><span class="brand-badge"></span><span class="logo"><span class="logo-metal">SolyntraAI Admin</span></span></a
+        >
+      </div>
+    </header>
+    <main class="container wrap">
+      <section class="glass-card card-pad">
+        <h1 class="heading">Admin panel</h1>
+        <p class="muted">Visible only when <code>is_admin</code> is true on your profile.</p>
+        <p class="mono">Total users: <span id="total-users">0</span></p>
+        <div class="glass-card card-pad" style="margin-bottom: 16px">
+          <strong>Welcome email series</strong>
+          <p class="muted" style="margin: 8px 0 12px; font-size: 0.92rem">
+            Send day 3 / day 7 follow-ups to users who have not received them yet (by <code>welcome_email_day</code> on profiles).
+          </p>
+          <button type="button" class="btn btn-secondary btn-sm" id="btn-welcome-day3">Send day-3 emails</button>
+          <button type="button" class="btn btn-secondary btn-sm" id="btn-welcome-day7" style="margin-left: 8px">Send day-7 emails</button>
+        </div>
+        <div style="overflow: auto">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Email</th>
+                <th>Plan</th>
+                <th>Posts</th>
+                <th>AI credits</th>
+                <th>Thumb credits</th>
+                <th>Joined</th>
+                <th>Set plan</th>
+              </tr>
+            </thead>
+            <tbody id="users-tbody"></tbody>
+          </table>
+        </div>
+        <p class="admin-footnote">
+          <a href="https://zynera.cloud" target="_blank" rel="noopener noreferrer">Zynera.cloud</a>: push analytics to your clients when you pair SolyntraAI scheduling with Zynera deep metrics.
+        </p>
+      </section>
+    </main>
+    <script src="./assets/js/main.js"></script>
+    <script type="module">
+      import { requireAuth, isAdmin, supabase, showToast } from "./supabase.js";
+
+      const PLAN_LIMITS = {
+        free: {
+          ai_credits_limit: 10,
+          thumbnail_credits_limit: 0,
+          queue_limit: 10,
+          platform_limit: 2,
+          brand_limit: 1,
+        },
+        starter: {
+          ai_credits_limit: 100,
+          thumbnail_credits_limit: 10,
+          queue_limit: 999,
+          platform_limit: 5,
+          brand_limit: 1,
+        },
+        pro: {
+          ai_credits_limit: 500,
+          thumbnail_credits_limit: 30,
+          queue_limit: 999,
+          platform_limit: 10,
+          brand_limit: 3,
+        },
+        agency: {
+          ai_credits_limit: 1000,
+          thumbnail_credits_limit: 100,
+          queue_limit: 999,
+          platform_limit: 10,
+          brand_limit: 10,
+        },
+      };
+
+      function setText(id, v) {
+        const el = document.getElementById(id);
+        if (el) el.textContent = v;
+      }
+
+      function renderUsers(users) {
+        const tbody = document.getElementById("users-tbody");
+        tbody.innerHTML = users
+          .map(
+            (u) => `<tr>
+          <td>${u.email}</td>
+          <td><span class="plan-badge ${u.plan}">${u.plan}</span></td>
+          <td>${u.total_posts_scheduled || 0}</td>
+          <td>${u.ai_credits_used || 0}</td>
+          <td>${u.thumbnail_credits_used || 0}</td>
+          <td>${new Date(u.created_at).toLocaleDateString("en-IN")}</td>
+          <td>
+            <select data-user="${u.id}" class="input" style="font-size: 12px; padding: 6px; max-width: 160px" onchange="setPlan('${u.id}', this.value)">
+              <option value="">Change plan…</option>
+              <option value="free">Free</option>
+              <option value="starter">Starter</option>
+              <option value="pro">Pro</option>
+              <option value="agency">Agency</option>
+            </select>
+          </td>
+        </tr>`
+          )
+          .join("");
+      }
+
+      window.setPlan = async (userId, plan) => {
+        if (!plan || !PLAN_LIMITS[plan]) return;
+        const { error } = await supabase.from("profiles").update({ plan, ...PLAN_LIMITS[plan] }).eq("id", userId);
+        if (error) {
+          showToast(error.message, "error");
+          return;
+        }
+        showToast(`Plan updated to ${plan}`, "success");
+        const { data: users } = await supabase
+          .from("profiles")
+          .select("id,email,plan,total_posts_scheduled,ai_credits_used,thumbnail_credits_used,created_at,welcome_email_day,full_name")
+          .order("created_at", { ascending: false });
+        renderUsers(users || []);
+      };
+
+      document.addEventListener("DOMContentLoaded", async () => {
+        const user = await requireAuth("/login.html");
+        if (!user) return;
+        if (!(await isAdmin(user.id))) {
+          window.location.href = "dashboard.html";
+          return;
+        }
+
+        async function sendWelcomeSeries(day) {
+          const { data: profiles } = await supabase
+            .from("profiles")
+            .select("id,email,full_name,welcome_email_day")
+            .not("email", "is", null)
+            .lt("welcome_email_day", day);
+          let sent = 0;
+          for (const u of profiles || []) {
+            if (!u.email) continue;
+            try {
+              await fetch("/.netlify/functions/send-welcome-email", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                  email: u.email,
+                  name: u.full_name || u.email.split("@")[0],
+                  day,
+                }),
+              });
+              await supabase
+                .from("profiles")
+                .update({ welcome_email_day: day, welcome_email_sent_at: new Date().toISOString() })
+                .eq("id", u.id);
+              sent++;
+            } catch (e) {
+              console.warn(e);
+            }
+          }
+          showToast(`Sent ${sent} day-${day} email(s)`, "success");
+        }
+
+        document.getElementById("btn-welcome-day3")?.addEventListener("click", () => sendWelcomeSeries(3));
+        document.getElementById("btn-welcome-day7")?.addEventListener("click", () => sendWelcomeSeries(7));
+
+        const { data: users, error } = await supabase
+          .from("profiles")
+          .select("id,email,plan,total_posts_scheduled,ai_credits_used,thumbnail_credits_used,created_at,welcome_email_day,full_name")
+          .order("created_at", { ascending: false });
+
+        if (error) {
+          showToast(error.message, "error");
+          return;
+        }
+
+        setText("total-users", users?.length || 0);
+        renderUsers(users || []);
+      });
+    </script>
+  </body>
+</html>

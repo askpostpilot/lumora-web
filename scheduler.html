@@ -1,867 +1,1092 @@
 <!DOCTYPE html>
 <html lang="en">
-<<<<<<< HEAD
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Scheduler – SolyntraAI</title>
-  <link rel="stylesheet" href="./styles/tokens.css" />
-  <link rel="stylesheet" href="./assets/style.css" />
-</head>
-<body>
-  <header>
-    <div class="logo">SolyntraAI</div>
-    <nav>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="pricing.html">Pricing</a></li>
-        <li><a href="signup.html">Sign Up</a></li>
-        <li><a href="login.html">Log In</a></li>
-        <li><a href="dashboard.html">Dashboard</a></li>
-        <li><a href="scheduler.html">Scheduler</a></li>
-        <li><a href="analytics.html">Analytics</a></li>
-        <li><a href="api.html">API</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="info.html">Info</a></li>
-      </ul>
-    </nav>
-    <a href="pricing.html" class="cta-button">Start Free Trial</a>
-  </header>
-  <main class="container">
-    <h1>Schedule a Post</h1>
-    <p>Create and schedule new content for your social channels. AI features help generate captions, hashtags, thumbnails and repurpose your content. (Toggle on/off as desired.)</p>
-    <form id="schedule-form" style="display:flex; flex-direction:column; gap:1rem; margin-top:2rem; max-width:600px;">
-      <input type="text" placeholder="Post title" required style="padding:0.75rem; border-radius:4px; border:none;" />
-      <textarea placeholder="Post content" rows="5" required style="padding:0.75rem; border-radius:4px; border:none;"></textarea>
-      <input type="datetime-local" required style="padding:0.75rem; border-radius:4px; border:none;" />
-      <div class="toggles">
-        <div class="toggle-item">
-          <label for="toggle-caption">Generate captions with AI</label>
-          <input type="checkbox" id="toggle-caption" />
-        </div>
-        <div class="toggle-item">
-          <label for="toggle-hashtags">Generate hashtags with AI</label>
-          <input type="checkbox" id="toggle-hashtags" />
-        </div>
-        <div class="toggle-item">
-          <label for="toggle-thumbnail">Generate thumbnail with AI</label>
-          <input type="checkbox" id="toggle-thumbnail" />
-        </div>
-        <div class="toggle-item">
-          <label for="toggle-repurpose">Repurpose content with AI</label>
-          <input type="checkbox" id="toggle-repurpose" />
-        </div>
-      </div>
-      <button type="submit" class="cta-button" style="margin-top:1rem;">Schedule</button>
-    </form>
-    <div id="schedule-result" style="margin-top:1rem;"></div>
-  </main>
-  <footer>
-    <div class="footer-links">
-      <a href="index.html">Home</a>
-      <a href="pricing.html">Pricing</a>
-      <a href="signup.html">Sign Up</a>
-      <a href="login.html">Log In</a>
-      <a href="contact.html">Contact</a>
-      <a href="info.html">Info</a>
-      <a href="policies/terms.html">Terms</a>
-      <a href="policies/privacy.html">Privacy</a>
-      <a href="policies/refund-policy.html">Refund Policy</a>
-      <a href="policies/api-policy.html">API Policy</a>
-      <a href="policies/affiliate.html">Affiliate</a>
-    </div>
-    <p>&copy; <span id="year"></span> SolyntraAI. All rights reserved.</p>
-  </footer>
-  <div class="floating-cta">Start Free Trial</div>
-  <script src="./assets/js/main.js"></script>
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-    const form = document.getElementById('schedule-form');
-    const resultDiv = document.getElementById('schedule-result');
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      resultDiv.textContent = 'Your post has been scheduled (simulation).';
-      setTimeout(() => {
-        resultDiv.textContent = '';
-      }, 4000);
-    });
-  </script>
-</body>
-=======
-
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>SolyntraAI — Scheduler</title>
-    <meta name="description" content="Schedule posts, automate content, and grow your brand with SolyntraAI's luxury-grade scheduler and AI tools.">
-    <meta property="og:title" content="SolyntraAI — Scheduler" />
-    <meta property="og:description" content="Schedule posts, automate content, and grow your brand with SolyntraAI's luxury-grade scheduler and AI tools." />
-    <meta property="og:image" content="/public/brand/og-solyntraai.png" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="SolyntraAI — Scheduler" />
-    <meta name="twitter:description" content="Schedule posts, automate content, and grow your brand with SolyntraAI's luxury-grade scheduler and AI tools." />
-    <meta name="twitter:image" content="/public/brand/og-solyntraai.png" />
-    <link rel="canonical" href="https://solyntraai.com/scheduler.html" />
-    <meta name="robots" content="index, follow" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@500;700;800&display=swap" rel="stylesheet">
-        rel="stylesheet" />
-
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Scheduler — SolyntraAI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Orbitron:wght@400;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles/tokens.css" />
+    <link rel="stylesheet" href="./assets/style.css" />
+    <script src="/.netlify/functions/config"></script>
     <style>
-        :root {
-            --bg1: #0d1421;
-            --bg2: #1a0b2e;
-            --bg3: #2d1b69;
-            --glass: rgba(255, 255, 255, 0.06);
-            --border: rgba(255, 255, 255, 0.18);
-            --text: #e9eefc;
-            --muted: rgba(233, 238, 252, 0.7);
-            --accent1: #00f5ff;
-            --accent2: #7a3cff;
-            /* deep violet */
-            --accent3: #a4fffb;
-            /* cyan highlight */
-            --good: #00d28f;
-            --warn: #ffb020;
-            --bad: #ff4d6d;
-            --shadow-dark: rgba(0, 0, 0, 0.55);
-            --shadow-glow: rgba(122, 60, 255, 0.35);
-            --radius-xl: 22px;
-            --radius-lg: 16px;
-            --radius-md: 12px;
+      .layout {
+        display: grid;
+        grid-template-columns: 40% 60%;
+        gap: 14px;
+        padding: 28px 0 56px;
+        position: relative;
+        z-index: 1;
+      }
+      .panel {
+        padding: 18px;
+      }
+      .platforms {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+      }
+      .platform-btn,
+      .type-btn {
+        padding: 10px;
+        border-radius: 12px;
+        border: var(--border-subtle);
+        background: rgba(255, 255, 255, 0.03);
+        color: var(--text-secondary);
+        cursor: pointer;
+      }
+      .platform-btn.active,
+      .type-btn.active {
+        border-color: rgba(0, 212, 255, 0.32);
+        color: var(--text-primary);
+        box-shadow: var(--shadow-glow-teal);
+      }
+      .platform-btn.connected {
+        box-shadow: 0 0 0 1px rgba(0, 255, 157, 0.22) inset;
+      }
+      .content-type-selector {
+        margin: 14px 0;
+      }
+      .type-buttons {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 8px;
+      }
+      .caption-head {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.9rem;
+        color: var(--text-secondary);
+        margin-bottom: 6px;
+      }
+      #repurposing-matrix {
+        margin-top: 14px;
+        border: var(--border-subtle);
+        border-radius: 14px;
+        padding: 12px;
+        background: rgba(255, 255, 255, 0.02);
+      }
+      .matrix-header {
+        display: flex;
+        justify-content: space-between;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-bottom: 10px;
+      }
+      .matrix-grid {
+        display: grid;
+        gap: 8px;
+      }
+      .matrix-row {
+        display: grid;
+        grid-template-columns: 1.2fr auto 2fr;
+        gap: 8px;
+        padding: 8px;
+        border-radius: 10px;
+      }
+      .matrix-row.yes {
+        background: rgba(0, 255, 157, 0.08);
+      }
+      .matrix-row.partial {
+        background: rgba(255, 184, 0, 0.08);
+      }
+      .matrix-row.no {
+        background: rgba(255, 94, 87, 0.08);
+      }
+      .matrix-disclaimer {
+        margin-top: 10px;
+        color: var(--text-muted);
+        font-size: 0.9rem;
+      }
+      #admin-nav-link {
+        display: none;
+      }
+      @media (max-width: 980px) {
+        .layout {
+          grid-template-columns: 1fr;
         }
-
-        * {
-            box-sizing: border-box
+        .type-buttons {
+          grid-template-columns: repeat(2, 1fr);
         }
-
-        html,
-        body {
-            height: 100%
+        .platforms {
+          grid-template-columns: repeat(2, 1fr);
         }
-
-        body {
-            margin: 0;
-            font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
-            color: var(--text);
-            background:
-                radial-gradient(1200px 600px at 10% 10%, rgba(0, 245, 255, 0.10), transparent 60%),
-                radial-gradient(1200px 600px at 90% 30%, rgba(122, 60, 255, 0.10), transparent 65%),
-                linear-gradient(135deg, var(--bg1), var(--bg2) 55%, var(--bg3) 100%);
-            overflow-x: hidden;
+        .matrix-row {
+          grid-template-columns: 1fr;
         }
-
-        /* Top nav */
-        .navbar {
-            position: sticky;
-            top: 0;
-            z-index: 50;
-            backdrop-filter: blur(10px);
-            background: linear-gradient(180deg, rgba(13, 20, 33, 0.75), rgba(13, 20, 33, 0.35));
-            border-bottom: 1px solid var(--border);
-            padding: 14px 20px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            text-decoration: none;
-        }
-
-        .logo {
-            font-family: Poppins, sans-serif;
-            font-weight: 800;
-            letter-spacing: 0.5px;
-            font-size: 1.6rem;
-            line-height: 1;
-            position: relative;
-            background: linear-gradient(90deg, #b6ffff, var(--accent1) 25%, #b28cff 60%, var(--accent2) 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            text-shadow:
-                0 6px 18px rgba(0, 0, 0, 0.55),
-                0 0 18px rgba(122, 60, 255, 0.25);
-        }
-
-        .logo::after {
-            content: "";
-            position: absolute;
-            left: -4px;
-            right: -4px;
-            top: -4px;
-            bottom: -8px;
-            background: radial-gradient(60% 100% at 20% 0%, rgba(255, 255, 255, 0.10), transparent 60%);
-            pointer-events: none;
-            filter: blur(2px);
-        }
-
-        .nav-links a {
-            color: var(--muted);
-            text-decoration: none;
-            margin: 0 10px;
-            font-weight: 600;
-        }
-
-        .nav-links a:hover {
-            color: var(--accent3)
-        }
-
-        .cta {
-            padding: 10px 16px;
-            border-radius: 999px;
-            font-weight: 700;
-            text-decoration: none;
-            color: #0b1020;
-            background: linear-gradient(90deg, var(--accent1), var(--accent2));
-            box-shadow:
-                0 8px 28px var(--shadow-glow),
-                inset 0 1px 0 rgba(255, 255, 255, 0.25);
-        }
-
-        .cta:hover {
-            filter: brightness(1.05)
-        }
-
-        /* Layout */
-        .wrap {
-            display: grid;
-            grid-template-columns: 280px 1fr;
-            gap: 22px;
-            max-width: 1400px;
-            margin: 30px auto;
-            padding: 0 18px 48px;
-        }
-
-        /* Sidebar */
-        .side {
-            background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.03));
-            border: 1px solid var(--border);
-            border-radius: var(--radius-xl);
-            box-shadow:
-                0 14px 40px var(--shadow-dark),
-                0 0 0 1px rgba(122, 60, 255, 0.08) inset,
-                0 0 60px rgba(0, 245, 255, 0.06) inset;
-            padding: 16px;
-            backdrop-filter: blur(12px);
-        }
-
-        .side h4 {
-            font-family: Poppins, sans-serif;
-            letter-spacing: 0.4px;
-            margin: 6px 10px 14px;
-        }
-
-        .menu a {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 12px 14px;
-            margin: 8px 4px;
-            text-decoration: none;
-            color: var(--text);
-            border-radius: 12px;
-            border: 1px solid transparent;
-            background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.00));
-        }
-
-        .menu a:hover {
-            border-color: var(--border);
-            background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.03));
-        }
-
-        .menu a.active {
-            border-color: rgba(0, 245, 255, 0.25);
-            background:
-                linear-gradient(180deg, rgba(0, 245, 255, 0.08), rgba(122, 60, 255, 0.08));
-            box-shadow: 0 0 0 1px rgba(0, 245, 255, 0.15) inset;
-        }
-
-        /* Main */
-        .main {
-            display: grid;
-            gap: 22px;
-        }
-
-        .panel {
-            background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.03));
-            border: 1px solid var(--border);
-            border-radius: var(--radius-xl);
-            padding: 22px;
-            box-shadow:
-                0 16px 48px var(--shadow-dark),
-                0 0 0 1px rgba(122, 60, 255, 0.10) inset,
-                0 0 80px rgba(0, 245, 255, 0.06) inset;
-            backdrop-filter: blur(12px);
-        }
-
-        .panel h2 {
-            font-family: Poppins, sans-serif;
-            margin: 0 0 14px;
-            letter-spacing: 0.3px;
-            background: linear-gradient(90deg, #fff, #b6ffff 50%, #b28cff 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        .muted {
-            color: var(--muted);
-            font-size: 0.95rem
-        }
-
-        /* Platform chips */
-        .chips {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 10px
-        }
-
-        .chip {
-            padding: 9px 12px;
-            border-radius: 999px;
-            border: 1px solid var(--border);
-            cursor: pointer;
-            user-select: none;
-            background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02));
-            font-weight: 600;
-            font-size: 0.92rem;
-            color: var(--text);
-        }
-
-        .chip.active {
-            border-color: rgba(0, 245, 255, 0.35);
-            box-shadow: 0 0 0 1px rgba(0, 245, 255, 0.2) inset, 0 6px 18px var(--shadow-glow);
-            background: linear-gradient(90deg, rgba(0, 245, 255, 0.14), rgba(122, 60, 255, 0.14));
-        }
-
-        /* Upload */
-        .drop {
-            margin-top: 14px;
-            padding: 28px;
-            border: 1.5px dashed rgba(255, 255, 255, 0.35);
-            border-radius: var(--radius-lg);
-            text-align: center;
-            color: var(--muted);
-            background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02));
-        }
-
-        .drop:hover {
-            border-color: var(--accent3)
-        }
-
-        input[type="file"] {
-            display: none
-        }
-
-        /* Toggles */
-        .row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 16px;
-            margin: 14px 0
-        }
-
-        .switch {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 10px;
-            padding: 12px 14px;
-            border: 1px solid var(--border);
-            border-radius: var(--radius-md);
-            background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01));
-        }
-
-        .switch label {
-            font-weight: 600
-        }
-
-        .toggle {
-            width: 56px;
-            height: 32px;
-            border-radius: 999px;
-            position: relative;
-            background: linear-gradient(180deg, rgba(255, 255, 255, 0.10), rgba(0, 0, 0, 0.25));
-            border: 1px solid rgba(255, 255, 255, 0.25);
-            box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.4), inset 0 -1px 0 rgba(255, 255, 255, 0.2);
-            cursor: pointer;
-        }
-
-        .knob {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            left: 4px;
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            background: radial-gradient(circle at 30% 30%, #ffffff, #a4b2ff 65%, #7a3cff 100%);
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4), 0 0 16px rgba(122, 60, 255, 0.35);
-            transition: left .2s ease;
-        }
-
-        .toggle.active .knob {
-            left: 28px
-        }
-
-        /* Date/time row */
-        .grid-3 {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 14px
-        }
-
-        .field {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .field input,
-        .field textarea,
-        .field select {
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid var(--border);
-            color: var(--text);
-            padding: 12px 14px;
-            border-radius: 12px;
-            font: inherit;
-            outline: none;
-        }
-
-        .field textarea {
-            min-height: 100px;
-            resize: vertical
-        }
-
-        /* Preview card (3D) */
-        .preview {
-            margin-top: 14px;
-            padding: 18px;
-            border-radius: var(--radius-lg);
-            background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.03));
-            border: 1px solid var(--border);
-            box-shadow:
-                0 18px 50px var(--shadow-dark),
-                0 0 0 1px rgba(0, 245, 255, 0.08) inset,
-                inset 0 60px 140px rgba(122, 60, 255, 0.08);
-        }
-
-        .preview h4 {
-            margin: 0 0 8px;
-            font-family: Poppins
-        }
-
-        .meta {
-            color: var(--muted);
-            font-size: 0.9rem
-        }
-
-        /* Buttons */
-        .actions {
-            display: flex;
-            gap: 12px;
-            margin-top: 16px;
-            flex-wrap: wrap
-        }
-
-        .btn {
-            border: none;
-            cursor: pointer;
-            font-weight: 800;
-            letter-spacing: 0.2px;
-            padding: 12px 18px;
-            border-radius: 12px;
-            background: linear-gradient(90deg, var(--accent1), var(--accent2));
-            color: #0b1020;
-            box-shadow:
-                0 10px 28px var(--shadow-glow),
-                inset 0 1px 0 rgba(255, 255, 255, 0.25);
-        }
-
-        .btn.secondary {
-            color: var(--text);
-            background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
-            border: 1px solid var(--border);
-        }
-
-        .btn:active {
-            transform: translateY(1px)
-        }
-
-        /* Toast */
-        .toast {
-            position: fixed;
-            right: 18px;
-            bottom: 18px;
-            padding: 12px 16px;
-            border-radius: 12px;
-            background: linear-gradient(180deg, rgba(0, 245, 255, 0.18), rgba(122, 60, 255, 0.18));
-            border: 1px solid rgba(0, 245, 255, 0.35);
-            color: var(--text);
-            box-shadow: 0 10px 28px var(--shadow-glow);
-            opacity: 0;
-            transform: translateY(10px);
-            transition: all .25s ease;
-        }
-
-        .toast.show {
-            opacity: 1;
-            transform: translateY(0)
-        }
-
-        /* Responsive */
-        @media (max-width: 1024px) {
-            .wrap {
-                grid-template-columns: 1fr
-            }
-        }
+      }
     </style>
-</head>
+  </head>
+  <body>
+    <div class="app-layout">
+      <aside class="brand-sidebar" id="brand-sidebar">
+        <div class="sidebar-header">
+          <span class="sidebar-logo">SolyntraAI</span>
+          <button type="button" class="sidebar-mobile-toggle" id="btn-sidebar-toggle" aria-label="Open menu">☰</button>
+        </div>
+        <div class="sidebar-label">Brands</div>
+        <div id="brand-list" class="brand-list"></div>
+        <button type="button" class="btn-add-brand" id="btn-add-brand">+ Add Brand</button>
+        <div class="sidebar-footer">
+          <a href="dashboard.html" class="sidebar-nav-item">📊 Dashboard</a>
+          <a href="scheduler.html" class="sidebar-nav-item">📅 Scheduler</a>
+          <a href="analytics.html" class="sidebar-nav-item">📈 Analytics</a>
+          <a href="pricing.html" class="sidebar-nav-item">💎 Upgrade</a>
+          <a href="admin.html" class="sidebar-nav-item" id="admin-nav-link">⚙ Admin</a>
+          <button type="button" class="sidebar-nav-item danger" id="btn-logout">← Logout</button>
+        </div>
+      </aside>
 
-<body>
+      <main class="app-main" id="app-main">
+        <div class="bg-orbs" aria-hidden="true">
+          <div class="orb" style="width: 300px; height: 300px; background: radial-gradient(circle, rgba(0, 212, 255, 0.22), transparent); top: -90px; left: -70px"></div>
+        </div>
+        <div class="container layout">
+          <section class="glass-card panel scheduler-form">
+            <h2 class="heading">Composer</h2>
+            <p class="muted" style="margin-top: 0">Brand: <strong id="scheduler-brand-name">—</strong></p>
+            <div class="platforms">
+              <button type="button" class="platform-btn" data-platform="instagram">Instagram</button>
+              <button type="button" class="platform-btn" data-platform="facebook">Facebook</button>
+              <button type="button" class="platform-btn" data-platform="x">X</button>
+              <button type="button" class="platform-btn" data-platform="linkedin">LinkedIn</button>
+              <button type="button" class="platform-btn" data-platform="tiktok">TikTok</button>
+              <button type="button" class="platform-btn" data-platform="youtube">YouTube</button>
+            </div>
+            <div id="best-time-hint" class="best-time-hint" style="display: none"></div>
+            <div class="content-type-selector">
+              <label class="label">Content Type</label>
+              <div class="type-buttons">
+                <button type="button" class="type-btn" data-type="video_long" onclick="selectContentType('video_long')">🎬 Video</button>
+                <button type="button" class="type-btn" data-type="image" onclick="selectContentType('image')">🖼️ Image</button>
+                <button type="button" class="type-btn" data-type="text" onclick="selectContentType('text')">✍️ Text</button>
+                <button type="button" class="type-btn" data-type="audio" onclick="selectContentType('audio')">🎵 Audio</button>
+              </div>
+            </div>
+            <div class="caption-head">
+              <span id="char-limit-display">Max 2,200 chars</span><span id="char-count" data-limit="2200">0/2200</span>
+            </div>
+            <textarea id="caption" class="textarea" placeholder="Write your caption..."></textarea>
+            <div class="tone-selector">
+              <label class="section-label">Caption tone</label>
+              <div class="tone-buttons">
+                <button type="button" class="tone-btn active" data-tone="casual">😊 Casual</button>
+                <button type="button" class="tone-btn" data-tone="professional">💼 Professional</button>
+                <button type="button" class="tone-btn" data-tone="funny">😄 Funny</button>
+                <button type="button" class="tone-btn" data-tone="inspiring">🔥 Inspiring</button>
+                <button type="button" class="tone-btn" data-tone="educational">📚 Educational</button>
+              </div>
+            </div>
+            <div class="field"><label class="label" for="schedule-date">Schedule date/time</label><input id="schedule-date" class="input" type="datetime-local" /></div>
+            <div class="field"><label class="label">Media upload</label><div class="glass-card card-pad muted">Drag &amp; drop area (attach files locally before publish)</div></div>
 
-    <!-- NAVBAR -->
-    <header class="navbar">
-        <a class="brand" href="index.html">
-            <div class="logo">SOLYNTRA AI</div>
-        </a>
-        <nav class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="pricing.html">Pricing</a>
-            <a href="affiliate.html">Affiliate</a>
-            <a href="api.html">API</a>
-            <a href="analytics.html">Analytics</a>
-            <a class="cta" href="login.html">Login</a>
-        </nav>
-    </header>
-
-    <!-- HERO SECTION -->
-    <section
-        style="width:100%;background:linear-gradient(135deg,#0d1421 0%,#1a0b2e 50%,#2d1b69 100%);padding:48px 0 32px;margin-bottom:0;text-align:center;box-shadow:0 10px 40px rgba(0,245,255,.08);">
-        <h1
-            style="font-family:Poppins,sans-serif;font-size:2.8rem;font-weight:900;letter-spacing:1px;background:linear-gradient(45deg,#fff,#00f5ff,#ff00ff);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:18px;">
-            Schedule Smarter. Grow Faster.</h1>
-        <p style="font-size:1.25rem;max-width:600px;margin:0 auto 18px;color:#e9eefc;opacity:.92;">SolyntraAI gives you
-            luxury-grade scheduling, AI-powered automation, and seamless multi-platform posting—all in one beautiful
-            dashboard.</p>
-        <div
-            style="margin:18px auto 0;display:inline-block;padding:8px 22px;border-radius:999px;background:linear-gradient(90deg,#00f5ff,#ff00ff);color:#fff;font-weight:800;box-shadow:0 4px 18px rgba(0,245,255,.18);font-size:1.08rem;">
-            Trusted by 50,000+ creators & brands</div>
-    </section>
-
-    <main style="max-width:1200px;margin:0 auto;padding:0 18px 48px;">
-        <!-- MAIN -->
-        <section class="main">
-
-            <!-- TARGET PLATFORMS -->
-            <div class="panel">
-                <h2>Choose Platforms</h2>
-                <p class="muted">Post everywhere. SolyntraAI adapts aspect ratios + formats automatically.</p>
-                <div class="chips" id="platformChips"
-                    style="display:flex;flex-wrap:wrap;gap:18px;justify-content:center;align-items:center;">
-                    <div class="chip" title="Instagram" style="display:flex;align-items:center;gap:8px;">
-                        <span
-                            style="display:inline-block;width:22px;height:22px;background:radial-gradient(circle at 60% 40%,#fdc468 60%,#e1306c 100%);border-radius:50%;"></span>Instagram
-                    </div>
-                    <div class="chip" title="Facebook" style="display:flex;align-items:center;gap:8px;">
-                        <span
-                            style="display:inline-block;width:22px;height:22px;background:#4267B2;border-radius:50%;"></span>Facebook
-                    </div>
-                    <div class="chip" title="LinkedIn" style="display:flex;align-items:center;gap:8px;">
-                        <span
-                            style="display:inline-block;width:22px;height:22px;background:#0077B5;border-radius:50%;"></span>LinkedIn
-                    </div>
-                    <div class="chip" title="Pinterest" style="display:flex;align-items:center;gap:8px;">
-                        <span
-                            style="display:inline-block;width:22px;height:22px;background:#E60023;border-radius:50%;"></span>Pinterest
-                    </div>
-                    <div class="chip" title="X" style="display:flex;align-items:center;gap:8px;">
-                        <span
-                            style="display:inline-block;width:22px;height:22px;background:#1DA1F2;border-radius:50%;"></span>X
-                    </div>
-                    <div class="chip" title="YouTube" style="display:flex;align-items:center;gap:8px;">
-                        <span
-                            style="display:inline-block;width:22px;height:22px;background:#FF0000;border-radius:50%;"></span>YouTube
-                    </div>
-                    <div class="chip" title="YouTube Shorts" style="display:flex;align-items:center;gap:8px;">
-                        <span
-                            style="display:inline-block;width:22px;height:22px;background:#FF0000;border-radius:50%;"></span>YouTube
-                        Shorts
-                    </div>
-                    <div class="chip" title="Threads" style="display:flex;align-items:center;gap:8px;">
-                        <span
-                            style="display:inline-block;width:22px;height:22px;background:#9146FF;border-radius:50%;"></span>Threads
-                    </div>
-                    <div class="chip" title="Reddit" style="display:flex;align-items:center;gap:8px;">
-                        <span
-                            style="display:inline-block;width:22px;height:22px;background:#FF4500;border-radius:50%;"></span>Reddit
-                    </div>
-                    <div class="chip" title="Quora" style="display:flex;align-items:center;gap:8px;">
-                        <span
-                            style="display:inline-block;width:22px;height:22px;background:#B92B27;border-radius:50%;"></span>Quora
-                    </div>
-                    <div class="chip" title="Telegram" style="display:flex;align-items:center;gap:8px;">
-                        <span
-                            style="display:inline-block;width:22px;height:22px;background:#0088CC;border-radius:50%;"></span>Telegram
-                    </div>
-                    <div class="chip" title="Tumblr" style="display:flex;align-items:center;gap:8px;">
-                        <span
-                            style="display:inline-block;width:22px;height:22px;background:#36465D;border-radius:50%;"></span>Tumblr
-                    </div>
+            <div class="thumbnail-section glass-card">
+              <div class="section-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px">
+                <label class="section-label">AI Thumbnail (DALL-E 3)</label>
+                <div class="thumb-mode-toggle">
+                  <button type="button" class="mode-btn active" id="thumb-mode-auto" data-thumb-mode="auto">✨ Auto</button>
+                  <button type="button" class="mode-btn" id="thumb-mode-custom" data-thumb-mode="custom">✏️ Custom Prompt</button>
                 </div>
+              </div>
+              <div id="thumb-auto-section">
+                <p class="thumb-hint muted">AI will generate a thumbnail based on your caption automatically.</p>
+              </div>
+              <div id="thumb-custom-section" style="display: none">
+                <input type="text" id="thumbnail-prompt" class="input" placeholder="Describe your thumbnail… e.g. 'professional woman at laptop, teal background, minimal'" />
+                <div class="style-presets">
+                  <span class="preset-label">Style:</span>
+                  <button type="button" class="style-btn active" data-style="professional">Professional</button>
+                  <button type="button" class="style-btn" data-style="vibrant">Vibrant</button>
+                  <button type="button" class="style-btn" data-style="minimal">Minimal</button>
+                  <button type="button" class="style-btn" data-style="dark">Dark</button>
+                  <button type="button" class="style-btn" data-style="lifestyle">Lifestyle</button>
+                </div>
+              </div>
+              <button type="button" id="btn-gen-thumbnail" class="btn btn-secondary btn-ai">
+                🖼️ Generate Thumbnail (<span id="thumb-credits-left">—</span> credits left)
+              </button>
+              <div id="thumbnail-preview" style="display: none" class="thumb-preview">
+                <img id="thumbnail-img" src="" alt="Generated thumbnail" style="width: 100%; border-radius: 8px; margin-top: 12px" />
+                <a id="thumbnail-download" download="solyntra-thumbnail.jpg" class="btn btn-ghost btn-sm btn-download">⬇ Download</a>
+                <p class="thumb-note">
+                  ⓘ URL expires in 1 hour — download immediately. No text overlay — add text in Canva or your preferred tool.
+                </p>
+              </div>
             </div>
 
-            <!-- CONTENT & AI OPTIONS -->
-            <div class="panel" style="max-width:900px;margin:0 auto;">
-                <h2
-                    style="text-align:center;font-size:2rem;font-weight:800;background:linear-gradient(45deg,#fff,#00f5ff,#ff00ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">
-                    Content & AI Options</h2>
-
-                <!-- Upload -->
-                <div style="display:flex;flex-direction:column;align-items:center;gap:18px;">
-                    <label class="drop" for="media" style="width:100%;max-width:500px;">
-                        <strong>Drop media here</strong> or click to upload<br />
-                        <small class="muted">Images/Video • MP4, PNG, JPG • Max 200MB</small>
-                    </label>
-                    <input id="media" type="file" accept="image/*,video/*" />
-                    <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;width:100%;">
-                        <label class="btn secondary" style="cursor:pointer;" for="csvUpload">Upload CSV</label>
-                        <input id="csvUpload" type="file" accept=".csv" style="display:none;" />
-                        <label class="btn secondary" style="cursor:pointer;" for="excelUpload">Upload Excel</label>
-                        <input id="excelUpload" type="file" accept=".xlsx,.xls" style="display:none;" />
-                        <label class="btn secondary" style="cursor:pointer;" for="notionUpload">Upload Notion
-                            Export</label>
-                        <input id="notionUpload" type="file" accept=".csv,.xlsx,.xls" style="display:none;" />
-                    </div>
-                    <small class="muted" style="text-align:center;max-width:500px;">Upload your content in any format:
-                        CSV, Excel, or Notion export. Perfect for creators, marketers, and non-tech users.</small>
-                </div>
-
-                <!-- Caption / Hashtags / Thumbnail toggles + Pre-QA Agent -->
-                <div class="row" style="margin-top:24px;">
-                    <div class="switch">
-                        <label>AI Captions</label>
-                        <div class="toggle" data-bind="aiCaptions">
-                            <div class="knob"></div>
-                        </div>
-                    </div>
-                    <div class="switch">
-                        <label>AI Hashtags</label>
-                        <div class="toggle" data-bind="aiHashtags">
-                            <div class="knob"></div>
-                        </div>
-                    </div>
-                    <div class="switch">
-                        <label>AI Thumbnail (YouTube/Shorts)</label>
-                        <div class="toggle" data-bind="aiThumb">
-                            <div class="knob"></div>
-                        </div>
-                    </div>
-                    <div class="switch">
-                        <label>Auto Repurpose (ratio/length)</label>
-                        <div class="toggle" data-bind="autoRepurpose">
-                            <div class="knob"></div>
-                        </div>
-                    </div>
-                    <div class="switch">
-                        <label>Pre‑Post QA Agent</label>
-                        <div class="toggle" data-bind="preQA">
-                            <div class="knob"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Manual fields -->
-                <div class="field">
-                    <label>Caption (optional — AI can generate)</label>
-                    <textarea id="caption" placeholder="Write your caption or leave blank to auto-generate…"></textarea>
-                </div>
-                <div class="field">
-                    <label>Hashtags (optional)</label>
-                    <input id="hashtags" placeholder="#socialmedia #solyntraai #automation" />
-                </div>
-
-                <!-- Schedule -->
-                <div class="grid-3" style="margin-top:18px;">
-                    <div class="field">
-                        <label>Date</label>
-                        <input id="date" type="date" />
-                    </div>
-                    <div class="field">
-                        <label>Time</label>
-                        <input id="time" type="time" />
-                    </div>
-                    <div class="field">
-                        <label>Timezone</label>
-                        <select id="tz">
-                            <option value="local">Local time</option>
-                            <option value="UTC">UTC</option>
-                            <option value="IST">IST (UTC+5:30)</option>
-                            <option value="EST">EST (UTC-5)</option>
-                            <option value="PST">PST (UTC-8)</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="field" style="margin-top:18px;max-width:320px;">
-                    <label>Schedule Duration</label>
-                    <select id="duration">
-                        <option value="1m">1 Month</option>
-                        <option value="6m">6 Months</option>
-                        <option value="12m">1 Year</option>
-                        <option value="custom">Custom</option>
-                    </select>
-                </div>
-
-                <!-- Live preview -->
-                <div class="preview" id="preview">
-                    <h4>Preview</h4>
-                    <div class="meta" id="previewMeta">No file selected</div>
-                </div>
-
-                <!-- Actions -->
-                <div class="actions">
-                    <button class="btn" id="btnSchedule">Schedule</button>
-                    <button class="btn secondary" id="btnValidate">Validate Media</button>
-                    <button class="btn secondary" id="btnDraft">Save as Draft</button>
-                </div>
-                <p class="muted" style="text-align:center;max-width:600px;margin:18px auto 0;">Pre‑post QA checks will
-                    verify size, ratio, length & safe‑posting rules before publishing. Toggle the Pre‑Post QA Agent for
-                    extra peace of mind.</p>
+            <div class="field">
+              <label class="label" for="hashtags">Hashtags</label>
+              <input type="text" id="hashtags" class="input" placeholder="#marketing #socialmedia (space-separated)" />
+            </div>
+            <div class="hashtag-sets-panel">
+              <div class="sets-header">
+                <span class="sets-label">Saved sets</span>
+                <button type="button" id="btn-save-set" class="btn-tiny">+ Save current</button>
+              </div>
+              <div id="hashtag-sets-list" class="sets-list"></div>
             </div>
 
-        </section>
-    </main>
+            <div id="script-generator" class="glass-card" style="margin-top: 14px; padding: 14px">
+              <h3 class="heading" style="font-size: 1rem; margin: 0 0 10px">🎬 Video script generator</h3>
+              <div class="script-form">
+                <input type="text" id="script-topic" class="input" placeholder="Video topic… e.g. 5 tips for productivity" />
+                <div class="script-options" style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px">
+                  <select id="script-platform" class="input" style="max-width: 180px">
+                    <option value="instagram">Instagram Reel</option>
+                    <option value="tiktok">TikTok</option>
+                    <option value="youtube">YouTube Short</option>
+                    <option value="linkedin">LinkedIn Video</option>
+                  </select>
+                  <select id="script-duration" class="input" style="max-width: 140px">
+                    <option value="30">30 seconds</option>
+                    <option value="60" selected>60 seconds</option>
+                    <option value="90">90 seconds</option>
+                  </select>
+                  <select id="script-tone" class="input" style="max-width: 160px">
+                    <option value="casual">Casual</option>
+                    <option value="professional">Professional</option>
+                    <option value="educational">Educational</option>
+                    <option value="energetic">Energetic</option>
+                  </select>
+                </div>
+                <button type="button" id="btn-gen-script" class="btn btn-secondary btn-ai" style="margin-top: 10px">
+                  🎬 Generate script (1 AI credit)
+                </button>
+              </div>
+              <div id="script-output" style="display: none" class="script-output">
+                <pre id="script-text"></pre>
+                <button type="button" id="btn-copy-script" class="btn btn-ghost btn-sm">📋 Copy script</button>
+                <button type="button" id="btn-script-to-caption" class="btn btn-ghost btn-sm">→ Use as caption</button>
+              </div>
+            </div>
 
-    <div class="toast" id="toast">Saved</div>
+            <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px">
+              <button type="button" class="btn btn-ghost" id="btn-templates">📋 Caption templates</button>
+              <button id="btn-ai-caption" class="btn btn-secondary" type="button">✨ Generate AI Caption</button>
+              <button id="btn-save-draft" class="btn btn-ghost" type="button">Save Draft</button>
+              <button id="btn-schedule" class="btn btn-primary" type="button">Schedule Post</button>
+            </div>
 
-    <!-- Floating Help/Chat Button -->
-    <a href="contact.html"
-        style="position:fixed;right:22px;bottom:22px;z-index:1200;display:inline-flex;align-items:center;justify-content:center;padding:14px 22px;border-radius:999px;font-weight:900;letter-spacing:.3px;background:linear-gradient(45deg,#00f5ff,#ff00ff);color:#fff;text-decoration:none;box-shadow:0 10px 26px rgba(0,245,255,.35),0 0 0 1px rgba(255,255,255,.08) inset;transition:.25s;font-size:1.08rem;gap:10px;">
-        <span
-            style="display:inline-block;width:22px;height:22px;background:linear-gradient(135deg,#00f5ff,#ff00ff);border-radius:50%;margin-right:8px;"></span>
-        Help & Chat
-    </a>
+            <div id="templates-modal" class="modal-overlay" style="display: none">
+              <div class="modal-box glass-card" onclick="event.stopPropagation()">
+                <div class="modal-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px">
+                  <h3 class="heading" style="margin: 0; font-size: 1.1rem">Caption templates</h3>
+                  <button type="button" class="btn btn-ghost btn-sm" id="btn-close-templates">✕</button>
+                </div>
+                <div class="template-categories">
+                  <button type="button" class="cat-btn active" data-cat="all">All</button>
+                  <button type="button" class="cat-btn" data-cat="motivation">Motivation</button>
+                  <button type="button" class="cat-btn" data-cat="product_launch">Launch</button>
+                  <button type="button" class="cat-btn" data-cat="behind_scenes">BTS</button>
+                  <button type="button" class="cat-btn" data-cat="engagement">Engagement</button>
+                  <button type="button" class="cat-btn" data-cat="educational">Educational</button>
+                  <button type="button" class="cat-btn" data-cat="testimonial">Testimonial</button>
+                </div>
+                <div id="templates-list" class="templates-list"></div>
+              </div>
+            </div>
 
-    <script>
-        // --- platform chip select ---
-        const chips = document.querySelectorAll('.chip');
-        chips.forEach(c => {
-            c.addEventListener('click', () => c.classList.toggle('active'));
-        });
+            <div style="margin-top: 16px">
+              <strong>Repurposing Guide</strong>
+              <div id="repurposing-matrix"></div>
+            </div>
 
-        // --- toggles ---
-        const toggles = document.querySelectorAll('.toggle');
-        const state = { aiCaptions: false, aiHashtags: false, aiThumb: false, autoRepurpose: false };
-        toggles.forEach(t => {
-            t.addEventListener('click', () => {
-                t.classList.toggle('active');
-                const k = t.getAttribute('data-bind');
-                state[k] = t.classList.contains('active');
-            });
-        });
+            <div class="glass-card card-pad" style="margin-top: 10px">
+              <strong>RSS Sources (Pro+)</strong>
+              <div class="field" style="margin-top: 8px"><input id="rss-url" class="input" type="url" placeholder="https://yourblog.com/rss.xml" /></div>
+              <div style="display: flex; gap: 8px; flex-wrap: wrap">
+                <button id="btn-add-rss" class="btn btn-secondary btn-sm" type="button">Add RSS source</button>
+              </div>
+              <div id="rss-list" class="helper" style="margin-top: 8px">No RSS sources yet.</div>
+            </div>
+          </section>
 
-        // --- file preview ---
-        const media = document.getElementById('media');
-        const previewMeta = document.getElementById('previewMeta');
-        let loadedMedia = null;
+          <section class="glass-card panel">
+            <h2 class="heading">Calendar + Recent</h2>
+            <div class="calendar-toolbar" style="display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 10px; flex-wrap: wrap">
+              <button type="button" id="cal-prev" class="btn btn-ghost btn-sm">←</button>
+              <strong id="cal-month-label" class="muted">—</strong>
+              <button type="button" id="cal-next" class="btn btn-ghost btn-sm">→</button>
+            </div>
+            <div id="calendar-grid" class="calendar-grid" style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; font-size: 12px"></div>
+            <p class="muted" style="margin-top: 10px; font-size: 11px">Drag a post to another day to reschedule (time prompt).</p>
+            <div style="margin-top: 12px" class="glass-card card-pad">
+              <strong>Recent posts</strong>
+              <div id="recent-posts-scheduler" class="muted" style="margin-top: 8px">Loading…</div>
+              <div id="recent-mini" class="muted" style="margin-top: 8px">No posts scheduled in this session.</div>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
 
-        media.addEventListener('change', () => {
-            if (!media.files.length) { previewMeta.textContent = 'No file selected'; return; }
-            const f = media.files[0];
-            loadedMedia = f;
-            previewMeta.textContent = `${f.name} • ${(f.size / 1024 / 1024).toFixed(2)} MB`;
-        });
+    <script src="./assets/js/main.js"></script>
+    <script type="module">
+      import {
+        requireAuth,
+        getBrands,
+        createBrand,
+        deleteBrand,
+        schedulePost,
+        saveDraft,
+        getConnectedPlatforms,
+        checkLimit,
+        getPlatformIcon,
+        getStatusBadge,
+        getRssSources,
+        addRssSource,
+        getProfile,
+        generateAICaption,
+        generateThumbnail,
+        generateVideoScript,
+        getUserStats,
+        getHashtagSets,
+        saveHashtagSet,
+        deleteHashtagSet,
+        useHashtagSet,
+        getCaptionTemplates,
+        getRecentPosts,
+        getPostsInDateRange,
+        updateStreak,
+        supabase,
+        logout,
+        showToast,
+        showUpgradeModal,
+      } from "./supabase.js";
 
-        // --- simple platform requirements (extend as needed) ---
-        const REQ = {
-            "Instagram": { ratio: ["1:1", "4:5", "9:16"], maxMB: 200 },
-            "Facebook": { ratio: ["1:1", "16:9", "4:5"], maxMB: 200 },
-            "LinkedIn": { ratio: ["1:1", "16:9"], maxMB: 200 },
-            "Pinterest": { ratio: ["2:3", "1000:1500"], maxMB: 200 },
-            "X": { ratio: ["16:9", "1:1"], maxMB: 200 },
-            "YouTube": { ratio: ["16:9"], maxMB: 512 },
-            "YouTube Shorts": { ratio: ["9:16"], maxMB: 512 },
-            "Threads": { ratio: ["1:1", "4:5"], maxMB: 200 },
-            "Reddit": { ratio: ["16:9", "1:1"], maxMB: 200 },
-            "Quora": { ratio: ["16:9", "1:1"], maxMB: 200 },
-            "Telegram": { ratio: ["1:1", "4:5", "9:16"], maxMB: 200 },
-            "Tumblr": { ratio: ["1:1", "16:9"], maxMB: 200 }
-        };
+      let currentUser = null;
+      let currentBrandId = null;
+      let brands = [];
+      let selectedPlatforms = new Set();
+      let scheduledDate = null;
+      let currentContentType = "video_long";
+      let thumbMode = "auto";
+      let thumbStyle = "professional";
+      let selectedTone = "casual";
+      let calCursor = new Date();
+      let draggedPostId = null;
+      let templateListCache = [];
+      let hashtagSetsCache = [];
 
-        // Fake detector for ratio from filename (placeholder).
-        // In production, detect via canvas/video metadata.
-        function inferRatioFromName(name) {
-            const n = name.toLowerCase();
-            if (n.includes("9x16") || n.includes("1080x1920")) return "9:16";
-            if (n.includes("16x9") || n.includes("1920x1080")) return "16:9";
-            if (n.includes("4x5")) return "4:5";
-            if (n.includes("2x3")) return "2:3";
-            if (n.includes("1x1") || n.includes("1080x1080")) return "1:1";
-            return "unknown";
+      const CHAR_LIMITS = {
+        instagram: 2200,
+        facebook: 63206,
+        linkedin: 3000,
+        x: 280,
+        tiktok: 2200,
+        youtube: 5000,
+        threads: 500,
+        telegram: 4096,
+        pinterest: 500,
+      };
+
+      const BEST_TIMES = {
+        instagram: { day: "Tue/Thu", time: "7–9pm", note: "Evening peaks engagement" },
+        facebook: { day: "Wed/Fri", time: "1–4pm", note: "Afternoon lunch break" },
+        linkedin: { day: "Tue/Wed", time: "8–10am", note: "Morning commute scroll" },
+        tiktok: { day: "Tue/Fri", time: "7–9pm", note: "Evening entertainment" },
+        twitter: { day: "Mon/Wed", time: "9–11am", note: "Morning news cycle" },
+        x: { day: "Mon/Wed", time: "9–11am", note: "Morning news cycle" },
+        youtube: { day: "Fri/Sat", time: "2–4pm", note: "Weekend viewing" },
+        pinterest: { day: "Sat/Sun", time: "8–11pm", note: "Weekend browsing" },
+        threads: { day: "Mon/Wed", time: "9am–12pm", note: "Morning scrollers" },
+        telegram: { day: "Daily", time: "9–11am", note: "Morning news habit" },
+        google_business: { day: "Mon/Fri", time: "10am–12pm", note: "Business hours" },
+      };
+
+      function updateBestTimeHint(platform) {
+        const hint = document.getElementById("best-time-hint");
+        if (!hint) return;
+        const k = platform?.toLowerCase();
+        const data = BEST_TIMES[k];
+        if (data) {
+          hint.innerHTML = `<span class="time-icon">⏰</span><span>Best time for <strong>${k}</strong>: ${data.day} · ${data.time}</span><span class="time-note">${data.note}</span>`;
+          hint.style.display = "flex";
+        } else hint.style.display = "none";
+      }
+
+      const REPURPOSING_MATRIX = {
+        video_long: {
+          instagram: { status: "yes", note: "Trim to 90s max · 9:16 · 1080×1920px" },
+          tiktok: { status: "yes", note: "Trim to 10min max · 9:16 · 1080×1920px" },
+          youtube: { status: "yes", note: "Shorts: trim to 60s · 9:16" },
+          facebook: { status: "partial", note: "Full video ok · Reels max 90s only" },
+          linkedin: { status: "partial", note: "Max 10min · 16:9 only · no vertical" },
+          x: { status: "partial", note: "Max 140s · must trim heavily" },
+          pinterest: { status: "partial", note: "Max 15min · low reach for video" },
+          threads: { status: "no", note: "Video not supported in threads format" },
+          telegram: { status: "yes", note: "Max 2GB · any format" },
+        },
+        image: {
+          instagram: { status: "yes", note: "1:1, 4:5, or 1.91:1 · max 30MB · JPG/PNG · carousel up to 10" },
+          facebook: { status: "yes", note: "Any ratio · JPG/PNG" },
+          linkedin: { status: "yes", note: "1.91:1 or 1:1 · max 5MB" },
+          pinterest: { status: "yes", note: "2:3 ideal · 1000×1500px · vertical only for best reach" },
+          tiktok: { status: "partial", note: "Slideshow only · 9:16 crop · limited reach vs video" },
+          x: { status: "yes", note: "Up to 4 images · 16:9 or 1:1" },
+          threads: { status: "yes", note: "Up to 10 images" },
+          youtube: { status: "no", note: "Cannot post image as content · thumbnail only" },
+          telegram: { status: "yes", note: "Any format · max 10MB" },
+        },
+        text: {
+          linkedin: { status: "yes", note: "Max 3000 chars · native article supported" },
+          x: { status: "yes", note: "Max 280 chars · split into thread for longer" },
+          threads: { status: "yes", note: "Max 500 chars per post · thread format" },
+          facebook: { status: "yes", note: "No limit · link preview auto-generated" },
+          instagram: { status: "partial", note: "Caption only · max 2200 chars · no clickable links in post" },
+          telegram: { status: "yes", note: "Max 4096 chars · markdown supported" },
+          tiktok: { status: "no", note: "Video required · text-only posts not supported" },
+          youtube: { status: "no", note: "Video required · cannot post text as content" },
+          pinterest: { status: "no", note: "Image or video required for pins" },
+        },
+        audio: {
+          instagram: { status: "no", note: "Audio not supported · needs video layer" },
+          tiktok: { status: "no", note: "Audio not supported · needs video layer" },
+          youtube: { status: "no", note: "Audio not supported · needs video layer" },
+          facebook: { status: "no", note: "Audio not supported · needs video layer" },
+          linkedin: { status: "no", note: "Audio not supported · needs video layer" },
+          x: { status: "no", note: "Audio not supported · needs video layer" },
+          threads: { status: "no", note: "Audio not supported" },
+          pinterest: { status: "no", note: "Audio not supported" },
+          telegram: { status: "yes", note: "Native audio/voice messages supported · MP3/OGG" },
+        },
+      };
+
+      window.selectContentType = (type) => {
+        currentContentType = type;
+        document.querySelectorAll(".type-btn").forEach((b) => b.classList.toggle("active", b.dataset.type === type));
+        renderRepurposingMatrix(type);
+      };
+
+      function updateCharLimit(platform) {
+        const limit = CHAR_LIMITS[platform] || 2200;
+        const c = document.getElementById("char-count");
+        c.dataset.limit = limit;
+        document.getElementById("char-limit-display").textContent = `Max ${limit.toLocaleString()} chars for ${platform}`;
+      }
+
+      function renderRepurposingMatrix(contentType) {
+        const matrix = REPURPOSING_MATRIX[contentType];
+        const container = document.getElementById("repurposing-matrix");
+        if (!matrix || !container) return;
+        container.innerHTML = `<div class="matrix-header"><span class="matrix-title">Platform Compatibility</span><span class="matrix-legend"><span class="legend-item yes">✓ Supported</span> <span class="legend-item partial">⚠ Partial</span> <span class="legend-item no">✗ Not supported</span></span></div><div class="matrix-grid">${Object.entries(matrix)
+          .map(
+            ([platform, info]) =>
+              `<div class="matrix-row ${info.status}"><span class="platform-name">${getPlatformIcon(platform)} ${platform}</span><span class="matrix-status ${info.status}">${info.status === "yes" ? "✓" : info.status === "partial" ? "⚠" : "✗"}</span><span class="matrix-note">${info.note}</span></div>`
+          )
+          .join("")}</div><p class="matrix-disclaimer">ⓘ SolyntraAI handles scheduling and format guidance. Trim or resize media before upload.</p>`;
+      }
+
+      async function refreshThumbCredits() {
+        const stats = await getUserStats(currentUser.id, currentBrandId);
+        const el = document.getElementById("thumb-credits-left");
+        if (el) el.textContent = stats.thumbnailCreditsRemaining;
+      }
+
+      function parseHashtagsInput() {
+        const raw = document.getElementById("hashtags")?.value?.trim();
+        if (!raw) return [];
+        return raw
+          .split(/\s+/)
+          .filter(Boolean)
+          .map((h) => (h.startsWith("#") ? h : `#${h}`));
+      }
+
+      async function loadHashtagSets() {
+        try {
+          hashtagSetsCache = await getHashtagSets(currentUser.id, currentBrandId);
+        } catch {
+          hashtagSetsCache = [];
         }
-
-        function getSelectedPlatforms() {
-            return Array.from(document.querySelectorAll('.chip.active')).map(c => c.textContent.trim());
+        const container = document.getElementById("hashtag-sets-list");
+        if (!container) return;
+        if (!hashtagSetsCache.length) {
+          container.innerHTML = `<p class="sets-empty muted">No saved sets yet</p>`;
+          return;
         }
+        container.innerHTML = hashtagSetsCache
+          .map(
+            (set) =>
+              `<div class="hashtag-set-item" data-set-id="${set.id}">
+            <button type="button" class="set-name" data-action="apply-set">${set.name}<span class="set-count">${set.hashtags?.length || 0} tags</span></button>
+            <button type="button" class="set-delete" data-action="del-set" title="Delete">✕</button>
+          </div>`
+          )
+          .join("");
+        container.querySelectorAll("[data-action='apply-set']").forEach((btn, i) => {
+          btn.addEventListener("click", () => applyHashtagSet(hashtagSetsCache[i].id));
+        });
+        container.querySelectorAll("[data-action='del-set']").forEach((btn, i) => {
+          btn.addEventListener("click", () => removeHashtagSet(hashtagSetsCache[i].id));
+        });
+      }
 
-        function showToast(msg) {
-            const t = document.getElementById('toast');
-            t.textContent = msg;
-            t.classList.add('show');
-            setTimeout(() => t.classList.remove('show'), 2200);
+      async function applyHashtagSet(id) {
+        const set = hashtagSetsCache.find((s) => s.id === id);
+        const hashtagInput = document.getElementById("hashtags");
+        if (!set || !hashtagInput) return;
+        hashtagInput.value = (set.hashtags || []).join(" ");
+        showToast("Hashtag set applied!", "success");
+        try {
+          await useHashtagSet(id);
+        } catch {
+          /* non-fatal */
         }
+      }
 
-        // --- Validate button ---
-        document.getElementById('btnValidate').addEventListener('click', () => {
-            const plats = getSelectedPlatforms();
-            if (plats.length === 0) { showToast("Select at least one platform"); return; }
-            if (!loadedMedia) { showToast("Upload a media file first"); return; }
+      async function saveCurrentHashtags() {
+        const raw = document.getElementById("hashtags")?.value?.trim();
+        if (!raw) return showToast("No hashtags to save", "error");
+        const name = prompt('Name this set (e.g. "Monday Motivation"):');
+        if (!name) return;
+        const hashtags = parseHashtagsInput().filter((h) => h.startsWith("#"));
+        if (!hashtags.length) return showToast("No valid hashtags found (#)", "error");
+        try {
+          await saveHashtagSet(currentUser.id, currentBrandId, name, hashtags);
+          showToast(`Set "${name}" saved!`, "success");
+          await loadHashtagSets();
+        } catch (e) {
+          showToast(e.message, "error");
+        }
+      }
 
-            const ratio = inferRatioFromName(loadedMedia.name);
-            const mb = loadedMedia.size / 1024 / 1024;
-            let okAll = true, notes = [];
+      async function removeHashtagSet(id) {
+        if (!confirm("Delete this hashtag set?")) return;
+        try {
+          await deleteHashtagSet(id, currentUser.id);
+          await loadHashtagSets();
+        } catch (e) {
+          showToast(e.message, "error");
+        }
+      }
 
-            plats.forEach(p => {
-                const req = REQ[p];
-                const ratioOK = (ratio === "unknown") ? true : req.ratio.includes(ratio);
-                const sizeOK = mb <= req.maxMB;
-                if (!ratioOK) { okAll = false; notes.push(`${p}: ratio mismatch (have ${ratio}, need ${req.ratio.join(" / ")})`) }
-                if (!sizeOK) { okAll = false; notes.push(`${p}: file too large (${mb.toFixed(1)}MB > ${req.maxMB}MB)`) }
-            });
+      async function loadRecentSchedulerPosts() {
+        const posts = await getRecentPosts(currentUser.id, currentBrandId, 50);
+        window.__schedulerRecentPosts = posts;
+        const el = document.getElementById("recent-posts-scheduler");
+        if (!el) return;
+        if (!posts.length) {
+          el.innerHTML = `<span class="muted">No posts yet.</span>`;
+          return;
+        }
+        el.innerHTML = posts
+          .slice(0, 10)
+          .map(
+            (p) => `<div class="recent-post-row" style="display:flex;gap:8px;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,0.06);padding:6px 0">
+          <span>${getPlatformIcon(p.platform)} ${(p.caption || "").substring(0, 36)}${(p.caption || "").length > 36 ? "…" : ""}</span>
+          <button type="button" class="btn btn-ghost btn-sm dup-btn" data-post-id="${p.id}">Duplicate</button>
+        </div>`
+          )
+          .join("");
+        el.querySelectorAll(".dup-btn").forEach((btn) => {
+          btn.addEventListener("click", () => duplicatePost(btn.dataset.postId));
+        });
+      }
 
-            if (okAll) {
-                showToast(" Media looks good for selected platforms");
-            } else {
-                alert("Pre‑post QA found issues:\n\n" + notes.join("\n"));
+      function duplicatePost(postId) {
+        const posts = window.__schedulerRecentPosts || [];
+        const original = posts.find((p) => p.id === postId);
+        if (!original) return showToast("Post not found", "error");
+        document.getElementById("caption").value = original.caption || "";
+        if (original.hashtags?.length) {
+          document.getElementById("hashtags").value = Array.isArray(original.hashtags) ? original.hashtags.join(" ") : original.hashtags;
+        }
+        document.querySelectorAll(".platform-btn").forEach((btn) => {
+          btn.classList.toggle("active", btn.dataset.platform === original.platform);
+        });
+        selectedPlatforms.clear();
+        if (original.platform) selectedPlatforms.add(original.platform);
+        updateBestTimeHint(original.platform);
+        document.querySelector(".scheduler-form")?.scrollIntoView({ behavior: "smooth" });
+        showToast("Post duplicated into form — pick a new date and schedule!", "success");
+      }
+
+      function monthRange(d) {
+        const start = new Date(d.getFullYear(), d.getMonth(), 1);
+        const end = new Date(d.getFullYear(), d.getMonth() + 1, 0, 23, 59, 59, 999);
+        return { start: start.toISOString(), end: end.toISOString() };
+      }
+
+      async function loadCalendar() {
+        const grid = document.getElementById("calendar-grid");
+        if (!grid || !currentUser) return;
+        const { start, end } = monthRange(calCursor);
+        let posts = [];
+        try {
+          posts = await getPostsInDateRange(currentUser.id, currentBrandId, start, end);
+        } catch {
+          posts = [];
+        }
+        const label = document.getElementById("cal-month-label");
+        if (label) label.textContent = calCursor.toLocaleString("en-US", { month: "long", year: "numeric" });
+        const firstDow = new Date(calCursor.getFullYear(), calCursor.getMonth(), 1).getDay();
+        const daysInMonth = new Date(calCursor.getFullYear(), calCursor.getMonth() + 1, 0).getDate();
+        const cells = [];
+        for (let i = 0; i < firstDow; i++) cells.push(`<div></div>`);
+        for (let day = 1; day <= daysInMonth; day++) {
+          const dateStr = `${calCursor.getFullYear()}-${String(calCursor.getMonth() + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
+          const dayPosts = posts.filter((p) => p.scheduled_at && p.scheduled_at.slice(0, 10) === dateStr);
+          cells.push(`<div class="cal-day" data-date="${dateStr}" style="min-height:72px;border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:4px"
+            ondragover="event.preventDefault()" ondrop="window.__schedDrop(event,'${dateStr}')">
+            <div style="font-weight:600;opacity:0.85">${day}</div>
+            ${dayPosts
+              .map(
+                (p) =>
+                  `<div class="cal-post-pill" draggable="true" data-post-id="${p.id}" data-scheduled-at="${p.scheduled_at || ""}"
+              ondragstart="window.__schedDrag(event)" style="font-size:10px;padding:2px 4px;margin-top:2px;border-radius:4px;background:rgba(0,212,255,0.12);cursor:grab;border-left:3px solid ${getStatusBadge(p.status).color}">
+              ${getPlatformIcon(p.platform)} ${(p.caption || "").substring(0, 16)}…</div>`
+              )
+              .join("")}
+          </div>`);
+        }
+        grid.innerHTML = cells.join("");
+      }
+
+      window.__schedDrag = (e) => {
+        const t = e.target.closest?.("[data-post-id]") || e.target;
+        draggedPostId = t.dataset?.postId;
+        if (e.dataTransfer) e.dataTransfer.effectAllowed = "move";
+      };
+
+      window.__schedDrop = async (e, newDate) => {
+        e.preventDefault();
+        if (!draggedPostId || !currentUser) return;
+        const timeInput = prompt("New time? (HH:MM)", "09:00");
+        if (!timeInput) return;
+        const newDateTime = new Date(`${newDate}T${timeInput}:00`);
+        const { error } = await supabase
+          .from("posts")
+          .update({ scheduled_at: newDateTime.toISOString() })
+          .eq("id", draggedPostId)
+          .eq("user_id", currentUser.id);
+        if (error) {
+          showToast(error.message, "error");
+          return;
+        }
+        showToast("Post rescheduled!", "success");
+        draggedPostId = null;
+        await loadCalendar();
+        await loadRecentSchedulerPosts();
+      };
+
+      async function handleThumbnail() {
+        const btn = document.getElementById("btn-gen-thumbnail");
+        let promptText;
+        if (thumbMode === "auto") {
+          const caption = document.getElementById("caption")?.value?.trim();
+          if (!caption) return showToast("Write a caption first — Auto mode reads from it", "error");
+          promptText = caption.substring(0, 200);
+        } else {
+          promptText = document.getElementById("thumbnail-prompt")?.value?.trim();
+          if (!promptText) return showToast("Describe your thumbnail first", "error");
+        }
+        btn.disabled = true;
+        const prevLabel = btn.textContent;
+        btn.textContent = "⏳ Generating…";
+        try {
+          const imageUrl = await generateThumbnail(currentUser.id, promptText, thumbStyle);
+          const preview = document.getElementById("thumbnail-preview");
+          const img = document.getElementById("thumbnail-img");
+          const dl = document.getElementById("thumbnail-download");
+          img.src = imageUrl;
+          dl.href = imageUrl;
+          preview.style.display = "block";
+          await refreshThumbCredits();
+          showToast("Thumbnail generated! Download before the URL expires.", "success");
+        } catch (e) {
+          if (e.message.includes("credits")) showUpgradeModal("thumbnail_credits", null);
+          else showToast(e.message, "error");
+        } finally {
+          btn.disabled = false;
+          btn.textContent = prevLabel;
+          await refreshThumbCredits();
+        }
+      }
+
+      async function openTemplatesModal() {
+        const modal = document.getElementById("templates-modal");
+        if (modal) modal.style.display = "flex";
+        await loadTemplates("all");
+      }
+
+      function closeTemplatesModal() {
+        const modal = document.getElementById("templates-modal");
+        if (modal) modal.style.display = "none";
+      }
+
+      async function loadTemplates(category) {
+        document.querySelectorAll(".template-categories .cat-btn").forEach((b) => b.classList.toggle("active", b.dataset.cat === category));
+        const templates = await getCaptionTemplates(category);
+        templateListCache = templates;
+        const container = document.getElementById("templates-list");
+        if (!container) return;
+        container.innerHTML = templates
+          .map(
+            (t, idx) => `<div class="template-card">
+          <div class="template-title">${t.title}</div>
+          <div class="template-preview">${(t.template || "").substring(0, 120)}…</div>
+          <button type="button" class="btn btn-secondary btn-sm use-tpl-btn" data-tpl-index="${idx}">Use template</button>
+        </div>`
+          )
+          .join("");
+        container.querySelectorAll(".use-tpl-btn").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const tpl = templateListCache[Number(btn.dataset.tplIndex)];
+            if (tpl?.template) useTemplate(tpl.template);
+          });
+        });
+      }
+
+      function useTemplate(template) {
+        const captionEl = document.getElementById("caption");
+        if (captionEl) {
+          captionEl.value = template;
+          closeTemplatesModal();
+          showToast("Template applied! Edit the [PLACEHOLDERS] to customize.", "success");
+        }
+      }
+
+      async function handleSchedule() {
+        const queueCheck = await checkLimit(currentUser.id, "queue");
+        if (!queueCheck.allowed) {
+          showUpgradeModal("queue", queueCheck.limit);
+          return;
+        }
+        const platformCheck = await checkLimit(currentUser.id, "platforms");
+        if (!platformCheck.allowed) {
+          showUpgradeModal("platforms", platformCheck.limit);
+          return;
+        }
+        const caption = document.getElementById("caption")?.value?.trim();
+        const platform = [...selectedPlatforms][0];
+        if (!platform) return showToast("Select at least one platform", "error");
+        if (!caption) return showToast("Write a caption first", "error");
+        if (!scheduledDate) return showToast("Pick a date and time", "error");
+        const hashtags = parseHashtagsInput();
+        const btn = document.getElementById("btn-schedule");
+        btn.disabled = true;
+        btn.textContent = "Scheduling…";
+        try {
+          await schedulePost(currentUser.id, currentBrandId, {
+            platform,
+            caption,
+            hashtags,
+            scheduledAt: new Date(scheduledDate).toISOString(),
+            timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+          });
+          try {
+            await updateStreak(currentUser.id);
+          } catch {
+            /* streak optional */
+          }
+          showToast("Post scheduled! Track it on Zynera.cloud →", "success");
+          document.getElementById("recent-mini").textContent = `${getPlatformIcon(platform)} ${platform} · ${new Date(scheduledDate).toLocaleString()}`;
+          await loadCalendar();
+          await loadRecentSchedulerPosts();
+        } catch (err) {
+          showToast(err.message || "Failed to schedule post", "error");
+        } finally {
+          btn.disabled = false;
+          btn.textContent = "Schedule Post";
+        }
+      }
+
+      async function handleSaveDraft() {
+        const caption = document.getElementById("caption")?.value?.trim();
+        if (!caption) return showToast("Nothing to save as draft", "error");
+        try {
+          await saveDraft(currentUser.id, currentBrandId, { caption });
+          showToast("Draft saved", "success");
+        } catch {
+          showToast("Failed to save draft", "error");
+        }
+      }
+
+      async function handleAICaption() {
+        const topic = document.getElementById("caption")?.value?.trim() || "social media post";
+        const platform = [...selectedPlatforms][0] || "instagram";
+        const btn = document.getElementById("btn-ai-caption");
+        btn.textContent = "✨ Generating…";
+        btn.disabled = true;
+        try {
+          const cap = await generateAICaption(currentUser.id, topic, platform, selectedTone);
+          document.getElementById("caption").value = cap;
+          showToast("Caption generated!", "success");
+        } catch (e) {
+          if (e.message.includes("credits")) showUpgradeModal("ai_credits", null);
+          else showToast(e.message, "error");
+        } finally {
+          btn.textContent = "✨ Generate AI Caption";
+          btn.disabled = false;
+        }
+      }
+
+      function renderPlatformSelector(connectedPlatforms) {
+        connectedPlatforms.forEach((p) => {
+          const btn = document.querySelector(`[data-platform="${p.platform}"]`);
+          if (btn) btn.classList.add("connected");
+        });
+      }
+
+      async function renderRss() {
+        const list = document.getElementById("rss-list");
+        const rows = await getRssSources(currentUser.id, currentBrandId);
+        list.innerHTML = rows.length ? rows.map((r) => `• ${r.url}`).join("<br>") : "No RSS sources yet.";
+      }
+
+      async function canUseRss() {
+        const p = await getProfile(currentUser.id);
+        return ["pro", "agency", "admin"].includes(p.plan) || p.is_admin || p.payment_bypass;
+      }
+
+      function renderBrandList() {
+        const container = document.getElementById("brand-list");
+        if (!container) return;
+        container.innerHTML = brands
+          .map(
+            (b) => `
+          <div class="brand-item ${b.id === currentBrandId ? "active" : ""}" data-id="${b.id}" onclick="switchBrand('${b.id}')">
+            <span class="brand-dot" style="background:${b.color || "#7b61ff"}"></span>
+            <span class="brand-name">${b.name}</span>
+            ${
+              brands.length > 1
+                ? `<button type="button" class="brand-delete" onclick="event.stopPropagation();confirmDeleteBrand('${b.id}','${b.name.replace(/'/g, "\\'")}')" title="Delete brand">✕</button>`
+                : ""
             }
+          </div>`
+          )
+          .join("");
+      }
+
+      window.switchBrand = async (brandId) => {
+        currentBrandId = brandId;
+        localStorage.setItem("solyntra_brand_id", brandId);
+        renderBrandList();
+        const b = brands.find((x) => x.id === brandId);
+        document.getElementById("scheduler-brand-name").textContent = b?.name || "—";
+        const platforms = await getConnectedPlatforms(currentUser.id, currentBrandId);
+        document.querySelectorAll(".platform-btn").forEach((btn) => btn.classList.remove("connected", "active"));
+        selectedPlatforms.clear();
+        renderPlatformSelector(platforms);
+        await renderRss();
+        await refreshThumbCredits();
+        await loadHashtagSets();
+        await loadRecentSchedulerPosts();
+        await loadCalendar();
+      };
+
+      window.confirmDeleteBrand = (brandId, brandName) => {
+        if (!confirm(`Delete "${brandName}"?`)) return;
+        deleteBrand(brandId, currentUser.id)
+          .then(() => {
+            brands = brands.filter((b) => b.id !== brandId);
+            if (currentBrandId === brandId) currentBrandId = brands[0]?.id;
+            renderBrandList();
+            showToast(`Brand "${brandName}" deleted`, "success");
+            return window.switchBrand(currentBrandId);
+          })
+          .catch((e) => showToast(e.message, "error"));
+      };
+
+      document.addEventListener("DOMContentLoaded", async () => {
+        currentUser = await requireAuth("/login.html");
+        if (!currentUser) return;
+
+        brands = await getBrands(currentUser.id);
+        if (!brands.length) {
+          await createBrand(currentUser.id, "My Brand");
+          brands = await getBrands(currentUser.id);
+        }
+        const saved = localStorage.getItem("solyntra_brand_id");
+        currentBrandId = saved && brands.find((b) => b.id === saved) ? saved : brands[0].id;
+        renderBrandList();
+        const b = brands.find((x) => x.id === currentBrandId);
+        document.getElementById("scheduler-brand-name").textContent = b?.name || "—";
+
+        const stats = await getUserStats(currentUser.id, currentBrandId);
+        const adminLink = document.getElementById("admin-nav-link");
+        if (adminLink && stats.isAdmin) adminLink.style.display = "block";
+
+        const platforms = await getConnectedPlatforms(currentUser.id, currentBrandId);
+        renderPlatformSelector(platforms);
+
+        document.querySelectorAll(".platform-btn").forEach((btn) =>
+          btn.addEventListener("click", () => {
+            const p = btn.dataset.platform;
+            btn.classList.toggle("active");
+            if (selectedPlatforms.has(p)) selectedPlatforms.delete(p);
+            else selectedPlatforms.add(p);
+            updateCharLimit(p);
+            const primary = [...selectedPlatforms][0];
+            if (primary) updateBestTimeHint(primary);
+            else {
+              const h = document.getElementById("best-time-hint");
+              if (h) h.style.display = "none";
+            }
+          })
+        );
+
+        document.querySelectorAll(".tone-btn").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            document.querySelectorAll(".tone-btn").forEach((b) => b.classList.remove("active"));
+            btn.classList.add("active");
+            selectedTone = btn.dataset.tone || "casual";
+          });
         });
 
-        // --- Schedule button (dry action) ---
-        document.getElementById('btnSchedule').addEventListener('click', () => {
-            const plats = getSelectedPlatforms();
-            if (plats.length === 0) { showToast("Select at least one platform"); return; }
-            if (!loadedMedia) { showToast("Upload a media file first"); return; }
-            const d = document.getElementById('date').value;
-            const t = document.getElementById('time').value;
-            if (!d || !t) { showToast("Pick date & time"); return; }
-            showToast(" Scheduled! (demo)");
+        document.getElementById("thumb-mode-auto")?.addEventListener("click", () => {
+          thumbMode = "auto";
+          document.getElementById("thumb-auto-section").style.display = "block";
+          document.getElementById("thumb-custom-section").style.display = "none";
+          document.querySelectorAll(".thumb-mode-toggle .mode-btn").forEach((b) => b.classList.remove("active"));
+          document.getElementById("thumb-mode-auto")?.classList.add("active");
+        });
+        document.getElementById("thumb-mode-custom")?.addEventListener("click", () => {
+          thumbMode = "custom";
+          document.getElementById("thumb-auto-section").style.display = "none";
+          document.getElementById("thumb-custom-section").style.display = "block";
+          document.querySelectorAll(".thumb-mode-toggle .mode-btn").forEach((b) => b.classList.remove("active"));
+          document.getElementById("thumb-mode-custom")?.classList.add("active");
         });
 
-        // --- Draft button (dry action) ---
-        document.getElementById('btnDraft').addEventListener('click', () => {
-            showToast(" Saved as draft (demo)");
+        document.querySelectorAll(".style-btn").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            document.querySelectorAll(".style-btn").forEach((b) => b.classList.remove("active"));
+            btn.classList.add("active");
+            thumbStyle = btn.dataset.style || "professional";
+          });
         });
+
+        document.getElementById("caption")?.addEventListener("input", (e) => {
+          const limit = Number(document.getElementById("char-count").dataset.limit || 2200);
+          document.getElementById("char-count").textContent = `${e.target.value.length}/${limit}`;
+        });
+
+        document.getElementById("schedule-date")?.addEventListener("change", (e) => {
+          scheduledDate = e.target.value;
+        });
+
+        document.getElementById("btn-schedule")?.addEventListener("click", handleSchedule);
+        document.getElementById("btn-save-draft")?.addEventListener("click", handleSaveDraft);
+        document.getElementById("btn-ai-caption")?.addEventListener("click", handleAICaption);
+
+        document.getElementById("btn-gen-thumbnail")?.addEventListener("click", handleThumbnail);
+
+        document.getElementById("btn-templates")?.addEventListener("click", openTemplatesModal);
+        document.getElementById("btn-close-templates")?.addEventListener("click", closeTemplatesModal);
+        document.getElementById("templates-modal")?.addEventListener("click", (ev) => {
+          if (ev.target.id === "templates-modal") closeTemplatesModal();
+        });
+        document.querySelectorAll(".template-categories .cat-btn").forEach((btn) => {
+          btn.addEventListener("click", () => loadTemplates(btn.dataset.cat || "all"));
+        });
+
+        document.getElementById("btn-save-set")?.addEventListener("click", saveCurrentHashtags);
+
+        document.getElementById("btn-gen-script")?.addEventListener("click", async () => {
+          const topic = document.getElementById("script-topic")?.value?.trim();
+          const platform = document.getElementById("script-platform")?.value;
+          const duration = parseInt(document.getElementById("script-duration")?.value || "60", 10);
+          const tone = document.getElementById("script-tone")?.value;
+          if (!topic) return showToast("Enter a topic first", "error");
+          const check = await checkLimit(currentUser.id, "ai_credits");
+          if (!check.allowed) {
+            showUpgradeModal("ai_credits", check.limit);
+            return;
+          }
+          const btn = document.getElementById("btn-gen-script");
+          btn.disabled = true;
+          btn.textContent = "⏳ Writing script…";
+          try {
+            const script = await generateVideoScript(topic, duration, platform, tone);
+            document.getElementById("script-text").textContent = script;
+            document.getElementById("script-output").style.display = "block";
+            await supabase.rpc("increment_ai_credits", { uid: currentUser.id });
+            showToast("Script ready! Edit as needed.", "success");
+          } catch (e) {
+            showToast(e.message, "error");
+          } finally {
+            btn.disabled = false;
+            btn.textContent = "🎬 Generate script (1 AI credit)";
+          }
+        });
+
+        document.getElementById("btn-copy-script")?.addEventListener("click", () => {
+          const t = document.getElementById("script-text")?.textContent || "";
+          navigator.clipboard.writeText(t);
+          showToast("Copied to clipboard!", "success");
+        });
+        document.getElementById("btn-script-to-caption")?.addEventListener("click", () => {
+          const script = document.getElementById("script-text")?.textContent || "";
+          document.getElementById("caption").value = script.substring(0, 2200);
+          showToast("Script added to caption!", "success");
+        });
+
+        document.getElementById("cal-prev")?.addEventListener("click", async () => {
+          calCursor = new Date(calCursor.getFullYear(), calCursor.getMonth() - 1, 1);
+          await loadCalendar();
+        });
+        document.getElementById("cal-next")?.addEventListener("click", async () => {
+          calCursor = new Date(calCursor.getFullYear(), calCursor.getMonth() + 1, 1);
+          await loadCalendar();
+        });
+
+        const ideaParam = new URLSearchParams(window.location.search).get("idea");
+        if (ideaParam) {
+          const cap = document.getElementById("caption");
+          if (cap) cap.value = decodeURIComponent(ideaParam);
+        }
+
+        await loadHashtagSets();
+        await loadRecentSchedulerPosts();
+        await loadCalendar();
+
+        await refreshThumbCredits();
+
+        if (await canUseRss()) {
+          await renderRss();
+          document.getElementById("btn-add-rss")?.addEventListener("click", async () => {
+            const url = document.getElementById("rss-url").value.trim();
+            if (!url) return;
+            try {
+              await addRssSource(currentUser.id, currentBrandId, url, [...selectedPlatforms]);
+              showToast("RSS source added", "success");
+              document.getElementById("rss-url").value = "";
+              await renderRss();
+            } catch (e) {
+              showToast(e.message, "error");
+            }
+          });
+        } else {
+          document.getElementById("rss-list").textContent = "Upgrade to Pro or Agency for RSS auto-post sources.";
+          document.getElementById("btn-add-rss").disabled = true;
+        }
+
+        selectContentType("video_long");
+
+        document.getElementById("btn-logout")?.addEventListener("click", logout);
+
+        document.getElementById("btn-add-brand")?.addEventListener("click", async () => {
+          const name = prompt("Brand name:");
+          if (!name?.trim()) return;
+          try {
+            const brand = await createBrand(currentUser.id, name.trim());
+            brands.push(brand);
+            renderBrandList();
+            showToast(`Brand "${name}" created`, "success");
+          } catch (e) {
+            if (e.message.includes("limit")) showUpgradeModal("brands", null);
+            else showToast(e.message, "error");
+          }
+        });
+
+        const sidebar = document.getElementById("brand-sidebar");
+        document.getElementById("btn-sidebar-toggle")?.addEventListener("click", () => sidebar?.classList.toggle("open"));
+        document.getElementById("app-main")?.addEventListener("click", () => sidebar?.classList.remove("open"));
+      });
     </script>
-
-</body>
-
->>>>>>> 209c17a (Applied UI rebrand fixes across Lumora pages (except index.html))
+  </body>
 </html>

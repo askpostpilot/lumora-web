@@ -1,54 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Terms of Service – Lumora</title>
-  <link rel="stylesheet" href="../assets/style.css" />
-</head>
-<body>
-  <header>
-    <div class="logo">Lumora</div>
-    <nav>
-      <ul>
-        <li><a href="../index.html">Home</a></li>
-        <li><a href="../pricing.html">Pricing</a></li>
-        <li><a href="../signup.html">Sign Up</a></li>
-        <li><a href="../login.html">Log In</a></li>
-        <li><a href="../dashboard.html">Dashboard</a></li>
-        <li><a href="../scheduler.html">Scheduler</a></li>
-        <li><a href="../analytics.html">Analytics</a></li>
-        <li><a href="../api.html">API</a></li>
-        <li><a href="../contact.html">Contact</a></li>
-        <li><a href="../info.html">Info</a></li>
-      </ul>
-    </nav>
-    <a href="../pricing.html" class="cta-button">Start Free Trial</a>
-  </header>
-  <main class="container">
-    <h1>Terms of Service</h1>
-    <p>These terms govern your use of Lumora. By accessing or using our services, you agree to these terms. This is placeholder text and should be updated with real terms prior to launch.</p>
-  </main>
-  <footer>
-    <div class="footer-links">
-      <a href="../index.html">Home</a>
-      <a href="../pricing.html">Pricing</a>
-      <a href="../signup.html">Sign Up</a>
-      <a href="../login.html">Log In</a>
-      <a href="../contact.html">Contact</a>
-      <a href="../info.html">Info</a>
-      <a href="terms.html">Terms</a>
-      <a href="privacy.html">Privacy</a>
-      <a href="refund-policy.html">Refund Policy</a>
-      <a href="api-policy.html">API Policy</a>
-      <a href="affiliate.html">Affiliate</a>
-    </div>
-    <p>&copy; <span id="year"></span> Lumora. All rights reserved.</p>
-  </footer>
-  <div class="floating-cta">Start Free Trial</div>
-  <script src="../assets/js/main.js"></script>
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Terms of Service — SolyntraAI</title>
+    <link rel="stylesheet" href="../styles/tokens.css" />
+    <link rel="stylesheet" href="../assets/style.css" />
+    <script src="/.netlify/functions/config"></script>
+    <style>
+      .policy-page {
+        max-width: 720px;
+        margin: 0 auto;
+        padding: 32px 24px 64px;
+        position: relative;
+        z-index: 1;
+      }
+      .policy-page h1 {
+        font-family: var(--font-heading);
+        margin-bottom: 8px;
+      }
+      .policy-page pre.policy-body {
+        white-space: pre-wrap;
+        font-family: var(--font-body);
+        font-size: 1rem;
+        line-height: 1.65;
+        color: var(--text-secondary);
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a class="brand" href="../index.html"
+          ><span class="brand-badge"></span><span class="logo"><span class="logo-metal">SolyntraAI</span></span></a
+        >
+      </div>
+    </header>
+    <main class="policy-page">
+      <h1>Terms of Service</h1>
+      <p class="muted" style="margin-bottom: 24px">Last updated: March 2026</p>
+      <pre class="policy-body">1. Agreement
+By using SolyntraAI ("Service") at solyntraai.com, you agree to these terms.
+Operated by: SolyntraAI | Contact: support@solyntraai.com
+
+2. What the Service Provides
+SolyntraAI is a social media content scheduling and management tool. It lets
+you write posts, schedule them in advance, and manage content across multiple
+platforms. AI features (captions, hashtags, thumbnails) provide suggestions
+only — you are responsible for reviewing all content before it publishes.
+
+3. What We Do Not Guarantee
+We do not guarantee: post delivery (platform API changes may cause failures),
+specific uptime, that AI-generated content is accurate or appropriate, or any
+specific results from using the Service.
+
+4. Your Responsibilities
+You must: own or have rights to all content you post, comply with each social
+platform's terms, not use the Service for spam, illegal content, or harassment.
+
+5. Payments
+Paid plans are billed via PayPal. The 14-day free trial requires no payment.
+After trial, your chosen plan is billed monthly or yearly as selected.
+
+6. Refunds
+See our Refund Policy at solyntraai.com/policies/refund-policy.html
+
+7. Account Termination
+We may suspend or terminate accounts that violate these terms. You may delete
+your account at any time from your account settings.
+
+8. Limitation of Liability
+SolyntraAI is not liable for any indirect, incidental, or consequential damages
+arising from use of the Service.
+
+9. Governing Law
+These terms are governed by the laws of India.
+
+10. Changes
+We may update these terms. Continued use after changes = acceptance.
+Contact: support@solyntraai.com</pre>
+    </main>
+    <footer class="site-footer">
+      <div class="container footer-bottom">
+        <p class="muted">© <span id="year"></span> SolyntraAI</p>
+      </div>
+    </footer>
+    <script src="../assets/js/main.js"></script>
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
 </html>

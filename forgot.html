@@ -1,66 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Forgot Password – SolyntraAI</title>
-  <link rel="stylesheet" href="./styles/tokens.css" />
-  <link rel="stylesheet" href="./assets/style.css" />
-</head>
-<body>
-  <header>
-    <div class="logo">SolyntraAI</div>
-    <nav>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="pricing.html">Pricing</a></li>
-        <li><a href="signup.html">Sign Up</a></li>
-        <li><a href="login.html">Log In</a></li>
-        <li><a href="dashboard.html">Dashboard</a></li>
-        <li><a href="scheduler.html">Scheduler</a></li>
-        <li><a href="analytics.html">Analytics</a></li>
-        <li><a href="api.html">API</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="info.html">Info</a></li>
-      </ul>
-    </nav>
-    <a href="pricing.html" class="cta-button">Start Free Trial</a>
-  </header>
-  <main class="container" style="max-width: 400px; text-align: center;">
-    <h1>Reset your password</h1>
-    <p>Enter your email address and we will send you a reset link.</p>
-    <form id="forgot-form" style="display:flex; flex-direction:column; gap:1rem; margin-top:2rem;">
-      <input type="email" id="email" placeholder="Email" required style="padding:0.75rem; border-radius:4px; border:none;" />
-      <button type="submit" class="cta-button" style="margin-top:1rem;">Send Reset Link</button>
-    </form>
-    <p style="margin-top:1rem;">Remembered your password? <a href="login.html">Log in</a></p>
-  </main>
-  <footer>
-    <div class="footer-links">
-      <a href="index.html">Home</a>
-      <a href="pricing.html">Pricing</a>
-      <a href="signup.html">Sign Up</a>
-      <a href="login.html">Log In</a>
-      <a href="contact.html">Contact</a>
-      <a href="info.html">Info</a>
-      <a href="policies/terms.html">Terms</a>
-      <a href="policies/privacy.html">Privacy</a>
-      <a href="policies/refund-policy.html">Refund Policy</a>
-      <a href="policies/api-policy.html">API Policy</a>
-      <a href="policies/affiliate.html">Affiliate</a>
-    </div>
-    <p>&copy; <span id="year"></span> SolyntraAI. All rights reserved.</p>
-  </footer>
-  <div class="floating-cta">Start Free Trial</div>
-  <script src="./assets/js/main.js"></script>
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-    const form = document.getElementById('forgot-form');
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      alert('Password reset link sent! Check your inbox.');
-      window.location.href = 'login.html';
-    });
-  </script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Forgot Password — SolyntraAI</title>
+    <link rel="stylesheet" href="./styles/tokens.css" />
+    <link rel="stylesheet" href="./assets/style.css" />
+    <script src="/.netlify/functions/config"></script>
+    <style>.auth{min-height:calc(100vh - 70px);display:grid;place-items:center;}.card{width:min(520px,calc(100% - 28px));padding:18px;position:relative;z-index:1;}</style>
+  </head>
+  <body>
+    <header class="site-header"><div class="container nav-wrap"><a class="brand" href="index.html"><span class="brand-badge"></span><span class="logo"><span class="logo-metal">SolyntraAI</span></span></a></div></header>
+    <main class="auth">
+      <section class="glass-card card">
+        <h1 class="heading">Reset password</h1>
+        <p class="muted">Enter your email to receive a reset link.</p>
+        <p id="reset-message" style="display:none; margin-top:1rem;"></p>
+        <form id="forgot-form" class="form" style="margin-top:10px;">
+          <div class="field"><label class="label" for="email">Email</label><input id="email" class="input" type="email" required /></div>
+          <button class="btn btn-primary btn-block" type="submit">Send Reset Link</button>
+        </form>
+      </section>
+    </main>
+    <script src="./assets/js/main.js"></script>
+    <script type="module">
+      import { resetPassword } from "./supabase.js";
+      const form = document.getElementById("forgot-form");
+      const btn = form?.querySelector('button[type="submit"]');
+      const msg = document.getElementById("reset-message");
+      form?.addEventListener("submit", async (e)=>{ e.preventDefault(); const email=document.getElementById("email")?.value?.trim(); if(!email) return;
+        if(btn){ btn.disabled=true; btn.textContent="Sending…"; }
+        try { await resetPassword(email); if(msg){ msg.textContent="✅ Reset link sent! Check your inbox."; msg.style.color="#00ff9d"; msg.style.display="block"; } form.reset(); }
+        catch(err){ if(msg){ msg.textContent=err.message || "Failed to send reset email."; msg.style.color="#ff5e57"; msg.style.display="block"; } }
+        finally { if(btn){ btn.disabled=false; btn.textContent="Send Reset Link"; } }
+      });
+    </script>
+  </body>
 </html>

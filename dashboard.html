@@ -1,70 +1,536 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dashboard – SolyntraAI</title>
-  <meta name="description" content="SolyntraAI Dashboard preview - Advanced AI-powered social media automation interface with intelligent insights and seamless workflow management." />
-  <link rel="canonical" href="https://solyntraai.com/dashboard.html" />
-  <meta name="theme-color" content="#0ee7f0" />
-  <link rel="stylesheet" href="./styles/tokens.css" />
-  <link rel="stylesheet" href="./styles/tokens.css" />
-  <link rel="stylesheet" href="./assets/style.css" />
-</head>
-<body>
-  <header>
-    <div class="logo">SolyntraAI</div>
-    <nav>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="pricing.html">Pricing</a></li>
-        <li><a href="signup.html">Sign Up</a></li>
-        <li><a href="login.html">Log In</a></li>
-        <li><a href="dashboard.html" class="active">Dashboard</a></li>
-        <li><a href="scheduler.html">Scheduler</a></li>
-        <li><a href="analytics.html">Analytics</a></li>
-        <li><a href="api.html">API</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="info.html">Info</a></li>
-      </ul>
-    </nav>
-    <a href="pricing.html" class="cta-button">Start Free Trial</a>
-  </header>
-  <main class="container">
-    <h1>AI-Powered Dashboard (Preview)</h1>
-    <p>Welcome to your SolyntraAI dashboard. This preview demonstrates the interface you’ll have access to after signing up.</p>
-    <div style="margin-top:2rem;">
-      <h2>Overview</h2>
-      <p>Here you’ll see a quick summary of your scheduled posts, account performance, and key analytics.</p>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard — SolyntraAI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Orbitron:wght@400;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles/tokens.css" />
+    <link rel="stylesheet" href="./assets/style.css" />
+    <script src="/.netlify/functions/config"></script>
+    <style>
+      .page {
+        padding: 26px 0 56px;
+        position: relative;
+        z-index: 1;
+      }
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+        margin: 12px 0;
+      }
+      .stat {
+        padding: 16px;
+      }
+      .v {
+        font-family: var(--font-mono);
+        font-size: 1.75rem;
+        margin-top: 4px;
+      }
+      .actions {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        margin: 12px 0;
+      }
+      #recent-posts-list .post-row {
+        display: grid;
+        grid-template-columns: 1fr 2fr 1fr auto;
+        gap: 8px;
+        padding: 10px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      }
+      #zynera-banner {
+        display: none;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        padding: 12px;
+        margin-top: 10px;
+      }
+      #free-plan-banner {
+        display: none;
+        margin-top: 10px;
+        padding: 10px 12px;
+        border-radius: 12px;
+        border: 1px solid rgba(255, 184, 0, 0.28);
+        background: rgba(255, 184, 0, 0.07);
+      }
+      #upgrade-banner {
+        display: none;
+        margin-top: 10px;
+        border-color: rgba(123, 97, 255, 0.28);
+      }
+      #admin-nav-link {
+        display: none;
+      }
+      @media (max-width: 980px) {
+        .stats {
+          grid-template-columns: 1fr 1fr;
+        }
+        .actions {
+          grid-template-columns: 1fr;
+        }
+        #recent-posts-list .post-row {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app-layout">
+      <aside class="brand-sidebar" id="brand-sidebar">
+        <div class="sidebar-header">
+          <span class="sidebar-logo">SolyntraAI</span>
+          <button type="button" class="sidebar-mobile-toggle" id="btn-sidebar-toggle" aria-label="Open menu">☰</button>
+        </div>
+        <div class="sidebar-label">Brands</div>
+        <div id="brand-list" class="brand-list"></div>
+        <button type="button" class="btn-add-brand" id="btn-add-brand">+ Add Brand</button>
+        <div class="sidebar-footer">
+          <a href="dashboard.html" class="sidebar-nav-item">📊 Dashboard</a>
+          <a href="scheduler.html" class="sidebar-nav-item">📅 Scheduler</a>
+          <a href="analytics.html" class="sidebar-nav-item">📈 Analytics</a>
+          <a href="pricing.html" class="sidebar-nav-item">💎 Upgrade</a>
+          <a href="admin.html" class="sidebar-nav-item" id="admin-nav-link">⚙ Admin</a>
+          <button type="button" class="sidebar-nav-item danger" id="btn-logout">← Logout</button>
+        </div>
+      </aside>
+
+      <main class="app-main" id="app-main">
+        <div class="bg-orbs" aria-hidden="true">
+          <div class="orb" style="width: 320px; height: 320px; background: radial-gradient(circle, rgba(0, 212, 255, 0.22), transparent); top: -100px; left: -80px"></div>
+        </div>
+        <div class="container page">
+          <div class="app-topbar">
+            <div>
+              <p class="muted" id="today-date" style="margin: 0 0 4px"></p>
+              <h1 id="dashboard-greeting" class="heading" style="margin: 0">Good morning, Creator ✨</h1>
+              <p class="muted" style="margin: 6px 0 0">Brand: <strong id="current-brand-name">—</strong></p>
+            </div>
+            <span class="badge" id="credits-badge">AI credits: —</span>
+          </div>
+
+          <div id="free-plan-banner">
+            <span>Free plan · <strong id="credits-remaining">10</strong> AI credits left</span>
+            <a href="pricing.html" class="btn btn-primary btn-sm" style="margin-left: 8px">Upgrade →</a>
+          </div>
+
+          <section class="stats">
+            <article class="glass-card card-3d stat"><div class="muted">📅 Posts Scheduled</div><div class="v" id="stat-scheduled">0</div></article>
+            <article class="glass-card card-3d stat"><div class="muted">🌐 Platforms Connected</div><div class="v" id="stat-platforms">0</div></article>
+            <article class="glass-card card-3d stat"><div class="muted">⏱️ Hours Saved</div><div class="v" id="stat-hours">0 hrs</div></article>
+            <article class="glass-card card-3d stat" id="streak-card">
+              <div class="muted">🔥 Day streak</div>
+              <div class="v" id="stat-streak">0</div>
+              <div class="stat-label muted" style="font-size: 0.85rem; margin-top: 4px">Streak</div>
+              <div class="stat-sub muted" id="stat-longest" style="font-size: 0.8rem">Best: 0 days</div>
+            </article>
+            <article class="glass-card card-3d stat"><div class="muted">✨ AI credits</div><div class="v" id="stat-ai-credits">—</div></article>
+            <article class="glass-card card-3d stat"><div class="muted">🖼️ Thumbnail credits</div><div class="v" id="stat-thumb-credits">—</div></article>
+          </section>
+
+          <section class="actions">
+            <a class="btn btn-primary" href="scheduler.html">+ Schedule New Post</a>
+            <a class="btn btn-secondary" href="onboarding.html">📎 Connect Platform</a>
+          </section>
+
+          <section class="ideas-section glass-card card-pad">
+            <div class="ideas-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px">
+              <h3 class="heading" style="margin: 0">💡 Content ideas</h3>
+              <span class="ideas-badge">Free · Unlimited</span>
+            </div>
+            <div class="ideas-form">
+              <input type="text" id="ideas-niche" class="input" placeholder="Your niche… e.g. fitness, SaaS, food" style="flex: 1; min-width: 160px" />
+              <select id="ideas-platform" class="input" style="max-width: 200px">
+                <option value="">Any platform</option>
+                <option value="instagram">Instagram</option>
+                <option value="linkedin">LinkedIn</option>
+                <option value="tiktok">TikTok</option>
+                <option value="youtube">YouTube</option>
+                <option value="twitter">Twitter/X</option>
+              </select>
+              <button type="button" id="btn-get-ideas" class="btn btn-primary">Get 5 ideas ✨</button>
+            </div>
+            <div id="ideas-list" class="ideas-list" style="display: none; margin-top: 12px"></div>
+          </section>
+
+          <div class="achievements-section glass-card card-pad">
+            <div class="section-title heading" style="font-size: 1rem; margin-bottom: 8px">Achievements</div>
+            <div id="achievements" class="achievements-grid"></div>
+          </div>
+
+          <div id="bio-builder" class="glass-card card-pad" style="display: none">
+            <h3 class="heading" style="font-size: 1.05rem">🔗 Link in bio page</h3>
+            <p class="muted section-sub">Your page: <a id="bio-url" href="#" target="_blank" rel="noopener noreferrer"></a></p>
+            <div class="bio-form" style="display: grid; gap: 10px; margin-top: 10px">
+              <input type="text" id="bio-slug" class="input" placeholder="Username (e.g. janedoe)" />
+              <input type="text" id="bio-display-name" class="input" placeholder="Display name" />
+              <textarea id="bio-bio" class="textarea" rows="2" placeholder="Short bio (optional)"></textarea>
+            </div>
+            <div id="bio-links-list" class="bio-links-builder" style="margin-top: 10px"></div>
+            <button type="button" id="btn-bio-add-link" class="btn btn-ghost btn-sm">+ Add link</button>
+            <button type="button" id="btn-bio-save" class="btn btn-primary" style="margin-top: 10px">Save bio page</button>
+          </div>
+
+          <div id="evergreen-section" class="glass-card card-pad muted">
+            <strong>Evergreen content queue</strong> — schema ready. UI for rotating posts is coming soon; your data will live in <code>evergreen_queue</code>.
+          </div>
+
+          <section class="glass-card card-pad">
+            <h3>Recent posts</h3>
+            <div id="recent-posts-list"><div class="muted">Loading...</div></div>
+          </section>
+
+          <div id="upgrade-banner" class="glass-card card-pad">
+            Unlock more brands &amp; credits — <a class="btn btn-primary btn-sm" href="pricing.html">View plans</a>
+          </div>
+
+          <div id="zynera-banner" class="glass-card zynera-banner">
+            <div class="zynera-icon">📊</div>
+            <div class="zynera-text">
+              <strong>See how your content performed</strong><br />
+              <span class="muted">Track engagement and growth on Zynera.cloud</span>
+            </div>
+            <a href="https://zynera.cloud" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">Try Zynera →</a>
+          </div>
+        </div>
+      </main>
     </div>
-    <div style="margin-top:2rem;">
-      <h2>Recent Posts</h2>
-      <p>Preview of your latest scheduled and published posts.</p>
-      <div style="height:150px; background:#1e293b; border-radius:8px; display:flex; align-items:center; justify-content:center; color:#767f9f;">
-        (Data coming soon)
-      </div>
-    </div>
-  </main>
-  <footer>
-    <div class="footer-links">
-      <a href="index.html">Home</a>
-      <a href="pricing.html">Pricing</a>
-      <a href="signup.html">Sign Up</a>
-      <a href="login.html">Log In</a>
-      <a href="contact.html">Contact</a>
-      <a href="info.html">Info</a>
-      <a href="policies/terms.html">Terms</a>
-      <a href="policies/privacy.html">Privacy</a>
-      <a href="policies/refund-policy.html">Refund Policy</a>
-      <a href="policies/api-policy.html">API Policy</a>
-      <a href="policies/affiliate.html">Affiliate</a>
-    </div>
-    <p>&copy; <span id="year"></span> SolyntraAI. All rights reserved.</p>
-  </footer>
-  <div class="floating-cta">Start Free Trial</div>
-  <script src="./assets/js/main.js"></script>
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
-</body>
+    <script src="./assets/js/main.js"></script>
+    <script type="module">
+      import {
+        requireAuth,
+        getBrands,
+        createBrand,
+        deleteBrand,
+        getUserStats,
+        getBioPage,
+        saveBioPage,
+        getContentIdeas,
+        logout,
+        getRecentPosts,
+        formatDate,
+        getPlatformIcon,
+        getStatusBadge,
+        showToast,
+        showUpgradeModal,
+      } from "./supabase.js";
+
+      let currentUser = null;
+      let currentBrandId = null;
+      let brands = [];
+      let bioLinks = [];
+
+      const ACHIEVEMENTS = [
+        { id: "first_post", label: "First post", icon: "🌱", condition: (s) => s.totalPosts >= 1 },
+        { id: "week_streak", label: "7 day streak", icon: "🔥", condition: (s) => s.streakDays >= 7 },
+        { id: "ten_posts", label: "10 posts", icon: "📅", condition: (s) => s.totalPosts >= 10 },
+        { id: "ai_user", label: "AI explorer", icon: "🤖", condition: (s) => s.totalCaptionsGenerated >= 5 },
+        { id: "multi_brand", label: "Multi-brand", icon: "🏢", condition: (s) => s.brandCount >= 2 },
+        { id: "month_streak", label: "30 day streak", icon: "💎", condition: (s) => s.streakDays >= 30 },
+        { id: "fifty_posts", label: "50 posts scheduled", icon: "🚀", condition: (s) => s.totalPosts >= 50 },
+      ];
+
+      function renderAchievements(stats) {
+        const container = document.getElementById("achievements");
+        if (!container) return;
+        container.innerHTML = ACHIEVEMENTS.map((a) => {
+          const earned = a.condition(stats);
+          return `<div class="achievement ${earned ? "earned" : "locked"}" title="${a.label}">
+            <span class="ach-icon">${a.icon}</span>
+            <span class="ach-label">${a.label}</span>
+          </div>`;
+        }).join("");
+      }
+
+      function setText(id, val) {
+        const el = document.getElementById(id);
+        if (el) el.textContent = val;
+      }
+
+      async function loadPageData(user, brandId) {
+        const stats = await getUserStats(user.id, brandId);
+        const brand = brands.find((b) => b.id === brandId);
+
+        const hour = new Date().getHours();
+        const greet = hour < 12 ? "Good morning" : hour < 17 ? "Good afternoon" : "Good evening";
+        setText("dashboard-greeting", `${greet}, ${stats.fullName || "Creator"} ✨`);
+        setText("current-brand-name", brand?.name || "My Brand");
+        setText("stat-scheduled", stats.scheduledPosts);
+        setText("stat-platforms", stats.platformsConnected);
+        setText("stat-hours", stats.hoursSaved + " hrs");
+        setText("stat-streak", String(stats.streakDays || 0));
+        setText("stat-longest", `Best: ${stats.longestStreak || 0} days`);
+        setText("stat-ai-credits", stats.aiCreditsRemaining + " left");
+        setText("stat-thumb-credits", stats.thumbnailCreditsRemaining + " left");
+
+        renderAchievements(stats);
+
+        if (stats.streakDays > 0 && [3, 7, 14, 21, 30].includes(stats.streakDays)) {
+          const sk = `streak-milestone-${stats.streakDays}`;
+          if (!sessionStorage.getItem(sk)) {
+            sessionStorage.setItem(sk, "1");
+            showToast(`🔥 ${stats.streakDays}-day streak! Keep it going!`, "success");
+          }
+        }
+
+        const badge = document.getElementById("credits-badge");
+        if (badge) badge.textContent = `AI: ${stats.aiCreditsRemaining} · Thumb: ${stats.thumbnailCreditsRemaining}`;
+
+        const freeBanner = document.getElementById("free-plan-banner");
+        if (stats.plan === "free") {
+          if (freeBanner) freeBanner.style.display = "block";
+          setText("credits-remaining", String(stats.aiCreditsRemaining));
+        } else if (freeBanner) freeBanner.style.display = "none";
+
+        const up = document.getElementById("upgrade-banner");
+        if (stats.plan === "free" && up) up.style.display = "block";
+        else if (up) up.style.display = "none";
+
+        const zy = document.getElementById("zynera-banner");
+        if (stats.totalPosts >= 5 && zy) zy.style.display = "flex";
+        else if (zy) zy.style.display = "none";
+
+        const adminLink = document.getElementById("admin-nav-link");
+        if (adminLink && stats.isAdmin) adminLink.style.display = "block";
+        else if (adminLink) adminLink.style.display = "none";
+
+        const bioEl = document.getElementById("bio-builder");
+        const canBio = stats.isAdmin || ["pro", "agency"].includes(stats.plan);
+        if (bioEl) bioEl.style.display = canBio ? "block" : "none";
+        if (canBio) await loadBioForm(user.id, brandId);
+
+        const posts = await getRecentPosts(user.id, brandId, 5);
+        renderRecentPosts(posts);
+      }
+
+      function updateBioUrlPreview(slug) {
+        const a = document.getElementById("bio-url");
+        if (!a) return;
+        const s = (slug || "username").trim() || "username";
+        const url = `${window.location.origin}/bio.html?u=${encodeURIComponent(s)}`;
+        a.href = url;
+        a.textContent = url;
+      }
+
+      function renderBioLinkRows() {
+        const container = document.getElementById("bio-links-list");
+        if (!container) return;
+        container.innerHTML = bioLinks
+          .map(
+            (link, i) => `<div class="bio-link-row" style="display:grid;grid-template-columns:1fr 1fr auto;gap:6px;margin-bottom:6px;align-items:center">
+          <input class="input" data-link-idx="${i}" data-field="title" placeholder="Title" value="${(link.title || "").replace(/"/g, "&quot;")}" />
+          <input class="input" data-link-idx="${i}" data-field="url" type="url" placeholder="https://…" value="${(link.url || "").replace(/"/g, "&quot;")}" />
+          <button type="button" class="btn btn-ghost btn-sm" data-rm-link="${i}">✕</button>
+        </div>`
+          )
+          .join("");
+        container.querySelectorAll("input[data-link-idx]").forEach((inp) => {
+          inp.addEventListener("change", () => {
+            const idx = Number(inp.dataset.linkIdx);
+            const field = inp.dataset.field;
+            if (!bioLinks[idx]) bioLinks[idx] = { title: "", url: "", is_active: true };
+            bioLinks[idx][field] = inp.value;
+          });
+        });
+        container.querySelectorAll("[data-rm-link]").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            bioLinks.splice(Number(btn.dataset.rmLink), 1);
+            renderBioLinkRows();
+          });
+        });
+      }
+
+      async function loadBioForm(userId, brandId) {
+        try {
+          const page = await getBioPage(userId, brandId);
+          document.getElementById("bio-slug").value = page?.slug || "";
+          document.getElementById("bio-display-name").value = page?.display_name || "";
+          document.getElementById("bio-bio").value = page?.bio || "";
+          bioLinks = Array.isArray(page?.links) ? [...page.links] : [];
+          if (!bioLinks.length) bioLinks = [{ title: "", url: "", is_active: true }];
+          renderBioLinkRows();
+          updateBioUrlPreview(page?.slug || "");
+        } catch {
+          bioLinks = [{ title: "", url: "", is_active: true }];
+          renderBioLinkRows();
+        }
+      }
+
+      async function saveBioPageData() {
+        const slug = document.getElementById("bio-slug")?.value?.trim();
+        const display_name = document.getElementById("bio-display-name")?.value?.trim() || "My page";
+        const bio = document.getElementById("bio-bio")?.value?.trim() || "";
+        if (!slug) return showToast("Choose a URL slug", "error");
+        try {
+          await saveBioPage(currentUser.id, currentBrandId, {
+            slug,
+            display_name,
+            bio,
+            links: bioLinks.filter((l) => l.url?.trim()),
+            is_active: true,
+          });
+          showToast("Bio page saved!", "success");
+          updateBioUrlPreview(slug);
+        } catch (e) {
+          showToast(e.message, "error");
+        }
+      }
+
+      window.fetchIdeas = async () => {
+        const niche = document.getElementById("ideas-niche")?.value?.trim();
+        const platform = document.getElementById("ideas-platform")?.value;
+        if (!niche) return showToast("Enter your niche first", "error");
+        const btn = document.getElementById("btn-get-ideas");
+        btn.disabled = true;
+        btn.textContent = "✨ Thinking…";
+        try {
+          const ideas = await getContentIdeas(niche, platform, 5);
+          const container = document.getElementById("ideas-list");
+          container.style.display = "block";
+          container.innerHTML = ideas
+            .map(
+              (idea, i) => `<div class="idea-card">
+            <div class="idea-num">${i + 1}</div>
+            <div class="idea-content">
+              <div class="idea-title">${idea.title || "Idea"}</div>
+              <div class="idea-hook">"${idea.hook || ""}"</div>
+              <span class="idea-type">${idea.type || ""}</span>
+            </div>
+            <button type="button" class="idea-use" data-hook="${encodeURIComponent(idea.hook || idea.title || "")}">Use →</button>
+          </div>`
+            )
+            .join("");
+          container.querySelectorAll(".idea-use").forEach((b) => {
+            b.addEventListener("click", () => {
+              window.location.href = `scheduler.html?idea=${b.dataset.hook}`;
+            });
+          });
+        } catch (e) {
+          showToast(e.message, "error");
+        } finally {
+          btn.disabled = false;
+          btn.textContent = "Get 5 ideas ✨";
+        }
+      };
+
+      function renderRecentPosts(posts) {
+        const container = document.getElementById("recent-posts-list");
+        if (!container) return;
+        if (!posts.length) {
+          container.innerHTML = `<div class="empty-state"><div class="empty-icon">📅</div><p>No posts yet. <a href="scheduler.html">Schedule your first post →</a></p></div>`;
+          return;
+        }
+        container.innerHTML = posts
+          .map((post) => {
+            const badge = getStatusBadge(post.status);
+            return `<div class="post-row"><span>${getPlatformIcon(post.platform)} ${post.platform}</span><span>${(post.caption || "").substring(0, 60)}${(post.caption || "").length > 60 ? "…" : ""}</span><span>${formatDate(post.scheduled_at)}</span><span style="color:${badge.color}">${badge.label}</span></div>`;
+          })
+          .join("");
+      }
+
+      function renderBrandList() {
+        const container = document.getElementById("brand-list");
+        if (!container) return;
+        container.innerHTML = brands
+          .map(
+            (b) => `
+          <div class="brand-item ${b.id === currentBrandId ? "active" : ""}"
+               data-id="${b.id}" onclick="switchBrand('${b.id}')">
+            <span class="brand-dot" style="background:${b.color || "#7b61ff"}"></span>
+            <span class="brand-name">${b.name}</span>
+            ${
+              brands.length > 1
+                ? `<button type="button" class="brand-delete" onclick="event.stopPropagation();confirmDeleteBrand('${b.id}','${b.name.replace(/'/g, "\\'")}')" title="Delete brand">✕</button>`
+                : ""
+            }
+          </div>`
+          )
+          .join("");
+      }
+
+      window.switchBrand = async (brandId) => {
+        currentBrandId = brandId;
+        localStorage.setItem("solyntra_brand_id", brandId);
+        renderBrandList();
+        await loadPageData(currentUser, currentBrandId);
+      };
+
+      window.confirmDeleteBrand = (brandId, brandName) => {
+        if (!confirm(`Delete "${brandName}"? Posts for this brand are kept in the database; brand is hidden.`)) return;
+        deleteBrand(brandId, currentUser.id)
+          .then(() => {
+            brands = brands.filter((b) => b.id !== brandId);
+            if (currentBrandId === brandId) currentBrandId = brands[0]?.id;
+            localStorage.setItem("solyntra_brand_id", currentBrandId || "");
+            renderBrandList();
+            showToast(`Brand "${brandName}" deleted`, "success");
+            return loadPageData(currentUser, currentBrandId);
+          })
+          .catch((e) => showToast(e.message, "error"));
+      };
+
+      document.addEventListener("DOMContentLoaded", async () => {
+        document.getElementById("today-date").textContent = new Date().toLocaleDateString("en-IN", {
+          weekday: "long",
+          day: "2-digit",
+          month: "short",
+          year: "numeric",
+        });
+
+        currentUser = await requireAuth("/login.html");
+        if (!currentUser) return;
+
+        brands = await getBrands(currentUser.id);
+        if (!brands.length) {
+          await createBrand(currentUser.id, "My Brand");
+          brands = await getBrands(currentUser.id);
+        }
+
+        const saved = localStorage.getItem("solyntra_brand_id");
+        currentBrandId = saved && brands.find((b) => b.id === saved) ? saved : brands[0].id;
+
+        renderBrandList();
+        await loadPageData(currentUser, currentBrandId);
+
+        document.getElementById("btn-logout")?.addEventListener("click", logout);
+
+        document.getElementById("bio-slug")?.addEventListener("input", (e) => updateBioUrlPreview(e.target.value));
+        document.getElementById("btn-bio-save")?.addEventListener("click", saveBioPageData);
+        document.getElementById("btn-bio-add-link")?.addEventListener("click", () => {
+          bioLinks.push({ title: "", url: "", is_active: true });
+          renderBioLinkRows();
+        });
+        document.getElementById("btn-get-ideas")?.addEventListener("click", () => window.fetchIdeas());
+
+        document.getElementById("btn-add-brand")?.addEventListener("click", async () => {
+          const name = prompt("Brand name:");
+          if (!name?.trim()) return;
+          try {
+            const brand = await createBrand(currentUser.id, name.trim());
+            brands.push(brand);
+            renderBrandList();
+            showToast(`Brand "${name}" created`, "success");
+          } catch (e) {
+            if (e.message.includes("limit")) showUpgradeModal("brands", null);
+            else showToast(e.message, "error");
+          }
+        });
+
+        const sidebar = document.getElementById("brand-sidebar");
+        document.getElementById("btn-sidebar-toggle")?.addEventListener("click", () => {
+          sidebar?.classList.toggle("open");
+        });
+        document.getElementById("app-main")?.addEventListener("click", () => {
+          sidebar?.classList.remove("open");
+        });
+      });
+    </script>
+  </body>
 </html>

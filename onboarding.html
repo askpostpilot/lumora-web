@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Onboarding — SolyntraAI</title>
+    <link rel="stylesheet" href="./styles/tokens.css" />
+    <link rel="stylesheet" href="./assets/style.css" />
+    <script src="/.netlify/functions/config"></script>
+    <style>
+      .wrap{padding:24px 0 56px;position:relative;z-index:1}.bar{height:8px;border-radius:999px;background:rgba(255,255,255,.08);overflow:hidden}.fill{height:100%;width:33%;background:var(--grad-button)}
+      .grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}.platform-card,.category-pill{padding:12px;border-radius:12px;border:var(--border-subtle);background:rgba(255,255,255,.03);cursor:pointer}.selected{border-color:rgba(0,212,255,.35);box-shadow:var(--shadow-glow-teal)}
+      .onboarding-step{display:none}.actions{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+      @media (max-width:980px){.grid{grid-template-columns:1fr 1fr}}
+    </style>
+  </head>
+  <body>
+    <header class="site-header"><div class="container nav-wrap"><a class="brand" href="index.html"><span class="brand-badge"></span><span class="logo"><span class="logo-metal">SolyntraAI</span></span></a></div></header>
+    <main class="container wrap">
+      <div class="bar"><div id="onboarding-progress" class="fill"></div></div>
+      <p id="step-label" class="muted" style="margin:8px 0;">Step 1 of 3</p>
+      <section class="glass-card card-pad onboarding-step" data-step="1">
+        <h2>Connect Your First Platform</h2>
+        <div class="grid" style="margin-top:10px;">
+          <div class="platform-card" data-platform="instagram">Instagram</div><div class="platform-card" data-platform="tiktok">TikTok</div><div class="platform-card" data-platform="linkedin">LinkedIn</div><div class="platform-card" data-platform="youtube">YouTube</div><div class="platform-card" data-platform="x">Twitter/X</div>
+        </div>
+        <div class="actions"><button id="btn-step1-next" class="btn btn-primary">Next</button><button class="btn btn-ghost btn-skip">Skip for now</button></div>
+      </section>
+      <section class="glass-card card-pad onboarding-step" data-step="2">
+        <h2>What do you post about?</h2>
+        <div class="grid" style="margin-top:10px;">
+          <div class="category-pill" data-category="Business">Business</div><div class="category-pill" data-category="Education">Education</div><div class="category-pill" data-category="Entertainment">Entertainment</div><div class="category-pill" data-category="Lifestyle">Lifestyle</div><div class="category-pill" data-category="Tech">Tech</div><div class="category-pill" data-category="Fashion">Fashion</div><div class="category-pill" data-category="Food">Food</div><div class="category-pill" data-category="Other">Other</div>
+        </div>
+        <div class="actions"><button id="btn-step2-next" class="btn btn-primary">Next</button><button class="btn btn-ghost btn-skip">Skip for now</button></div>
+      </section>
+      <section class="glass-card card-pad onboarding-step" data-step="3">
+        <h2>You're all set! 🎉</h2>
+        <p class="muted">Schedule with Solyntra, then track performance on <a href="https://zynera.cloud" target="_blank" rel="noopener noreferrer">Zynera.cloud</a>. Also check out Zynera.cloud for analytics beyond scheduling.</p>
+        <div class="actions"><button id="btn-go-dashboard" class="btn btn-primary">Go to Dashboard →</button><button class="btn btn-ghost btn-skip">Skip</button></div>
+      </section>
+    </main>
+    <script src="./assets/js/main.js"></script>
+    <script type="module">
+      import { requireAuth, saveOnboardingStep, getOnboardingStatus } from "./supabase.js";
+      let currentUser=null,currentStep=1; const onboardingData={platforms:[],categories:[]};
+      document.addEventListener("DOMContentLoaded", async ()=>{ currentUser=await requireAuth("/login.html"); if(!currentUser) return; const status=await getOnboardingStatus(currentUser.id); if(status?.completed_at){ window.location.href="dashboard.html"; return; } showStep(1); });
+      function showStep(step){ currentStep=step; document.querySelectorAll(".onboarding-step").forEach((el)=>{ el.style.display = el.dataset.step==step ? "block":"none";}); const progress=document.getElementById("onboarding-progress"); if(progress) progress.style.width=(step/3*100)+"%"; const stepLabel=document.getElementById("step-label"); if(stepLabel) stepLabel.textContent=`Step ${step} of 3`; }
+      document.querySelectorAll(".platform-card").forEach((card)=>card.addEventListener("click",()=>{ card.classList.toggle("selected"); const p=card.dataset.platform; const idx=onboardingData.platforms.indexOf(p); idx===-1 ? onboardingData.platforms.push(p):onboardingData.platforms.splice(idx,1); }));
+      document.querySelectorAll(".category-pill").forEach((pill)=>pill.addEventListener("click",()=>{ pill.classList.toggle("selected"); const c=pill.dataset.category; const idx=onboardingData.categories.indexOf(c); idx===-1 ? onboardingData.categories.push(c):onboardingData.categories.splice(idx,1); }));
+      document.getElementById("btn-step1-next")?.addEventListener("click", async ()=>{ await saveOnboardingStep(currentUser.id,1,{platforms:onboardingData.platforms}); showStep(2); });
+      document.getElementById("btn-step2-next")?.addEventListener("click", async ()=>{ await saveOnboardingStep(currentUser.id,2,{categories:onboardingData.categories}); showStep(3); triggerConfetti(); });
+      document.getElementById("btn-go-dashboard")?.addEventListener("click", async ()=>{ await saveOnboardingStep(currentUser.id,3,onboardingData); window.location.href="dashboard.html"; });
+      document.querySelectorAll(".btn-skip").forEach((btn)=>btn.addEventListener("click", async ()=>{ if(currentStep < 3) showStep(currentStep+1); else window.location.href="dashboard.html"; }));
+      function triggerConfetti(){ for(let i=0;i<50;i++){ const el=document.createElement("div"); el.className="confetti-particle"; el.style.cssText=`position:fixed;top:-10px;left:${Math.random()*100}vw;width:${6+Math.random()*8}px;height:${6+Math.random()*8}px;background:${["#00d4ff","#7b61ff","#00ff9d","#ffb800","#ff5e57"][Math.floor(Math.random()*5)]};border-radius:${Math.random()>0.5?"50%":"2px"};animation:confetti-fall ${1.5+Math.random()*2}s linear forwards;animation-delay:${Math.random()*0.5}s;z-index:9999;pointer-events:none;`; document.body.appendChild(el); setTimeout(()=>el.remove(),3000);} }
+    </script>
+  </body>
+</html>

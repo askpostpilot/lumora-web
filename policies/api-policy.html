@@ -1,54 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>API Policy – Lumora</title>
-  <link rel="stylesheet" href="../assets/style.css" />
-</head>
-<body>
-  <header>
-    <div class="logo">Lumora</div>
-    <nav>
-      <ul>
-        <li><a href="../index.html">Home</a></li>
-        <li><a href="../pricing.html">Pricing</a></li>
-        <li><a href="../signup.html">Sign Up</a></li>
-        <li><a href="../login.html">Log In</a></li>
-        <li><a href="../dashboard.html">Dashboard</a></li>
-        <li><a href="../scheduler.html">Scheduler</a></li>
-        <li><a href="../analytics.html">Analytics</a></li>
-        <li><a href="../api.html">API</a></li>
-        <li><a href="../contact.html">Contact</a></li>
-        <li><a href="../info.html">Info</a></li>
-      </ul>
-    </nav>
-    <a href="../pricing.html" class="cta-button">Start Free Trial</a>
-  </header>
-  <main class="container">
-    <h1>API Usage Policy</h1>
-    <p>This policy defines the acceptable use of the Lumora API. Clients must not abuse rate limits, and all requests must be authenticated. Replace this placeholder with your full API policy before release.</p>
-  </main>
-  <footer>
-    <div class="footer-links">
-      <a href="../index.html">Home</a>
-      <a href="../pricing.html">Pricing</a>
-      <a href="../signup.html">Sign Up</a>
-      <a href="../login.html">Log In</a>
-      <a href="../contact.html">Contact</a>
-      <a href="../info.html">Info</a>
-      <a href="terms.html">Terms</a>
-      <a href="privacy.html">Privacy</a>
-      <a href="refund-policy.html">Refund Policy</a>
-      <a href="api-policy.html">API Policy</a>
-      <a href="affiliate.html">Affiliate</a>
-    </div>
-    <p>&copy; <span id="year"></span> Lumora. All rights reserved.</p>
-  </footer>
-  <div class="floating-cta">Start Free Trial</div>
-  <script src="../assets/js/main.js"></script>
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>API Policy — SolyntraAI</title>
+    <link rel="stylesheet" href="../styles/tokens.css" />
+    <link rel="stylesheet" href="../assets/style.css" />
+    <script src="/.netlify/functions/config"></script>
+    <style>
+      .policy-page {
+        max-width: 720px;
+        margin: 0 auto;
+        padding: 32px 24px 64px;
+        position: relative;
+        z-index: 1;
+      }
+      .policy-page h1 {
+        font-family: var(--font-heading);
+        margin-bottom: 8px;
+      }
+      .policy-page pre.policy-body {
+        white-space: pre-wrap;
+        font-family: var(--font-body);
+        font-size: 1rem;
+        line-height: 1.65;
+        color: var(--text-secondary);
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a class="brand" href="../index.html"
+          ><span class="brand-badge"></span><span class="logo"><span class="logo-metal">SolyntraAI</span></span></a
+        >
+      </div>
+    </header>
+    <main class="policy-page">
+      <h1>API Policy</h1>
+      <p class="muted" style="margin-bottom: 24px">Last updated: March 2026</p>
+      <pre class="policy-body">1. Status
+The SolyntraAI API is currently in preview. Endpoints, rate limits, and
+features may change without notice. Do not build production systems
+that depend solely on this API without contacting us first.
+
+2. Access
+API access requires an active paid plan and a valid API key generated
+from your dashboard.
+
+3. Rate Limits
+- Starter: 100 requests/day
+- Pro: 500 requests/day
+- Agency: 2000 requests/day
+
+4. Acceptable Use
+You may not: resell API access, use it to scrape data, exceed rate limits,
+or use it for any illegal purpose.
+
+5. No SLA
+We do not provide an uptime guarantee for the API at this stage.
+
+Contact: support@solyntraai.com</pre>
+    </main>
+    <footer class="site-footer">
+      <div class="container footer-bottom">
+        <p class="muted">© <span id="year"></span> SolyntraAI</p>
+      </div>
+    </footer>
+    <script src="../assets/js/main.js"></script>
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
 </html>

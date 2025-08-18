@@ -1,0 +1,156 @@
+<!--
+CSV header spec for bulk import:
+date,time,timezone,platforms,media_url,caption,hashtags,thumbnail_url,qa,ai_captions,ai_hashtags,ai_thumbnail,ai_repurpose,ai_qa
+Wire media uploads to Storage in a future step.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SolyntraAI — Scheduler</title>
+  <meta name="description" content="Schedule Smarter. Grow Faster. SolyntraAI's luxury-grade scheduler and AI tools.">
+  <link rel="stylesheet" href="./styles/style.css" />
+</head>
+<body>
+  <!-- Site Header (matches index.html) -->
+  <header>
+    <div class="logo">SolyntraAI</div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+        <li><a href="signup.html">Sign Up</a></li>
+        <li><a href="login.html">Log In</a></li>
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="scheduler.html" class="active">Scheduler</a></li>
+        <li><a href="analytics.html">Analytics</a></li>
+        <li><a href="api.html">API</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="info.html">Info</a></li>
+      </ul>
+    </nav>
+    <a href="https://www.paypal.com/ncp/payment/3UYP578XT4AE6" target="_blank" class="cta-button">Start Free Trial</a>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1 class="hero-title" tabindex="0">Schedule Smarter. Grow Faster.</h1>
+      <h2 class="hero-subtitle" tabindex="0">Connect, import, and automate your content with AI-powered scheduling.</h2>
+    </section>
+    <div class="container" style="display:flex;flex-wrap:wrap;gap:2rem;">
+      <!-- Connect Accounts Panel -->
+      <div class="panel card" style="flex:1;min-width:320px;">
+        <h2>Connect Accounts</h2>
+        <div class="chips" aria-label="Connect social accounts">
+          <button class="chip" id="connect-instagram" aria-label="Connect Instagram">Instagram</button>
+          <button class="chip" id="connect-linkedin" aria-label="Connect LinkedIn">LinkedIn</button>
+          <button class="chip" id="connect-x" aria-label="Connect X">X</button>
+          <button class="chip" id="connect-youtube" aria-label="Connect YouTube">YouTube</button>
+          <button class="chip" id="connect-facebook" aria-label="Connect Facebook">Facebook</button>
+          <button class="chip" id="connect-pinterest" aria-label="Connect Pinterest">Pinterest</button>
+          <button class="chip" id="connect-threads" aria-label="Connect Threads">Threads</button>
+          <button class="chip" id="connect-reddit" aria-label="Connect Reddit">Reddit</button>
+          <button class="chip" id="connect-quora" aria-label="Connect Quora">Quora</button>
+          <button class="chip" id="connect-telegram" aria-label="Connect Telegram">Telegram</button>
+          <button class="chip" id="connect-tumblr" aria-label="Connect Tumblr">Tumblr</button>
+        </div>
+        <small class="muted" style="display:block;margin-top:1rem;">Connect your accounts to enable direct scheduling and analytics.</small>
+      </div>
+
+      <!-- Bulk Import & Actions Panel -->
+      <div class="panel card" style="flex:1;min-width:320px;">
+        <h2>Bulk Import & Actions</h2>
+        <div style="display:flex;gap:1rem;align-items:center;">
+          <button id="btn-upload-csv" class="btn btn-primary">Upload CSV</button>
+          <button id="btn-upload-excel" class="btn btn-secondary">Upload Excel</button>
+          <button id="btn-upload-notion" class="btn btn-secondary">Upload Notion Export</button>
+        </div>
+        <small style="display:block;margin-top:1rem;">
+          Accepted columns (case-insensitive): date, time, timezone, platforms, media_url, caption, hashtags, thumbnail_url, qa, ai_captions, ai_hashtags, ai_thumbnail, ai_repurpose, ai_qa.<br>
+          Platforms can be comma or semicolon separated. TRUE/FALSE, 1/0, yes/no accepted for booleans.<br>
+          <a id="download-sample" href="./assets/sample-schedule.csv" download>Download sample CSV</a>
+        </small>
+        <div style="display:flex;justify-content:flex-end;gap:1rem;margin-top:1rem;">
+          <button id="bulk-toggle-ai" class="btn btn-secondary">Toggle AI for All Rows</button>
+          <button id="bulk-tz-apply" class="btn btn-secondary">Apply First Row’s Timezone to All</button>
+          <button id="bulk-clear" class="btn btn-ghost">Clear Table</button>
+        </div>
+      </div>
+
+      <!-- Schedule Table Panel -->
+      <div class="panel card" style="flex:2;min-width:480px;">
+        <h2>Schedule Table</h2>
+        <div class="card-header" style="display:flex;justify-content:space-between;align-items:center;">
+          <div>
+            <button id="add-row" class="btn btn-primary">Add Row</button>
+            <button id="clear-rows" class="btn btn-ghost">Clear All</button>
+          </div>
+          <div>
+            <button id="toggle-ai" class="btn btn-secondary">Toggle AI for All Rows</button>
+            <button id="apply-tz" class="btn btn-secondary">Apply First Row’s Timezone to All</button>
+          </div>
+        </div>
+        <div style="overflow-x:auto;">
+          <table id="schedule-table" class="table" aria-label="Schedule posts table">
+            <thead>
+              <tr>
+                <th><input type="checkbox" id="select-all" aria-label="Select all rows"></th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Timezone</th>
+                <th>Platforms</th>
+                <th>Media</th>
+                <th>Caption</th>
+                <th>Hashtags</th>
+                <th>Thumbnail</th>
+                <th>QA</th>
+                <th>AI Captions</th>
+                <th>AI Hashtags</th>
+                <th>AI Thumbnail</th>
+                <th>AI Repurpose</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="schedule-tbody">
+              <!-- Rows will be dynamically added by JS -->
+            </tbody>
+          </table>
+        </div>
+        <div class="card-footer" style="display:flex;justify-content:flex-end;gap:1rem;">
+          <button id="btn-schedule-selected" class="btn btn-primary">Schedule Selected</button>
+          <button id="btn-save-draft" class="btn btn-secondary">Save as Draft</button>
+          <button id="btn-validate" class="btn btn-ghost">Validate Media</button>
+        </div>
+      </div>
+
+      <!-- Live Preview Panel -->
+      <div class="panel card" style="flex:1;min-width:320px;">
+        <h2>Live Preview</h2>
+        <div id="preview-card" tabindex="0" aria-live="polite"></div>
+        <button id="refresh-preview" class="btn btn-secondary" style="margin-top:1rem;">Refresh Preview</button>
+      </div>
+    </div>
+  </main>
+
+  <!-- Site Footer (matches index.html) -->
+  <footer>
+    <div class="footer-links" aria-label="Footer links">
+      <a href="index.html">Home</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="signup.html">Sign Up</a>
+      <a href="login.html">Log In</a>
+      <a href="contact.html">Contact</a>
+      <a href="info.html">Info</a>
+      <a href="policies/terms.html">Terms</a>
+      <a href="policies/privacy.html">Privacy</a>
+      <a href="policies/refund-policy.html">Refund Policy</a>
+      <a href="policies/api-policy.html">API Policy</a>
+      <a href="policies/affiliate.html">Affiliate</a>
+    </div>
+    <p>&copy; <span id="year"></span> SolyntraAI. All rights reserved.</p>
+  </footer>
+
+  <script type="module" src="./scripts/main.js"></script>
+</body>
+</html>
