@@ -5,7 +5,8 @@ exports.handler = async (event) => {
     return { statusCode: 405, body: JSON.stringify({ error: "Method not allowed" }) };
 
   try {
-    const { email, name, day = 1 } = JSON.parse(event.body || "{}");
+    const { email, name, day = 1, contactName, contactEmail, contactSubject, contactMessage } = JSON.parse(event.body || "{}");
+    const data = { contactName, contactEmail, contactSubject, contactMessage };
     if (!email) return { statusCode: 400, body: JSON.stringify({ error: "email required" }) };
 
     const resend = new Resend(process.env.RESEND_API_KEY);
@@ -78,6 +79,19 @@ exports.handler = async (event) => {
               <a href="https://solyntraai.com/unsubscribe" style="color:#445566">Unsubscribe</a>
             </p>
           </div>`,
+      },
+      contact: {
+        subject: `[SolyntraAI Support] ${data.contactSubject || "New message"} — from ${data.contactName || "Unknown"} (${data.contactEmail || "no email"})`,
+        html: `
+    <div style="font-family:sans-serif;max-width:600px;margin:0 auto;color:#f0f4f8;background:#0d1420;padding:40px;border-radius:16px">
+      <h2 style="color:#00d4ff;">New support message</h2>
+      <p><strong>From:</strong> ${data.contactName} (${data.contactEmail})</p>
+      <p><strong>Subject:</strong> ${data.contactSubject}</p>
+      <hr style="border-color:#1e2d40; margin:16px 0;"/>
+      <p style="white-space:pre-wrap; color:#8899aa;">${data.contactMessage}</p>
+      <hr style="border-color:#1e2d40; margin:16px 0;"/>
+      <p style="color:#445566; font-size:12px;">Reply directly to ${data.contactEmail}</p>
+    </div>`,
       },
     };
 

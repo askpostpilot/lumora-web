@@ -46,25 +46,58 @@
       <main class="app-main" id="app-main">
         <div class="container wrap">
           <h1 class="heading">Analytics</h1>
-          <p class="muted">Scheduling activity for <strong id="current-brand-name">—</strong></p>
+          <p class="muted" style="margin-bottom:24px;">
+            Content activity for <strong id="current-brand-name">—</strong>
+          </p>
 
-          <div class="stats-row-analytics" style="margin-top: 18px">
+          <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:12px; margin-bottom:28px;">
             <div class="glass-card card-3d stat-card">
               <div id="stat-total" class="stat-num">—</div>
-              <div>Total posts scheduled</div>
+              <div class="muted" style="font-size:12px;">Total posts planned</div>
             </div>
             <div class="glass-card card-3d stat-card">
               <div id="stat-month" class="stat-num">—</div>
-              <div>Posts this month</div>
+              <div class="muted" style="font-size:12px;">Posts this month</div>
             </div>
             <div class="glass-card card-3d stat-card">
               <div id="stat-hours" class="stat-num">—</div>
-              <div>Hours saved</div>
+              <div class="muted" style="font-size:12px;">Hours saved</div>
             </div>
             <div class="glass-card card-3d stat-card">
               <div id="stat-platform" class="stat-num">—</div>
-              <div>Most used platform</div>
+              <div class="muted" style="font-size:12px;">Top platform</div>
             </div>
+            <div class="glass-card card-3d stat-card">
+              <div id="stat-ai-used" class="stat-num">—</div>
+              <div class="muted" style="font-size:12px;">AI credits used</div>
+            </div>
+            <div class="glass-card card-3d stat-card">
+              <div id="stat-drafts" class="stat-num">—</div>
+              <div class="muted" style="font-size:12px;">Drafts saved</div>
+            </div>
+          </div>
+
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:24px;">
+            <div class="glass-card card-pad">
+              <h3 style="font-size:14px; margin-bottom:14px;">Platform breakdown</h3>
+              <div id="platform-breakdown">
+                <p class="muted" style="font-size:13px;">No posts yet.</p>
+              </div>
+            </div>
+            <div class="glass-card card-pad">
+              <h3 style="font-size:14px; margin-bottom:14px;">Post status</h3>
+              <div id="status-breakdown">
+                <p class="muted" style="font-size:13px;">No posts yet.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="glass-card card-pad" style="margin-bottom:24px;">
+            <h3 style="font-size:14px; margin-bottom:14px;">Last 7 days activity</h3>
+            <div id="weekly-chart" style="display:flex; align-items:flex-end; gap:8px; height:80px;">
+              <p class="muted" style="font-size:13px; align-self:center;">No activity yet.</p>
+            </div>
+            <div id="weekly-labels" style="display:flex; gap:8px; margin-top:6px;"></div>
           </div>
 
           <div class="zynera-analytics-card">
@@ -112,18 +145,75 @@
         const brand = brands.find((b) => b.id === brandId);
         document.getElementById("current-brand-name").textContent = brand?.name || "—";
 
-        const setN = (id, v) => {
-          const el = document.getElementById(id);
-          if (el) el.textContent = v;
-        };
-        setN("stat-total", analytics.totalPosts);
-        setN("stat-month", analytics.postsThisMonth);
-        setN("stat-hours", analytics.hoursSaved + " hrs");
+        const setN = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = v; };
+        setN("stat-total", analytics.totalPosts ?? "0");
+        setN("stat-month", analytics.postsThisMonth ?? "0");
+        setN("stat-hours", (analytics.hoursSaved ?? 0) + " hrs");
         setN("stat-platform", analytics.topPlatform || "—");
+        setN("stat-ai-used", stats?.aiCreditsUsed ?? "0");
+        setN("stat-drafts", stats?.draftPosts ?? "0");
 
         const adminLink = document.getElementById("admin-nav-link");
-        if (adminLink && stats.isAdmin) adminLink.style.display = "block";
-        else if (adminLink) adminLink.style.display = "none";
+        if (adminLink) adminLink.style.display = stats?.isAdmin ? "block" : "none";
+
+        const pbEl = document.getElementById("platform-breakdown");
+        if (pbEl && analytics.platformBreakdown && Object.keys(analytics.platformBreakdown).length) {
+          const total = Object.values(analytics.platformBreakdown).reduce((a, b) => a + b, 0);
+          pbEl.innerHTML = Object.entries(analytics.platformBreakdown)
+            .sort((a, b) => b[1] - a[1])
+            .map(([platform, count]) => {
+              const pct = Math.round((count / total) * 100);
+              return `
+          <div style="margin-bottom:10px;">
+            <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px;">
+              <span style="text-transform:capitalize;">${platform}</span>
+              <span class="muted">${count} posts (${pct}%)</span>
+            </div>
+            <div style="background:rgba(255,255,255,0.06);border-radius:99px;height:6px;">
+              <div style="background:linear-gradient(90deg,#00d4ff,#7b61ff);width:${pct}%;height:6px;border-radius:99px;transition:width 0.5s;"></div>
+            </div>
+          </div>`;
+            }).join("");
+        } else if (pbEl) {
+          pbEl.innerHTML = '<p class="muted" style="font-size:13px;">No posts yet.</p>';
+        }
+
+        const sbEl = document.getElementById("status-breakdown");
+        if (sbEl && analytics.statusBreakdown && Object.keys(analytics.statusBreakdown).length) {
+          const statusColors = { scheduled: "#00d4ff", draft: "#7b61ff", published: "#00ff9d", failed: "#ff5e57" };
+          sbEl.innerHTML = Object.entries(analytics.statusBreakdown)
+            .map(([status, count]) => `
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+          <span style="width:10px;height:10px;border-radius:50%;background:${statusColors[status] || "#8899aa"};flex-shrink:0;"></span>
+          <span style="font-size:13px;text-transform:capitalize;flex:1;">${status}</span>
+          <span style="font-size:13px;font-weight:500;">${count}</span>
+        </div>`
+            ).join("");
+        } else if (sbEl) {
+          sbEl.innerHTML = '<p class="muted" style="font-size:13px;">No posts yet.</p>';
+        }
+
+        const chartEl = document.getElementById("weekly-chart");
+        const labelsEl = document.getElementById("weekly-labels");
+        if (chartEl && analytics.weeklyActivity?.length) {
+          const maxVal = Math.max(...analytics.weeklyActivity.map(d => d.count), 1);
+          chartEl.innerHTML = analytics.weeklyActivity.map(day => {
+            const heightPct = Math.round((day.count / maxVal) * 100);
+            return `
+        <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;">
+          <span style="font-size:11px;color:#8899aa;">${day.count || ""}</span>
+          <div style="width:100%;background:${day.count > 0 ? "linear-gradient(180deg,#7b61ff,#00d4ff)" : "rgba(255,255,255,0.06)"};
+            height:${Math.max(heightPct, 4)}%;border-radius:4px 4px 0 0;transition:height 0.5s;"></div>
+        </div>`;
+          }).join("");
+          if (labelsEl) {
+            labelsEl.innerHTML = analytics.weeklyActivity.map(day =>
+              `<div style="flex:1;text-align:center;font-size:10px;color:#8899aa;">${day.label}</div>`
+            ).join("");
+          }
+        } else if (chartEl) {
+          chartEl.innerHTML = '<p class="muted" style="font-size:13px;align-self:center;">No activity in the last 7 days.</p>';
+        }
       }
 
       function renderBrandList() {

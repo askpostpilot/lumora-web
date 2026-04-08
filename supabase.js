@@ -283,6 +283,10 @@ export async function getUserStats(userId, brandId) {
     .eq("user_id", userId)
     .eq("is_active", true);
 
+  let postsListQ = supabase.from("posts").select("status").eq("user_id", userId);
+  if (brandId) postsListQ = postsListQ.eq("brand_id", brandId);
+  const { data: posts } = await postsListQ;
+
   return {
     scheduledPosts: scheduledCount || 0,
     totalPosts: totalPosts || 0,
@@ -300,31 +304,63 @@ export async function getUserStats(userId, brandId) {
     onboardingComplete: profile?.onboarding_complete || false,
     isAdmin: profile?.is_admin || false,
     brandLimit: profile?.brand_limit || 1,
+    draftPosts: posts?.filter(p => p.status === "draft").length ?? 0,
+    aiCreditsUsed: profile?.ai_credits_used ?? 0,
   };
 }
 
 // ─── ANALYTICS ─────────────────────────────────────────────
 
 export async function getAnalyticsData(userId, brandId) {
-  let q = supabase.from("posts").select("platform,status,created_at").eq("user_id", userId);
+  let q = supabase.from("posts").select("platform,status,scheduled_at,created_at").eq("user_id", userId);
   if (brandId) q = q.eq("brand_id", brandId);
   const { data: posts } = await q;
-  if (!posts?.length) return { totalPosts: 0, topPlatform: null, postsThisMonth: 0, hoursSaved: 0 };
-  const breakdown = {};
+
+  if (!posts?.length) return {
+    totalPosts: 0, topPlatform: null, postsThisMonth: 0, hoursSaved: 0,
+    platformBreakdown: {}, statusBreakdown: {}, weeklyActivity: buildEmptyWeek()
+  };
+
+  const platformBreakdown = {};
   posts.forEach((p) => {
-    breakdown[p.platform] = (breakdown[p.platform] || 0) + 1;
+    if (p.platform) platformBreakdown[p.platform] = (platformBreakdown[p.platform] || 0) + 1;
   });
-  const topPlatform = Object.entries(breakdown).sort((a, b) => b[1] - a[1])[0]?.[0];
-  const som = new Date();
-  som.setDate(1);
-  som.setHours(0, 0, 0, 0);
+  const topPlatform = Object.entries(platformBreakdown).sort((a, b) => b[1] - a[1])[0]?.[0];
+
+  const statusBreakdown = {};
+  posts.forEach((p) => {
+    if (p.status) statusBreakdown[p.status] = (statusBreakdown[p.status] || 0) + 1;
+  });
+
+  const som = new Date(); som.setDate(1); som.setHours(0, 0, 0, 0);
   const postsThisMonth = posts.filter((p) => new Date(p.created_at) >= som).length;
+
+  const weeklyActivity = buildEmptyWeek();
+  posts.forEach((p) => {
+    const d = new Date(p.created_at);
+    const entry = weeklyActivity.find(w => w.date === d.toDateString());
+    if (entry) entry.count++;
+  });
+
   return {
     totalPosts: posts.length,
     topPlatform,
     postsThisMonth,
     hoursSaved: Math.round(posts.length * 0.25 * 10) / 10,
+    platformBreakdown,
+    statusBreakdown,
+    weeklyActivity,
   };
+}
+
+function buildEmptyWeek() {
+  const days = [];
+  for (let i = 6; i >= 0; i--) {
+    const d = new Date();
+    d.setDate(d.getDate() - i);
+    days.push({ label: d.toLocaleDateString("en-US", { weekday: "short" }), count: 0, date: d.toDateString() });
+  }
+  return days;
 }
 
 // ─── RSS ───────────────────────────────────────────────────
