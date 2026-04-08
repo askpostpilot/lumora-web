@@ -116,11 +116,6 @@
             <span class="badge" id="credits-badge">AI credits: —</span>
           </div>
 
-          <div id="free-plan-banner">
-            <span>Free plan · <strong id="credits-remaining">10</strong> AI credits left</span>
-            <a href="pricing.html" class="btn btn-primary btn-sm" style="margin-left: 8px">Upgrade →</a>
-          </div>
-
           <section class="stats">
             <article class="glass-card card-3d stat"><div class="muted">📅 Posts Scheduled</div><div class="v" id="stat-scheduled">0</div></article>
             <article class="glass-card card-3d stat"><div class="muted">🌐 Platforms Connected</div><div class="v" id="stat-platforms">0</div></article>
@@ -131,9 +126,19 @@
               <div class="stat-label muted" style="font-size: 0.85rem; margin-top: 4px">Streak</div>
               <div class="stat-sub muted" id="stat-longest" style="font-size: 0.8rem">Best: 0 days</div>
             </article>
-            <article class="glass-card card-3d stat"><div class="muted">✨ AI credits</div><div class="v" id="stat-ai-credits">—</div></article>
+            <article class="glass-card card-3d stat">
+              <div class="muted">✨ AI credits</div>
+              <div class="v" id="stat-ai-credits">—</div>
+              <div id="credits-nudge" class="muted" style="display: none; margin-top: 4px">Upgrade for more AI credits →</div>
+            </article>
             <article class="glass-card card-3d stat"><div class="muted">🖼️ Thumbnail credits</div><div class="v" id="stat-thumb-credits">—</div></article>
           </section>
+
+          <div id="free-plan-banner" class="glass-card card-pad" style="display: none; margin-bottom: 12px">
+            <strong>You're on the Free plan</strong>
+            <p class="muted" style="margin: 8px 0 10px">10 AI credits/mo · 1 brand · No thumbnail generation</p>
+            <a href="pricing.html" class="btn btn-primary btn-sm">Upgrade to Starter →</a>
+          </div>
 
           <section class="actions">
             <a class="btn btn-primary" href="scheduler.html">+ Schedule New Post</a>
@@ -283,11 +288,16 @@
         const badge = document.getElementById("credits-badge");
         if (badge) badge.textContent = `AI: ${stats.aiCreditsRemaining} · Thumb: ${stats.thumbnailCreditsRemaining}`;
 
-        const freeBanner = document.getElementById("free-plan-banner");
-        if (stats.plan === "free") {
-          if (freeBanner) freeBanner.style.display = "block";
-          setText("credits-remaining", String(stats.aiCreditsRemaining));
-        } else if (freeBanner) freeBanner.style.display = "none";
+        const creditsEl = document.getElementById("credits-nudge");
+        if (creditsEl && stats.aiCreditsRemaining !== undefined && stats.aiCreditsRemaining <= 3) {
+          creditsEl.style.display = "block";
+        } else if (creditsEl) {
+          creditsEl.style.display = "none";
+        }
+
+        const profile = { plan: stats.plan };
+        const banner = document.getElementById("free-plan-banner");
+        if (banner) banner.style.display = (profile?.plan === "free" || !profile?.plan) ? "block" : "none";
 
         const up = document.getElementById("upgrade-banner");
         if (stats.plan === "free" && up) up.style.display = "block";

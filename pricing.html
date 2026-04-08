@@ -134,6 +134,7 @@
           <button type="button" class="toggle-btn active" id="btn-monthly" onclick="setBilling('monthly')">Monthly</button>
           <button type="button" class="toggle-btn" id="btn-yearly" onclick="setBilling('yearly')">Yearly <span class="save-badge">Save 20%</span></button>
         </div>
+        <p class="muted" style="margin-top: 10px">⚡ Starter plan includes a 14-day free trial — no card needed to start.</p>
       </div>
       <div class="container pricing-grid">
         <article class="glass-card card-3d plan">
@@ -149,11 +150,13 @@
             <li>Post history</li>
             <li>Email support (24–48hr response)</li>
           </ul>
+          <p class="muted" style="margin-top: 10px">10 AI credits/mo · 1 brand · Limited platforms</p>
           <a class="btn btn-secondary btn-block" href="signup.html" style="margin-top: 12px">Start Free — No card needed</a>
         </article>
         <article class="glass-card card-3d plan" style="border-color: rgba(0, 212, 255, 0.24)">
           <h3>Starter</h3>
           <div id="price-starter" class="price text-metal">$29/mo</div>
+          <p id="yearly-save-starter" class="muted" style="display: none; margin: -4px 0 10px">Save $72/yr vs monthly</p>
           <ul>
             <li>1 brand</li>
             <li>5 platforms</li>
@@ -168,12 +171,13 @@
             <li>Failure alerts</li>
             <li>Email support (24–48hr response)</li>
           </ul>
-          <a class="btn btn-primary btn-block" href="https://www.paypal.com/ncp/payment/3UYP578XT4AE6" target="_blank" rel="noopener noreferrer" style="margin-top: 12px">Start 14-day Free Trial</a>
+          <a id="starter-cta" class="btn btn-primary btn-block" href="https://www.paypal.com/ncp/payment/3UYP578XT4AE6" target="_blank" rel="noopener noreferrer" style="margin-top: 12px">Start 14-day Free Trial</a>
         </article>
         <article class="glass-card card-3d plan" style="border-color: rgba(123, 97, 255, 0.35)">
-          <span class="badge badge-violet most-popular">Most Popular</span>
+          <span class="badge badge-violet most-popular">MOST POPULAR</span>
           <h3>Pro</h3>
           <div id="price-pro" class="price text-metal">$79/mo</div>
+          <p id="yearly-save-pro" class="muted" style="display: none; margin: -4px 0 10px">Save with yearly billing</p>
           <ul>
             <li>3 brands</li>
             <li>10 platforms per brand</li>
@@ -191,6 +195,7 @@
         <article class="glass-card card-3d plan" style="border-color: rgba(0, 255, 157, 0.22)">
           <h3>Agency</h3>
           <div id="price-agency" class="price text-metal">$149/mo</div>
+          <p id="yearly-save-agency" class="muted" style="display: none; margin: -4px 0 10px">Save with yearly billing</p>
           <ul>
             <li>10 brands</li>
             <li>10 platforms per brand</li>
@@ -205,6 +210,9 @@
           </ul>
           <a class="btn btn-primary btn-block" href="https://www.paypal.com/ncp/payment/6V2NYJTE68VZ2" target="_blank" rel="noopener noreferrer" style="margin-top: 12px">Go Agency</a>
         </article>
+      </div>
+      <div class="container center" style="margin-top: 14px">
+        <a class="btn btn-ghost" href="features.html">Not sure which plan? Compare all features →</a>
       </div>
       <div class="container faq">
         <details>
@@ -234,6 +242,17 @@
         document.getElementById("price-starter").textContent = prices.starter[type];
         document.getElementById("price-pro").textContent = prices.pro[type];
         document.getElementById("price-agency").textContent = prices.agency[type];
+        if (type === "yearly") {
+          document.getElementById("yearly-save-starter").style.display = "block";
+          document.getElementById("yearly-save-pro").style.display = "block";
+          document.getElementById("yearly-save-agency").style.display = "block";
+          document.getElementById("starter-cta").textContent = "Save $72/yr vs monthly";
+        } else {
+          document.getElementById("yearly-save-starter").style.display = "none";
+          document.getElementById("yearly-save-pro").style.display = "none";
+          document.getElementById("yearly-save-agency").style.display = "none";
+          document.getElementById("starter-cta").textContent = "Start 14-day Free Trial";
+        }
         document.querySelectorAll(".toggle-btn").forEach((b) => b.classList.remove("active"));
         document.getElementById(`btn-${type}`).classList.add("active");
       }
