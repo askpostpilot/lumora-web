@@ -19,35 +19,88 @@
         font-family: var(--font-heading);
         margin-bottom: 8px;
       }
-      .policy-page pre.policy-body {
-        white-space: pre-wrap;
-        font-family: var(--font-body);
-        font-size: 1rem;
-        line-height: 1.65;
-        color: var(--text-secondary);
-        margin: 0;
+      .affiliate-grid {
+        display: grid;
+        gap: 14px;
+        margin-top: 16px;
+      }
+      @media (min-width: 640px) {
+        .affiliate-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
       }
     </style>
   </head>
   <body>
     <header class="site-header">
       <div class="container nav-wrap">
-        <a class="brand" href="../index.html"
-          ><span class="brand-badge"></span><span class="logo"><span class="logo-metal">SolyntraAI</span></span></a
-        >
+        <a class="brand" href="../index.html" aria-label="SolyntraAI home">
+          <span class="brand-badge" aria-hidden="true"></span>
+          <span class="logo"><span class="logo-metal">SolyntraAI</span></span>
+        </a>
+
+        <nav class="nav nav-public" aria-label="Public navigation">
+          <button class="nav-toggle" type="button" aria-label="Toggle menu">
+            <span class="hamburger" aria-hidden="true"><span></span><span></span><span></span></span>
+          </button>
+          <div class="nav-links" role="list">
+            <a class="nav-link" href="../features.html">Features</a>
+            <a class="nav-link" href="../pricing.html">Pricing</a>
+            <a class="nav-link" href="../contact.html">Contact</a>
+          </div>
+          <div class="nav-actions">
+            <a class="btn btn-ghost btn-sm" href="../login.html">Log In</a>
+            <a class="btn btn-primary btn-sm" href="../signup.html">Start Free →</a>
+          </div>
+        </nav>
       </div>
     </header>
     <main class="policy-page">
-      <h1>Affiliate Program</h1>
-      <p class="muted" style="margin-bottom: 24px">Last updated: March 2026</p>
-      <pre class="policy-body">Affiliate Program — SolyntraAI
-Coming Soon
+      <div class="kicker">Affiliate Program</div>
+      <h1 class="heading">Earn with SolyntraAI</h1>
+      <p class="muted" style="margin-bottom: 24px">
+        Our affiliate program is in development. Be the first to know when it launches — and get early access to exclusive commission rates.
+      </p>
 
-We are working on an affiliate program for SolyntraAI.
-If you are interested in partnering with us, email us at:
-support@solyntraai.com
+      <section class="glass-card card-pad" style="margin-bottom: 24px">
+        <h2 style="font-size: 16px; margin-bottom: 16px">What's coming</h2>
+        <div class="affiliate-grid">
+          <div>
+            <p style="font-size: 1.25rem; margin: 0 0 8px">💰</p>
+            <p style="font-weight: 600; margin-bottom: 6px">Recurring commissions</p>
+            <p class="muted" style="font-size: 14px; line-height: 1.6; margin: 0">
+              Earn a percentage of every subscription you refer — monthly, as long as they stay.
+            </p>
+          </div>
+          <div>
+            <p style="font-size: 1.25rem; margin: 0 0 8px">🔗</p>
+            <p style="font-weight: 600; margin-bottom: 6px">Simple tracking links</p>
+            <p class="muted" style="font-size: 14px; line-height: 1.6; margin: 0">
+              One unique link. Track clicks, signups, and earnings from your own dashboard.
+            </p>
+          </div>
+          <div>
+            <p style="font-size: 1.25rem; margin: 0 0 8px">📊</p>
+            <p style="font-weight: 600; margin-bottom: 6px">Real-time dashboard</p>
+            <p class="muted" style="font-size: 14px; line-height: 1.6; margin: 0">
+              See your referrals, conversions, and payouts in one place.
+            </p>
+          </div>
+        </div>
+      </section>
 
-We will notify you when the program launches.</pre>
+      <section class="glass-card card-pad">
+        <h2 style="font-size: 16px; margin-bottom: 8px">Join the waitlist</h2>
+        <p class="muted" style="margin-bottom: 16px">Drop your email — we'll notify you the moment the program goes live.</p>
+        <form class="form" id="affiliate-waitlist-form">
+          <div class="field">
+            <label class="label" for="affiliate-email">Email</label>
+            <input class="input" id="affiliate-email" type="email" placeholder="you@example.com" required />
+          </div>
+          <button class="btn btn-primary" type="submit" id="affiliate-notify-btn">Notify me</button>
+          <p id="affiliate-waitlist-result" class="helper" style="margin-top: 10px"></p>
+        </form>
+      </section>
     </main>
     <footer class="site-footer">
       <div class="container footer-bottom">
@@ -57,6 +110,42 @@ We will notify you when the program launches.</pre>
     <script src="../assets/js/main.js"></script>
     <script>
       document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+    <script>
+      const waitForm = document.getElementById("affiliate-waitlist-form");
+      const waitResult = document.getElementById("affiliate-waitlist-result");
+      const waitBtn = document.getElementById("affiliate-notify-btn");
+      waitForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const addr = document.getElementById("affiliate-email").value.trim();
+        waitBtn.disabled = true;
+        waitBtn.textContent = "Sending…";
+        waitResult.textContent = "";
+        try {
+          await fetch("/.netlify/functions/send-welcome-email", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              email: "support@solyntraai.com",
+              name: "Support",
+              day: "contact",
+              contactName: "Affiliate waitlist",
+              contactEmail: addr,
+              contactSubject: "affiliate_waitlist",
+              contactMessage: "Please add this email to the affiliate program waitlist.",
+            }),
+          });
+          waitResult.textContent = "You're on the list. We'll email you when the program opens.";
+          waitResult.style.color = "#00ff9d";
+          waitForm.reset();
+        } catch {
+          waitResult.textContent = "Something went wrong. Email support@solyntraai.com to join the waitlist.";
+          waitResult.style.color = "#ff5e57";
+        } finally {
+          waitBtn.disabled = false;
+          waitBtn.textContent = "Notify me";
+        }
+      });
     </script>
   </body>
 </html>

@@ -32,9 +32,25 @@
     </div>
     <header class="site-header">
       <div class="container nav-wrap">
-        <a class="brand" href="index.html"
-          ><span class="brand-badge"></span><span class="logo"><span class="logo-metal">SolyntraAI</span></span></a
-        >
+        <a class="brand" href="index.html" aria-label="SolyntraAI home">
+          <span class="brand-badge" aria-hidden="true"></span>
+          <span class="logo"><span class="logo-metal">SolyntraAI</span></span>
+        </a>
+
+        <nav class="nav nav-public" aria-label="Public navigation">
+          <button class="nav-toggle" type="button" aria-label="Toggle menu">
+            <span class="hamburger" aria-hidden="true"><span></span><span></span><span></span></span>
+          </button>
+          <div class="nav-links" role="list">
+            <a class="nav-link" href="features.html">Features</a>
+            <a class="nav-link" href="pricing.html">Pricing</a>
+            <a class="nav-link" href="contact.html">Contact</a>
+          </div>
+          <div class="nav-actions">
+            <a class="btn btn-ghost btn-sm" href="login.html">Log In</a>
+            <a class="btn btn-primary btn-sm" href="signup.html">Start Free →</a>
+          </div>
+        </nav>
       </div>
     </header>
     <main class="container wrap">

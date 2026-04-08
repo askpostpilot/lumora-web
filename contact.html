@@ -1,115 +1,166 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>Contact — SolyntraAI</title><link rel="stylesheet" href="./styles/tokens.css"/><link rel="stylesheet" href="./assets/style.css"/><script src="/.netlify/functions/config"></script><style>.wrap{padding:24px 0 56px;position:relative;z-index:1;max-width:700px}.card{padding:18px}</style></head><body><header class="site-header"><div class="container nav-wrap"><a class="brand" href="index.html"><span class="brand-badge"></span><span class="logo"><span class="logo-metal">SolyntraAI</span></span></a></div></header>
-  <main class="container" style="padding:32px 0 64px; max-width:720px;">
-
-    <div class="kicker">Support</div>
-    <h1 class="heading">We're here to help</h1>
-    <p class="muted" style="margin-bottom:32px;">
-      Email us at <a href="mailto:support@solyntraai.com" style="color:#00d4ff;">support@solyntraai.com</a> — we reply within 24 hours.
-    </p>
-
-    <section class="glass-card card-pad" style="margin-bottom:24px;">
-      <h2 style="font-size:16px; margin-bottom:16px;">Send a message</h2>
-      <form class="form" id="contact-form">
-        <div class="field">
-          <label class="label" for="c-name">Name</label>
-          <input class="input" id="c-name" type="text" placeholder="Your name" required />
-        </div>
-        <div class="field">
-          <label class="label" for="c-email">Email</label>
-          <input class="input" id="c-email" type="email" placeholder="you@example.com" required />
-        </div>
-        <div class="field">
-          <label class="label" for="c-subject">Subject</label>
-          <select class="input" id="c-subject">
-            <option value="plan_activation">Plan activation after payment</option>
-            <option value="billing">Billing question</option>
-            <option value="bug">Bug report</option>
-            <option value="feature">Feature request</option>
-            <option value="other">Other</option>
-          </select>
-        </div>
-        <div class="field">
-          <label class="label" for="c-message">Message</label>
-          <textarea class="textarea" id="c-message" rows="5" placeholder="Describe your issue or question..." required></textarea>
-        </div>
-        <button class="btn btn-primary" type="submit" id="contact-submit">Send Message</button>
-        <div id="contact-result" class="helper" style="margin-top:10px;"></div>
-      </form>
-    </section>
-
-    <section class="glass-card card-pad" style="margin-bottom:24px;">
-      <h2 style="font-size:16px; margin-bottom:16px;">Common questions</h2>
-      <div style="display:flex; flex-direction:column; gap:16px;">
-        <div>
-          <p style="font-weight:500; margin-bottom:4px;">I paid via PayPal but my plan hasn't upgraded.</p>
-          <p class="muted" style="font-size:13px;">Email us at support@solyntraai.com with your PayPal transaction ID and the email you signed up with. We manually activate plans within a few hours.</p>
-        </div>
-        <div>
-          <p style="font-weight:500; margin-bottom:4px;">Can I get a refund?</p>
-          <p class="muted" style="font-size:13px;">Yes — within 7 days of payment, no questions asked. See our <a href="policies/refund-policy.html" style="color:#7b61ff;">refund policy</a>.</p>
-        </div>
-        <div>
-          <p style="font-weight:500; margin-bottom:4px;">Does SolyntraAI actually post to social media?</p>
-          <p class="muted" style="font-size:13px;">Not yet — V1 is a content planning and AI writing tool. You plan and generate content here, then post manually. Auto-publishing is coming in V2.</p>
-        </div>
-        <div>
-          <p style="font-weight:500; margin-bottom:4px;">How do I cancel my plan?</p>
-          <p class="muted" style="font-size:13px;">Email support@solyntraai.com with subject "Cancel subscription". We'll process it within 24 hours and confirm via email.</p>
-        </div>
-        <div>
-          <p style="font-weight:500; margin-bottom:4px;">I want yearly billing — how does that work?</p>
-          <p class="muted" style="font-size:13px;">Pay monthly via PayPal, then email support@solyntraai.com with subject "Yearly Plan Request". We'll apply a 20% discount and adjust your billing.</p>
-        </div>
-      </div>
-    </section>
-
-    <div style="text-align:center; padding:16px 0;">
-      <p class="muted" style="font-size:13px;">Prefer email directly? <a href="mailto:support@solyntraai.com" style="color:#7b61ff; font-weight:500;">support@solyntraai.com</a></p>
-    </div>
-
-  </main>
-
-  <script src="./assets/js/main.js"></script>
-  <script>
-    const form = document.getElementById('contact-form');
-    const result = document.getElementById('contact-result');
-    const btn = document.getElementById('contact-submit');
-
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      btn.disabled = true;
-      btn.textContent = 'Sending…';
-      result.textContent = '';
-
-      const name = document.getElementById('c-name').value.trim();
-      const email = document.getElementById('c-email').value.trim();
-      const subject = document.getElementById('c-subject').value;
-      const message = document.getElementById('c-message').value.trim();
-
-      try {
-        await fetch('/.netlify/functions/send-welcome-email', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            email: 'support@solyntraai.com',
-            name: 'Support',
-            day: 'contact',
-            contactName: name,
-            contactEmail: email,
-            contactSubject: subject,
-            contactMessage: message
-          })
-        });
-        result.textContent = "✅ Message sent! We'll reply within 24 hours.";
-        result.style.color = '#00ff9d';
-        form.reset();
-      } catch {
-        result.textContent = 'Something went wrong. Email us directly at support@solyntraai.com';
-        result.style.color = '#ff5e57';
-      } finally {
-        btn.disabled = false;
-        btn.textContent = 'Send Message';
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact — SolyntraAI</title>
+    <link rel="stylesheet" href="./styles/tokens.css" />
+    <link rel="stylesheet" href="./assets/style.css" />
+    <script src="/.netlify/functions/config"></script>
+    <style>
+      .wrap {
+        padding: 24px 0 56px;
+        position: relative;
+        z-index: 1;
+        max-width: 700px;
       }
-    });
-  </script>
-</body></html>
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a class="brand" href="index.html" aria-label="SolyntraAI home">
+          <span class="brand-badge" aria-hidden="true"></span>
+          <span class="logo"><span class="logo-metal">SolyntraAI</span></span>
+        </a>
+
+        <nav class="nav nav-public" aria-label="Public navigation">
+          <button class="nav-toggle" type="button" aria-label="Toggle menu">
+            <span class="hamburger" aria-hidden="true"><span></span><span></span><span></span></span>
+          </button>
+          <div class="nav-links" role="list">
+            <a class="nav-link" href="features.html">Features</a>
+            <a class="nav-link" href="pricing.html">Pricing</a>
+            <a class="nav-link" href="contact.html">Contact</a>
+          </div>
+          <div class="nav-actions">
+            <a class="btn btn-ghost btn-sm" href="login.html">Log In</a>
+            <a class="btn btn-primary btn-sm" href="signup.html">Start Free →</a>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container wrap">
+      <div class="kicker">Support</div>
+      <h1 class="heading">We're here to help</h1>
+      <p class="muted" style="margin-bottom: 32px">Email us at support@solyntraai.com — we reply within 24 hours.</p>
+
+      <section class="glass-card card-pad" style="margin-bottom: 24px">
+        <h2 style="font-size: 16px; margin-bottom: 16px">Send a message</h2>
+        <form class="form" id="contact-form">
+          <div class="field">
+            <label class="label" for="c-name">Name</label>
+            <input class="input" id="c-name" type="text" placeholder="Your name" required />
+          </div>
+          <div class="field">
+            <label class="label" for="c-email">Email</label>
+            <input class="input" id="c-email" type="email" placeholder="you@example.com" required />
+          </div>
+          <div class="field">
+            <label class="label" for="c-subject">Subject</label>
+            <select class="input" id="c-subject">
+              <option value="plan_activation">Plan activation after payment</option>
+              <option value="billing">Billing question</option>
+              <option value="bug">Bug report</option>
+              <option value="feature">Feature request</option>
+              <option value="cancel_subscription">Cancel my subscription</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div class="field">
+            <label class="label" for="c-message">Message</label>
+            <textarea class="textarea" id="c-message" rows="5" placeholder="Describe your issue or question..." required></textarea>
+          </div>
+          <button class="btn btn-primary" type="submit" id="contact-submit">Send Message</button>
+          <div id="contact-result" class="helper" style="margin-top: 10px"></div>
+        </form>
+      </section>
+
+      <section class="glass-card card-pad" style="margin-bottom: 24px">
+        <h2 style="font-size: 16px; margin-bottom: 16px">Common questions</h2>
+        <div style="display: flex; flex-direction: column; gap: 16px">
+          <div>
+            <p style="font-weight: 500; margin-bottom: 4px">I paid via PayPal but my plan hasn't upgraded.</p>
+            <p class="muted" style="font-size: 13px">
+              Email us at support@solyntraai.com with your PayPal transaction ID and the email you signed up with. We activate plans within a few hours.
+            </p>
+          </div>
+          <div>
+            <p style="font-weight: 500; margin-bottom: 4px">Do you offer refunds?</p>
+            <p class="muted" style="font-size: 13px">
+              All paid plans include a 14-day free trial — no charge during the trial. After the trial ends, payments are non-refundable. See our
+              <a href="policies/refund-policy.html" style="color: #7b61ff">refund policy</a>.
+            </p>
+          </div>
+          <div>
+            <p style="font-weight: 500; margin-bottom: 4px">Does SolyntraAI actually post to social media?</p>
+            <p class="muted" style="font-size: 13px">
+              Not yet — V1 is a content planning and AI writing tool. You plan and generate content here, then post manually. Auto-publishing is coming in V2.
+            </p>
+          </div>
+          <div>
+            <p style="font-weight: 500; margin-bottom: 4px">How do I cancel my plan?</p>
+            <p class="muted" style="font-size: 13px">
+              Email support@solyntraai.com with subject "Cancel subscription". We'll process it within 24 hours and confirm via email.
+            </p>
+          </div>
+          <div>
+            <p style="font-weight: 500; margin-bottom: 4px">I want yearly billing — how does that work?</p>
+            <p class="muted" style="font-size: 13px">
+              Pay monthly via PayPal, then email support@solyntraai.com with subject "Yearly Plan Request". We'll apply a 20% discount and adjust your billing.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <div style="text-align: center; padding: 16px 0">
+        <p class="muted" style="font-size: 13px">Prefer email directly? <a href="mailto:support@solyntraai.com" style="color: #7b61ff; font-weight: 500">support@solyntraai.com</a></p>
+      </div>
+    </main>
+
+    <script src="./assets/js/main.js"></script>
+    <script>
+      const form = document.getElementById("contact-form");
+      const result = document.getElementById("contact-result");
+      const btn = document.getElementById("contact-submit");
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        btn.disabled = true;
+        btn.textContent = "Sending…";
+        result.textContent = "";
+
+        const name = document.getElementById("c-name").value.trim();
+        const email = document.getElementById("c-email").value.trim();
+        const subject = document.getElementById("c-subject").value;
+        const message = document.getElementById("c-message").value.trim();
+
+        try {
+          await fetch("/.netlify/functions/send-welcome-email", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              email: "support@solyntraai.com",
+              name: "Support",
+              day: "contact",
+              contactName: name,
+              contactEmail: email,
+              contactSubject: subject,
+              contactMessage: message,
+            }),
+          });
+          result.textContent = "✅ Message sent! We'll reply within 24 hours.";
+          result.style.color = "#00ff9d";
+          form.reset();
+        } catch {
+          result.textContent = "Something went wrong. Email us directly at support@solyntraai.com";
+          result.style.color = "#ff5e57";
+        } finally {
+          btn.disabled = false;
+          btn.textContent = "Send Message";
+        }
+      });
+    </script>
+  </body>
+</html>
